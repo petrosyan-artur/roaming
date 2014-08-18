@@ -28,7 +28,7 @@ return array(
             'application' => array(
                 'type'    => 'Literal',
                 'options' => array(
-                    'route'    => '/application',
+                    'route'    => '/api',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Roaming\Controller',
                         'controller'    => 'Index',

@@ -11,7 +11,12 @@ $certificate = '../config/cert.pem';
 
 require("$appleLibraryDir/apns/Client/AbstractClient.php");
 require("$appleLibraryDir/apns/Client/Message.php");
+require("$appleLibraryDir/apns/Message/Alert.php");
+require("$appleLibraryDir/apns/Message.php");
+require("$appleLibraryDir/apns/Response/Message.php");
 require("$appleLibraryDir/Exception/RuntimeException.php");
+require("$appleLibraryDir/Exception/InvalidArgumentException.php");
+
 
 require("$zendDbDir/Adapter/Profiler/ProfilerAwareInterface.php");
 require("$zendDbDir/Adapter/Driver/Feature/DriverFeatureInterface.php");
@@ -108,7 +113,7 @@ $message->setToken($user['device_token']);
 // simple alert:
 $message->setAlert('You have new call');
 // complex alert:
-$alert = new Alert();
+$alert = new \ZendService\Apple\Apns\Message\Alert();
 $alert->setBody('You have new call');
 $alert->setActionLocKey('View Call');
 $message->setAlert($alert);
@@ -130,6 +135,7 @@ try {
 $client->close();
 
 if ($response->getCode() != \ZendService\Apple\Apns\Response\Message::RESULT_OK) {
+    
      switch ($response->getCode()) {
          case \ZendService\Apple\Apns\Response\Message::RESULT_PROCESSING_ERROR:
              // you may want to retry
@@ -160,5 +166,25 @@ if ($response->getCode() != \ZendService\Apple\Apns\Response\Message::RESULT_OK)
              break;
      }
 } else {
-    
+    $fp = fsockopen("unix:///root/rmtest/server.sock", -1);
+    //$fp = fsockopen("localhost", 4456);
+
+    if(!$fp) {
+        return false;
+    }
+
+    $written = fwrite($fp, $phoneNumber);
+    stream_set_timeout($fp, 10);
+    $res = fread($fp, 2000);
+    $info = stream_get_meta_data($fp);
+    fclose($fp);
+    if ($info['timed_out']) {
+        return false;
+    } else {
+        if((int) $res === 1) {
+            return true;
+        }
+    }
 }
+
+return false;

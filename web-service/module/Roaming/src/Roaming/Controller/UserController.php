@@ -87,5 +87,4 @@ class UserController extends AbstractBaseController {
         }
         return $this->userModel;
     }
-    
 }
