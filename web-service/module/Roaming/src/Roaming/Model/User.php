@@ -27,7 +27,8 @@ class User extends AbstractBaseModel {
     }
     
     protected function generatePin() {
-        return mt_rand(10000, 99999);
+//        return mt_rand(10000, 99999);
+        return '1111';
     }
 
     public function registered($phone) {
@@ -47,12 +48,12 @@ class User extends AbstractBaseModel {
     /**
      * 
      * @param type $user
-     * @return \Roaming\Entity\MorUserRegisterResponse | null 
+     * @return \Roaming\DbMapper\User | null 
      */
-    public function activate($user) {
+    public function activate($userCredinitial) {
         
         $morModule = $this->getMorModel();
-        $morResponse = $morModule->register($user->phone);
+        $morResponse = $morModule->register($userCredinitial);
 
         if($morResponse->getStatus() === \Roaming\Entity\MorUserRegisterResponse::STATUS_SUCCESS) {
             $userUpdateData = array();
@@ -61,7 +62,7 @@ class User extends AbstractBaseModel {
             $userUpdateData['sip_password'] = $morResponse->getDeviceEntity()->getPassword();
             $userUpdateData['mor_user_id'] = $morResponse->getMoreUserId();
             if($this->mapper->update($userUpdateData)) {
-                return $morResponse;
+                return $this->mapper->select(array('phone' => $userCredinitial))->current();
             }
         }
 
@@ -72,25 +73,23 @@ class User extends AbstractBaseModel {
         $user = $this->mapper->getUserByIdentity($userIdentity);
         $pinRequestMapper = $this->getPinRequestMapper();
         
-        $res = $this->getPinRequestMapper()->select(function (\Zend\Db\Sql\Select $select){
-            $select->columns(array('num' => new \Zend\Db\Sql\Expression('count(*)')));
-            $select->where('DATE(date_created) = DATE(NOW())');
-        })->current();
+        
+        $select = new \Zend\Db\Sql\Select($this->getPinRequestMapper()->getTable());
+        $select->columns(array('num' => new \Zend\Db\Sql\Expression('count(*)')));
+        $select->where('DATE(date_created) = DATE(NOW())');
+        $select->where('user_id = ?', array($user->id));
+        
+        $res = $this->getPinRequestMapper()->selectWith($select)->current();
 
         if($res->num >= self::PIN_REQUEST_DAILY_LIMIT) {
             throw new \Exception('sms limit exceeded', \Roaming\Helper\RespCodes::RESPONSE_STATUS_SMS_LIMIT_EXCEEDED);
         }
         
-        if(!$user) {
-            throw new \Exception('invlid user credinitioal');
-        }
         
         $pin = $this->generatePin();
         
         //save pin
-        if(!$this->mapper->updatePin($userIdentity, $pin)) {
-            throw new \Exception('invlid user credinitioal');
-        }
+        $this->mapper->updatePin($userIdentity, $pin);
         
         try {
             $twilio = $this->getServiceLocator()->get('Twilio\Service\TwilioService');
@@ -107,6 +106,18 @@ class User extends AbstractBaseModel {
         }
     }
     
+    public function updateClientLoginData($device_token, $client_version, $userIdentity) {
+        $this->mapper->update(
+            array(
+                'device_token' => $device_token,
+                'client_version' => $client_version,
+            ),
+            array('phone' => $userIdentity)
+        );
+    }
+    
+//    public function 
+    
     /**
      * @return \Roaming\DbMapper\PinRequest
      */
@@ -119,5 +130,11 @@ class User extends AbstractBaseModel {
     protected function getMorModel() {
         return $this->getServiceLocator()->get('\Roaming\Model\Mor');
     }
+    
+    public function getMapper() {
+        return $this->mapper;
+    }
+
+
     
 }

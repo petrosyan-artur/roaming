@@ -64,7 +64,10 @@ class Module {
                 },
                 '\Roaming\Auth\AuthService' => function($sm) {
                     $dbAdapter           = $sm->get('Zend\Db\Adapter\Adapter');
-                    $dbTableAuthAdapter  = new Auth\CustomCredentialTreatmentAdapter($dbAdapter, 
+                    $userModel           = $sm->get('\Roaming\Model\User');
+                    $dbTableAuthAdapter  = new Auth\CustomCredentialTreatmentAdapter(
+                                                      $userModel,
+                                                      $dbAdapter, 
                                                       'user','phone','pin', 'MD5(?)');
 
                     $authService = new \Zend\Authentication\AuthenticationService();

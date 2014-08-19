@@ -80,63 +80,46 @@ class AuthController extends AbstractBaseController {
 
         $request = $this->getRequest();
         if ($request->isPost()) {
-            
             if($this->getAuthService()->hasIdentity()) {
                 return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_ALREADY_LOGGED_IN);
             }
             
             $phone = $request->getPost('phone', null);
             $pin = $request->getPost('pin', null);
-            if(is_null($pin) || is_null($phone)) {
+            $device_token = $request->getPost('device_token', null);
+            $client_version = $request->getPost('app_version', null);
+            
+            if(is_null($pin) || is_null($phone) || is_null($device_token) || is_null($client_version)) {
                 return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS);
             }
             
             $adapter = $this->getAuthService()->getAdapter();
             
             //check authentication...
-            $adapter->setIdentity($request->getPost('phone'))
-                    ->setCredential($request->getPost('pin'));
+            $adapter->setIdentity($request->getPost('phone'))->setCredential($request->getPost('pin'));
 
             $result = $this->getAuthService()->authenticate();
 
-            if ($result->isValid()) {
-                
-                //if status is pending just activate in first login !!
-                $userObject = $adapter->getResultRowObject();
-                
-                $sipData = new \Roaming\Entity\SipConfiguration();
-                
-                try {
-                    if((int) $userObject->status === \Roaming\DbMapper\User::STATUS_PENDING) {
-                        $ret = $this->getUserModel()->activate($userObject);
-                        if(is_null($ret)) {
-                            return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_UNKNOWN_ERROR);
-                        }
-                        $device = $ret->getDeviceEntity();
-                        $sipData->setPassword($device->getPassword());
-                        $sipData->setUsername($device->getUsername());
-                        $sipData->getServer_ip($device->getAsteriskServerIp());
-                    } else {
-                        $sipData->setPassword($userObject->sip_password);
-                        $sipData->setUsername($userObject->sip_username);
+            try {
+                if ($result->isValid()) {
+                    $userObject = $adapter->getResultRowObject();
+                    $this->getUserModel()->updateClientLoginData($device_token, $client_version, $userObject->phone);
+                    $sipData = new \Roaming\Entity\SipConfiguration();
+                    $sipData->setPassword($userObject->sip_password);
+                    $sipData->setUsername($userObject->sip_username);
+                    $this->getAuthService()->setStorage($this->getSessionStorage());
+                    $this->getAuthService()->getStorage()->write($phone);
+                    return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK, array('sip' => $sipData));
+                } else {
+                    $errors = array();
+                    foreach ($result->getMessages() as $message) {
+                        //save message temporary into flashmessenger
+                        $errors[] = $message;
                     }
-
-                } catch (\Exception $ex) {
+                    return $this->getJsonModel($result->getCode(), array(), $errors);
+                }
+            } catch (\Exception $ex) {
                     return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_USER_ACTIVATION_ERROR, array(), array($ex->getMessage()));
-                }
-                
-                $this->getAuthService()->setStorage($this->getSessionStorage());
-                    
-                //$this->getAuthService()->getAdapter()->getResultRowObject()
-                $this->getAuthService()->getStorage()->write($phone);
-                return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK, array('sip' => $sipData));
-            } else {
-                $errors = array();
-                foreach ($result->getMessages() as $message) {
-                    //save message temporary into flashmessenger
-                    $errors[] = $message;
-                }
-                return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_AUTH_ERROR, array(), $errors);
             }
         }
             

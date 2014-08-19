@@ -11,6 +11,7 @@ class User extends AbstractMapper {
 
     const STATUS_PENDING = 1;
     const STATUS_ACTIVE = 2;
+    const STATUS_TEMPORARY_BLOCKED = 3;
     const STATUS_DELETED = 0;
     
     protected $tblName = 'user';
@@ -30,6 +31,11 @@ class User extends AbstractMapper {
         parent::insert($set);
     }
     
+    public function update($set, $where = null) {
+        $set['date_updated'] = new \Zend\Db\Sql\Expression('now()');
+        return parent::update($set, $where);
+    }
+    
     /**
      * 
      * @param type $userIdentity
@@ -37,7 +43,15 @@ class User extends AbstractMapper {
      * @return bool
      */
     public function updatePin($userIdentity, $pin) {
-        return $this->update(array('pin' => md5($pin)), array('phone' => $userIdentity));
+        $a = $this->update(array('pin' => md5($pin)), array('phone' => $userIdentity));
+        return $a;
+    }
+
+    public function incrementFailLogin($phone) {
+        return $this->update(array('login_failure' => new \Zend\Db\Sql\Expression('login_failure + 1')), array('phone' => $phone));
     }
     
+    public function resetLoginFailure($phone) {
+        return $this->update(array('login_failure' => 0), array('phone' => $phone));
+    }    
 }
