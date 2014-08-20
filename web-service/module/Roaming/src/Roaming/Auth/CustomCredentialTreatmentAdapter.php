@@ -15,6 +15,7 @@ namespace Roaming\Auth;
  */
 class CustomCredentialTreatmentAdapter extends \Zend\Authentication\Adapter\DbTable\CredentialTreatmentAdapter {
 
+    
     /**
      *
      * @var \Roaming\Model\User
@@ -27,14 +28,12 @@ class CustomCredentialTreatmentAdapter extends \Zend\Authentication\Adapter\DbTa
     }
     
     protected function authenticateValidateResult($resultIdentity) {
-
-        $userMapper = $this->getUserModel()->getMapper();
         $userIdentity = $resultIdentity['phone'];
         
         if ($resultIdentity['zend_auth_credential_match'] != '1') {
             $this->authenticateResultInfo['code']       = \Roaming\Helper\RespCodes::RESPONSE_STATUS_AUTH_ERROR;
             $this->authenticateResultInfo['messages'][] = 'Supplied credential is invalid.';
-            $userMapper->incrementFailLogin($userIdentity);
+            $this->getUserModel()->incrementFailLogin($userIdentity);
             return $this->authenticateCreateAuthResult();
         }
 
@@ -54,7 +53,6 @@ class CustomCredentialTreatmentAdapter extends \Zend\Authentication\Adapter\DbTa
                 $this->resultRow = $resultIdentity;
                 $this->authenticateResultInfo['code']       = \Roaming\Helper\RespCodes::RESPONSE_STATUS_OK;
                 $this->authenticateResultInfo['messages'][] = 'Authentication successful.';
-                $userMapper->resetLoginFailure($userIdentity);
                 return $this->authenticateCreateAuthResult();
             case \Roaming\DbMapper\User::STATUS_TEMPORARY_BLOCKED:
                 $this->authenticateResultInfo['code'] = \Roaming\Helper\RespCodes::RESPONSE_STATUS_AUTH_ERROR_ACCOUNT_TEMPORARY_BLOCKED;

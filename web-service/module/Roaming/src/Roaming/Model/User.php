@@ -11,6 +11,8 @@ class User extends AbstractBaseModel {
     
     const PIN_REQUEST_DAILY_LIMIT = 10;
     
+    const MAX_LOGIN_ATTEMPTS = 3;
+    
     /**
      *
      * @var \Roaming\DbMapper\User
@@ -68,6 +70,18 @@ class User extends AbstractBaseModel {
 
         return null;
     }
+    
+    public function updateTemporaryBlocked() {
+        
+    }
+    
+    public function incrementFailLogin($phone) {
+        $this->mapper->incrementFailLogin($phone);
+        $changedUserData = $this->mapper->select(array('phone=?' => $phone))->current();
+        if($changedUserData->login_failure >= self::MAX_LOGIN_ATTEMPTS) {
+            $this->mapper->update(array('status' => \Roaming\DbMapper\User::STATUS_TEMPORARY_BLOCKED), array('phone=?' => $phone));
+        }
+    }    
     
     public function generateAndSendPin($userIdentity) {        
         $user = $this->mapper->getUserByIdentity($userIdentity);
