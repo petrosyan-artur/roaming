@@ -70,7 +70,6 @@ class CustomCredentialTreatmentAdapter extends \Zend\Authentication\Adapter\DbTa
         }
     }
 
-    
     protected function authenticateValidateResultSet(array $resultIdentities) {
         $errorCode = \Roaming\Helper\RespCodes::RESPONSE_STATUS_AUTH_ERROR;
         if ((count($resultIdentities) < 1) || count($resultIdentities) > 1 && false === $this->getAmbiguityIdentity()) {
