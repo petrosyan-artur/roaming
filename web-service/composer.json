@@ -10,7 +10,8 @@
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.3.*",
-		"zendframework/zendservice-apple-apns": "1.0.4",
-		"al3xdm/twilio-zf2": "dev-master"
+        "zendframework/zendservice-apple-apns": "1.0.4",
+        "al3xdm/twilio-zf2": "dev-master",
+        "heartsentwined/zf2-cron": "2.*"
     }
 }
