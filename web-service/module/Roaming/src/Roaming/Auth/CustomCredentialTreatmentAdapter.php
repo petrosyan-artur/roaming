@@ -29,22 +29,25 @@ class CustomCredentialTreatmentAdapter extends \Zend\Authentication\Adapter\DbTa
     
     protected function authenticateValidateResult($resultIdentity) {
         $userIdentity = $resultIdentity['phone'];
+
+        $userStatus = (int) $resultIdentity['status'];
         
-        if ($resultIdentity['zend_auth_credential_match'] != '1') {
+        if ($resultIdentity['zend_auth_credential_match'] != '1' && 
+                !in_array($userStatus, 
+                         array(\Roaming\DbMapper\User::STATUS_TEMPORARY_BLOCKED, \Roaming\DbMapper\User::STATUS_DELETED))) {
             $this->authenticateResultInfo['code']       = \Roaming\Helper\RespCodes::RESPONSE_STATUS_AUTH_ERROR;
             $this->authenticateResultInfo['messages'][] = 'Supplied credential is invalid.';
             $this->getUserModel()->incrementFailLogin($userIdentity);
             return $this->authenticateCreateAuthResult();
         }
 
-        $userStatus = (int) $resultIdentity['status'];
         
         switch ($userStatus) {
             case \Roaming\DbMapper\User::STATUS_PENDING:
                 $newIdentity = $this->getUserModel()->activate($userIdentity);
                 if(is_null($newIdentity)) {
                     $this->authenticateResultInfo['code']       = \Roaming\Helper\RespCodes::RESPONSE_STATUS_UNKNOWN_ERROR;
-                    $this->authenticateResultInfo['messages'][] = 'Authentication problem.';
+                    $this->authenticateResultInfo['messages'][] = \Roaming\Helper\RespCodes::getResponseMessage(\Roaming\Helper\RespCodes::RESPONSE_STATUS_UNKNOWN_ERROR);
                     return $this->authenticateCreateAuthResult();
                 }
                 $resultIdentity = (array) $newIdentity;
@@ -56,16 +59,29 @@ class CustomCredentialTreatmentAdapter extends \Zend\Authentication\Adapter\DbTa
                 return $this->authenticateCreateAuthResult();
             case \Roaming\DbMapper\User::STATUS_TEMPORARY_BLOCKED:
                 $this->authenticateResultInfo['code'] = \Roaming\Helper\RespCodes::RESPONSE_STATUS_AUTH_ERROR_ACCOUNT_TEMPORARY_BLOCKED;
-                $this->authenticateResultInfo['messages'][] = 'Your account temporary blocked, please try to login in 2 hours';
+                $this->authenticateResultInfo['messages'][] = 
+                        \Roaming\Helper\RespCodes::getResponseMessage(\Roaming\Helper\RespCodes::RESPONSE_STATUS_AUTH_ERROR_ACCOUNT_TEMPORARY_BLOCKED);
                 return $this->authenticateCreateAuthResult();
             case \Roaming\DbMapper\User::STATUS_DELETED:
             default:
-                $this->authenticateResultInfo['code'] = \Zend\Authentication\Result::RESPONSE_STATUS_AUTH_ERROR_ACCOUNT_BLOCKED;
-                $this->authenticateResultInfo['messages'][] = 'Your account blocked, contact support';
+                $this->authenticateResultInfo['code'] = \Roaming\Helper\RespCodes::RESPONSE_STATUS_AUTH_ERROR_ACCOUNT_BLOCKED;
+                $this->authenticateResultInfo['messages'][] = 
+                        \Roaming\Helper\RespCodes::getResponseMessage(\Roaming\Helper\RespCodes::RESPONSE_STATUS_AUTH_ERROR_ACCOUNT_BLOCKED);
                 return $this->authenticateCreateAuthResult();
         }
     }
 
+    
+    protected function authenticateValidateResultSet(array $resultIdentities) {
+        $errorCode = \Roaming\Helper\RespCodes::RESPONSE_STATUS_AUTH_ERROR;
+        if ((count($resultIdentities) < 1) || count($resultIdentities) > 1 && false === $this->getAmbiguityIdentity()) {
+            $this->authenticateResultInfo['code']       = $errorCode;
+            $this->authenticateResultInfo['messages'][] = \Roaming\Helper\RespCodes::getResponseMessage($errorCode);
+            return $this->authenticateCreateAuthResult();
+        }
+        return true;
+    }
+    
     
     protected function authenticateCreateAuthResult() {
         return new Result(

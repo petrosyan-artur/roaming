@@ -29,18 +29,28 @@ class RespCodes {
     const RESPONSE_STATUS_UNKNOWN_ERROR = 54699;
     
     protected static $RESPCODES = array(
-        self::RESPONSE_STATUS_OK,
+        self::RESPONSE_STATUS_OK => 'Ok',
         self::RESPONSE_STATUS_LOIN_REQUIRED,
         self::RESPONSE_STATUS_NOT_LOGGED_IN,
         self::RESPONSE_STATUS_ALREADY_LOGGED_IN,
         self::RESPONSE_STATUS_INVALID_PARAMETERS,
-        self::RESPONSE_STATUS_AUTH_ERROR,
-        self::RESPONSE_STATUS_SMS_LIMIT_EXCEEDED,
+        self::RESPONSE_STATUS_AUTH_ERROR => 'Authentication error',
+        self::RESPONSE_STATUS_SMS_LIMIT_EXCEEDED => 'SMS limit exceeded',
+        self::RESPONSE_STATUS_AUTH_ERROR_ACCOUNT_TEMPORARY_BLOCKED => 'Your account temporary blocked, please try to login in 2 hours',
+        self::RESPONSE_STATUS_AUTH_ERROR_ACCOUNT_BLOCKED => 'Your account blocked',
         self::RESPONSE_STATUS_TWILIO_MESSAGE_SENDING_EXCEPTION,
         self::RESPONSE_STATUS_INVALID_REQUEST,
         self::RESPONSE_STATUS_USER_ACTIVATION_ERROR,
-        self::RESPONSE_STATUS_UNKNOWN_ERROR,
+        self::RESPONSE_STATUS_UNKNOWN_ERROR => 'unknown error',
     );
+    
+    public static function getResponseMessage($code) {
+        if(isset(self::$RESPCODES[$code])) {
+            return self::$RESPCODES[$code];
+        } else {
+            return '';
+        }
+    }
     
     public static function checkRespCodeExist($code) {
         return in_array($code, self::$RESPCODES);

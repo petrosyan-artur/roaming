@@ -5,6 +5,8 @@ namespace Roaming\Controller;
 
 class UserController extends AbstractBaseController {
     
+    const NEXT_TRY = 120;
+    
     /**
      *
      * @var /Roaming/Model/User
@@ -73,6 +75,8 @@ class UserController extends AbstractBaseController {
             }
             return $this->getJsonModel($code, array(), array($exc->getMessage()));
         }
+        
+        $responseData = array('next_try' => self::NEXT_TRY);
         
         return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK);
     }

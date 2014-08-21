@@ -91,7 +91,7 @@ class User extends AbstractBaseModel {
         $select = new \Zend\Db\Sql\Select($this->getPinRequestMapper()->getTable());
         $select->columns(array('num' => new \Zend\Db\Sql\Expression('count(*)')));
         $select->where('DATE(date_created) = DATE(NOW())');
-        $select->where('user_id = ?', array($user->id));
+        $select->where(array('user_id = ?' => array($user->id)));
         
         $res = $this->getPinRequestMapper()->selectWith($select)->current();
 
@@ -147,8 +147,5 @@ class User extends AbstractBaseModel {
     
     public function getMapper() {
         return $this->mapper;
-    }
-
-
-    
+    }    
 }
