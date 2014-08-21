@@ -40,7 +40,6 @@ class CustomCredentialTreatmentAdapter extends \Zend\Authentication\Adapter\DbTa
             $this->getUserModel()->incrementFailLogin($userIdentity);
             return $this->authenticateCreateAuthResult();
         }
-
         
         switch ($userStatus) {
             case \Roaming\DbMapper\User::STATUS_PENDING:
