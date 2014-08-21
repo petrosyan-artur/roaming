@@ -25,6 +25,19 @@
          'factories' => array(
              'Zend\Db\Adapter\Adapter'
                      => 'Zend\Db\Adapter\AdapterServiceFactory',
+             'Twilio\Options\ModuleOptions' => 'Twilio\Options\Factory\ModuleOptionsFactory',
+             'Twilio\Service\TwilioService' => 'Twilio\Service\Factory\TwilioServiceFactory'
          ),
      ),
+    'twilio' => array(
+        /**
+         * The SID to for your Twilio account.
+         */
+        'sid' => 'AC0dc9286611754ba4c9b8d97501c8e20a',
+
+        /**
+         * The token for your Twilio account.
+         */
+        'token' => '56d41f22456b57eb4eaf6f2f84ffed0a',
+    )
  );
