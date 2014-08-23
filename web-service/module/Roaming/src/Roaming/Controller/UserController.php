@@ -57,12 +57,12 @@ class UserController extends AbstractBaseController {
         $phone = $request->getPost('phone');
         
         if(!$phone) {
-            $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS, array(), array('phone number missing'));
+            return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS, array(), array('phone number missing'));
         }
         
         $validator = new \Zend\Validator\Digits();
         if(!$validator->isValid($phone)) {
-            $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS, array(), $validator->getMessages());
+            return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS, array(), array_values($validator->getMessages()));
         }
         
         $userModel = $this->getUserModel();

@@ -53,6 +53,6 @@ class RespCodes {
     }
     
     public static function checkRespCodeExist($code) {
-        return in_array($code, self::$RESPCODES);
+        return array_key_exists($code, self::$RESPCODES);
     }
 }
