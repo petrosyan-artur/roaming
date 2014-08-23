@@ -78,7 +78,7 @@ class UserController extends AbstractBaseController {
         
         $responseData = array('next_try' => self::NEXT_TRY);
         
-        return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK);
+        return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK, $responseData);
     }
     
     /**
