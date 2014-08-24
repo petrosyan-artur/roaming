@@ -12,6 +12,7 @@
 #import "CountryPickerViewController.h"
 #import "PinProcessingService.h"
 #import "ResponseObject.h"
+#import "MBProgressHUD.h"
 @interface PhoneNumberViewController ()<UITextFieldDelegate, CountryPickerViewControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) CountryObject *selectedCountry;
 
@@ -76,13 +77,14 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if(buttonIndex == 1) {
         NSString *phoneNumber = [NSString stringWithFormat:@"%@%@",_selectedCountry.dialCode, _phoneNumberTextField.text];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         PinProcessingService *service = [[PinProcessingService alloc] init];
         [service requestPinCodeForPhoneNumber:phoneNumber completion:^(ResponseObject *responseObj, BOOL success, NSString *errorMessage) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             if(responseObj.responseStatus == RESPONSE_STATUS_OK) {
                 [self performSegueWithIdentifier:@"pinRequestPageIdentifier" sender:self];
             }
         }];
-
     }
 }
 
