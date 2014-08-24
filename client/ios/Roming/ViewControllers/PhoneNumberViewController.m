@@ -12,7 +12,7 @@
 #import "CountryPickerViewController.h"
 #import "PinProcessingService.h"
 #import "ResponseObject.h"
-@interface PhoneNumberViewController ()<UITextFieldDelegate, CountryPickerViewControllerDelegate>
+@interface PhoneNumberViewController ()<UITextFieldDelegate, CountryPickerViewControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) CountryObject *selectedCountry;
 
 //@property (nonatomic, strong) NSArray *countryCodesArray;
@@ -65,13 +65,25 @@
 }
 #pragma mark - Controller Actions
 - (IBAction)doneButtonTouched:(id)sender {
-    NSString *phoneNumber = [NSString stringWithFormat:@"%@%@",_selectedCountry.dialCode, _phoneNumberTextField.text];
-    PinProcessingService *service = [[PinProcessingService alloc] init];
-    [service requestPinCodeForPhoneNumber:phoneNumber completion:^(ResponseObject *responseObj, BOOL success, NSString *errorMessage) {
-        if(responseObj.responseStatus == RESPONSE_STATUS_OK) {
-            [self performSegueWithIdentifier:@"pinRequestPageIdentifier" sender:self];
-        }
-    }];
+     NSString *phoneNumber = [NSString stringWithFormat:@"%@%@",_selectedCountry.dialCode, _phoneNumberTextField.text];
+    
+    NSString *alertMessage = [NSString stringWithFormat:@"We will send an SMS with verification code to this number. \n \n %@ \n \n Is it correct?", phoneNumber];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Number Confirmation" message:alertMessage delegate:self cancelButtonTitle:nil otherButtonTitles:@"Edit", @"Yes", nil];
+    [alertView show];
+   
+}
+#pragma mark - UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(buttonIndex == 1) {
+        NSString *phoneNumber = [NSString stringWithFormat:@"%@%@",_selectedCountry.dialCode, _phoneNumberTextField.text];
+        PinProcessingService *service = [[PinProcessingService alloc] init];
+        [service requestPinCodeForPhoneNumber:phoneNumber completion:^(ResponseObject *responseObj, BOOL success, NSString *errorMessage) {
+            if(responseObj.responseStatus == RESPONSE_STATUS_OK) {
+                [self performSegueWithIdentifier:@"pinRequestPageIdentifier" sender:self];
+            }
+        }];
+
+    }
 }
 
 #pragma mark - UINavigtaion

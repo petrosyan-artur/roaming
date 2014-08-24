@@ -50,21 +50,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9C100B4A199B8220005AC8D6 /* Roming.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roming.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C100B4A199B8220005AC8D6 /* Rouming.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rouming.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C100B4D199B8220005AC8D6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9C100B4F199B8220005AC8D6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9C100B51199B8220005AC8D6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		9C100B55199B8220005AC8D6 /* Roming-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Roming-Info.plist"; sourceTree = "<group>"; };
+		9C100B55199B8220005AC8D6 /* Rouming-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Rouming-Info.plist"; sourceTree = "<group>"; };
 		9C100B57199B8220005AC8D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9C100B59199B8220005AC8D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9C100B5B199B8220005AC8D6 /* Roming-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Roming-Prefix.pch"; sourceTree = "<group>"; };
+		9C100B5B199B8220005AC8D6 /* Rouming-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rouming-Prefix.pch"; sourceTree = "<group>"; };
 		9C100B5C199B8220005AC8D6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9C100B5D199B8220005AC8D6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9C100B60199B8220005AC8D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9C100B65199B8220005AC8D6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9C100B6B199B8220005AC8D6 /* RomingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RomingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C100B6B199B8220005AC8D6 /* RoumingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoumingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C100B6C199B8220005AC8D6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		9C100B74199B8220005AC8D6 /* RomingTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RomingTests-Info.plist"; sourceTree = "<group>"; };
+		9C100B74199B8220005AC8D6 /* RoumingTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RoumingTests-Info.plist"; sourceTree = "<group>"; };
 		9C100B76199B8220005AC8D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9C100B78199B8220005AC8D6 /* RomingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RomingTests.m; sourceTree = "<group>"; };
 		9C4E00B219A8A0BF000B3877 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -151,8 +151,8 @@
 		9C100B4B199B8220005AC8D6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9C100B4A199B8220005AC8D6 /* Roming.app */,
-				9C100B6B199B8220005AC8D6 /* RomingTests.xctest */,
+				9C100B4A199B8220005AC8D6 /* Rouming.app */,
+				9C100B6B199B8220005AC8D6 /* RoumingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -190,10 +190,10 @@
 		9C100B54199B8220005AC8D6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9C100B55199B8220005AC8D6 /* Roming-Info.plist */,
+				9C100B55199B8220005AC8D6 /* Rouming-Info.plist */,
 				9C100B56199B8220005AC8D6 /* InfoPlist.strings */,
 				9C100B59199B8220005AC8D6 /* main.m */,
-				9C100B5B199B8220005AC8D6 /* Roming-Prefix.pch */,
+				9C100B5B199B8220005AC8D6 /* Rouming-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -210,7 +210,7 @@
 		9C100B73199B8220005AC8D6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9C100B74199B8220005AC8D6 /* RomingTests-Info.plist */,
+				9C100B74199B8220005AC8D6 /* RoumingTests-Info.plist */,
 				9C100B75199B8220005AC8D6 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -294,9 +294,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9C100B49199B8220005AC8D6 /* Roming */ = {
+		9C100B49199B8220005AC8D6 /* Rouming */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9C100B7C199B8220005AC8D6 /* Build configuration list for PBXNativeTarget "Roming" */;
+			buildConfigurationList = 9C100B7C199B8220005AC8D6 /* Build configuration list for PBXNativeTarget "Rouming" */;
 			buildPhases = (
 				9C100B46199B8220005AC8D6 /* Sources */,
 				9C100B47199B8220005AC8D6 /* Frameworks */,
@@ -306,14 +306,14 @@
 			);
 			dependencies = (
 			);
-			name = Roming;
+			name = Rouming;
 			productName = Roming;
-			productReference = 9C100B4A199B8220005AC8D6 /* Roming.app */;
+			productReference = 9C100B4A199B8220005AC8D6 /* Rouming.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9C100B6A199B8220005AC8D6 /* RomingTests */ = {
+		9C100B6A199B8220005AC8D6 /* RoumingTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9C100B7F199B8220005AC8D6 /* Build configuration list for PBXNativeTarget "RomingTests" */;
+			buildConfigurationList = 9C100B7F199B8220005AC8D6 /* Build configuration list for PBXNativeTarget "RoumingTests" */;
 			buildPhases = (
 				9C100B67199B8220005AC8D6 /* Sources */,
 				9C100B68199B8220005AC8D6 /* Frameworks */,
@@ -324,9 +324,9 @@
 			dependencies = (
 				9C100B71199B8220005AC8D6 /* PBXTargetDependency */,
 			);
-			name = RomingTests;
+			name = RoumingTests;
 			productName = RomingTests;
-			productReference = 9C100B6B199B8220005AC8D6 /* RomingTests.xctest */;
+			productReference = 9C100B6B199B8220005AC8D6 /* RoumingTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -343,7 +343,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9C100B45199B8220005AC8D6 /* Build configuration list for PBXProject "Roming" */;
+			buildConfigurationList = 9C100B45199B8220005AC8D6 /* Build configuration list for PBXProject "Rouming" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -356,8 +356,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9C100B49199B8220005AC8D6 /* Roming */,
-				9C100B6A199B8220005AC8D6 /* RomingTests */,
+				9C100B49199B8220005AC8D6 /* Rouming */,
+				9C100B6A199B8220005AC8D6 /* RoumingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -423,7 +423,7 @@
 /* Begin PBXTargetDependency section */
 		9C100B71199B8220005AC8D6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9C100B49199B8220005AC8D6 /* Roming */;
+			target = 9C100B49199B8220005AC8D6 /* Rouming */;
 			targetProxy = 9C100B70199B8220005AC8D6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -532,9 +532,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Roming/Roming-Prefix.pch";
-				INFOPLIST_FILE = "Roming/Roming-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Roming/Rouming-Prefix.pch";
+				INFOPLIST_FILE = "Roming/Rouming-Info.plist";
+				PRODUCT_NAME = Rouming;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -545,9 +545,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Roming/Roming-Prefix.pch";
-				INFOPLIST_FILE = "Roming/Roming-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Roming/Rouming-Prefix.pch";
+				INFOPLIST_FILE = "Roming/Rouming-Info.plist";
+				PRODUCT_NAME = Rouming;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -567,8 +567,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "RomingTests/RomingTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "RomingTests/RoumingTests-Info.plist";
+				PRODUCT_NAME = RoumingTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -585,8 +585,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Roming/Roming-Prefix.pch";
-				INFOPLIST_FILE = "RomingTests/RomingTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "RomingTests/RoumingTests-Info.plist";
+				PRODUCT_NAME = RoumingTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -595,7 +595,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9C100B45199B8220005AC8D6 /* Build configuration list for PBXProject "Roming" */ = {
+		9C100B45199B8220005AC8D6 /* Build configuration list for PBXProject "Rouming" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9C100B7A199B8220005AC8D6 /* Debug */,
@@ -604,7 +604,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9C100B7C199B8220005AC8D6 /* Build configuration list for PBXNativeTarget "Roming" */ = {
+		9C100B7C199B8220005AC8D6 /* Build configuration list for PBXNativeTarget "Rouming" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9C100B7D199B8220005AC8D6 /* Debug */,
@@ -613,7 +613,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9C100B7F199B8220005AC8D6 /* Build configuration list for PBXNativeTarget "RomingTests" */ = {
+		9C100B7F199B8220005AC8D6 /* Build configuration list for PBXNativeTarget "RoumingTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9C100B80199B8220005AC8D6 /* Debug */,

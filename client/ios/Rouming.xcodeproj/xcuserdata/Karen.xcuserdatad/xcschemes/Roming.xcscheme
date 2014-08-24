@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9C100B49199B8220005AC8D6"
-               BuildableName = "Roming.app"
-               BlueprintName = "Roming"
-               ReferencedContainer = "container:Roming.xcodeproj">
+               BuildableName = "Rouming.app"
+               BlueprintName = "Rouming"
+               ReferencedContainer = "container:Rouming.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9C100B6A199B8220005AC8D6"
-               BuildableName = "RomingTests.xctest"
-               BlueprintName = "RomingTests"
-               ReferencedContainer = "container:Roming.xcodeproj">
+               BuildableName = "RoumingTests.xctest"
+               BlueprintName = "RoumingTests"
+               ReferencedContainer = "container:Rouming.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C100B49199B8220005AC8D6"
-            BuildableName = "Roming.app"
-            BlueprintName = "Roming"
-            ReferencedContainer = "container:Roming.xcodeproj">
+            BuildableName = "Rouming.app"
+            BlueprintName = "Rouming"
+            ReferencedContainer = "container:Rouming.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C100B49199B8220005AC8D6"
-            BuildableName = "Roming.app"
-            BlueprintName = "Roming"
-            ReferencedContainer = "container:Roming.xcodeproj">
+            BuildableName = "Rouming.app"
+            BlueprintName = "Rouming"
+            ReferencedContainer = "container:Rouming.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C100B49199B8220005AC8D6"
-            BuildableName = "Roming.app"
-            BlueprintName = "Roming"
-            ReferencedContainer = "container:Roming.xcodeproj">
+            BuildableName = "Rouming.app"
+            BlueprintName = "Rouming"
+            ReferencedContainer = "container:Rouming.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
