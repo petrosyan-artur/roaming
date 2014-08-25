@@ -12,6 +12,7 @@
         "zendframework/zendframework": "2.3.*",
         "zendframework/zendservice-apple-apns": "1.0.4",
         "al3xdm/twilio-zf2": "dev-master",
+        "doctrine/doctrine-orm-module": "0.*",
         "heartsentwined/zf2-cron": "2.*"
     }
 }

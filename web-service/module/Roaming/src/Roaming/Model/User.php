@@ -24,6 +24,10 @@ class User extends AbstractBaseModel {
         $this->mapper = $mapper;
     }
     
+    public static function handleTemporaryBlockedUsers() {
+//        $mapper = 
+    }
+    
     public function getUsers() {
         return $this->mapper->select();
     }

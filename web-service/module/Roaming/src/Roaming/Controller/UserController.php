@@ -24,6 +24,17 @@ class UserController extends AbstractBaseController {
         return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK);
     }
 
+    public function addCronAction() {
+        $a = \Heartsentwined\Cron\Service\Cron::register(
+            'handle_temporary_blokced',
+            '*/15 * * * *',
+            '\Roaming\Model\User::handleTemporaryBlockedUsers'
+        );
+        var_dump($a);
+        echo 'ok';
+        die;
+    }
+    
     /**
      * 
      * @return JsonModel
