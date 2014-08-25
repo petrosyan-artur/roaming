@@ -19,12 +19,12 @@ class SipConfiguration {
     
     public $password;
     
-    public $host_name;
+    public $host;
     
     public $port;
 
     public function __construct() {
-        $this->setHost_name('95.211.27.30');
+        $this->setHost('95.211.27.30');
         $this->setPort('5060');
     }
     
@@ -36,8 +36,8 @@ class SipConfiguration {
         return $this->password;
     }
 
-    public function getHost_name() {
-        return $this->host_name;
+    public function getHost() {
+        return $this->host;
     }
 
     public function setUsername($username) {
@@ -48,8 +48,8 @@ class SipConfiguration {
         $this->password = $password;
     }
 
-    public function setHost_name($server_ip) {
-        $this->host_name = $server_ip;
+    public function setHost($server_ip) {
+        $this->host = $server_ip;
     }
 
     public function getPort() {
