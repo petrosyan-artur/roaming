@@ -86,10 +86,10 @@ class AuthController extends AbstractBaseController {
             
             $phone = $request->getPost('phone', null);
             $pin = $request->getPost('pin', null);
-            $device_token = $request->getPost('device_token', null);
+//            $device_token = $request->getPost('device_token', null);
             $client_version = $request->getPost('app_version', null);
             
-            if(is_null($pin) || is_null($phone) || is_null($device_token) || is_null($client_version)) {
+            if(is_null($pin) || is_null($phone) || /*is_null($device_token) ||*/ is_null($client_version)) {
                 return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS);
             }
             
@@ -103,7 +103,7 @@ class AuthController extends AbstractBaseController {
             try {
                 if ($result->isValid()) {
                     $userObject = $adapter->getResultRowObject();
-                    $this->getUserModel()->updateClientLoginData($device_token, $client_version, $userObject->phone);
+                    $this->getUserModel()->updateClientLoginData(/*$device_token,*/ $client_version, $userObject->phone);
                     $sipData = new \Roaming\Entity\SipConfiguration();
                     $sipData->setPassword($userObject->sip_password);
                     $sipData->setUsername($userObject->sip_username);

@@ -124,10 +124,10 @@ class User extends AbstractBaseModel {
         }
     }
     
-    public function updateClientLoginData($device_token, $client_version, $userIdentity) {
+    public function updateClientLoginData(/*$device_token,*/ $client_version, $userIdentity) {
         $this->mapper->update(
             array(
-                'device_token' => $device_token,
+//                'device_token' => $device_token,
                 'client_version' => $client_version,
             ),
             array('phone' => $userIdentity)
