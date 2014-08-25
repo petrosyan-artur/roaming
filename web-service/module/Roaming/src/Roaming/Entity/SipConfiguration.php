@@ -59,7 +59,4 @@ class SipConfiguration {
     public function setPort($port) {
         $this->port = $port;
     }
-
-
-    
 }
