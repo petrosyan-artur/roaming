@@ -80,7 +80,7 @@ class UserController extends AbstractBaseController {
         
         try {
             if(!$userModel->registered($phone)) {
-                $userModel->register($phone);
+                $userModel->register($phone, array('country_id' => 1, 'rate_sheet_id' => 1));
             }
             
             $userModel->generateAndSendPin($phone);

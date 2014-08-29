@@ -54,7 +54,7 @@ return array(
         'username' => 'root',
         'password' => '',
         'driver' => 'Pdo',
-        'dsn' => 'mysql:dbname=telasco-roaming;host=localhost',
+        'dsn' => 'mysql:dbname=roaming-app;host=localhost',
         'driver_options' => array(
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
         ),

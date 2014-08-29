@@ -28,7 +28,7 @@ class User {
     public function exchangeArray($data) {
         $this->id = (!empty($data['id'])) ? $data['id'] : null;
         $this->status = (!empty($data['status'])) ? $data['status'] : null;
-        $this->phone = (!empty($data['phone'])) ? $data['phone'] : null;
+        $this->phone = (!empty($data['name'])) ? $data['name'] : null;
         $this->pin = (!empty($data['pin'])) ? $data['pin'] : null;
         $this->first_name = (!empty($data['first_name'])) ? $data['first_name'] : null;
         $this->last_name = (!empty($data['last_name'])) ? $data['last_name'] : null;

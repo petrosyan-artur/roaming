@@ -42,12 +42,12 @@ class User extends AbstractBaseModel {
         return !!$user;
     }
     
-    public function register($phone) {
+    public function register($phone, $additionalData = array()) {
         $user = $this->mapper->getUserByIdentity($phone);
         if($user) {
             return;
         }
-        $data = array('phone' => $phone, 'status' => \Roaming\DbMapper\User::STATUS_PENDING);
+        $data = array_merge($additionalData, array('name' => $phone, 'status' => \Roaming\DbMapper\User::STATUS_PENDING));
         return $this->mapper->insert($data);
     }
     
@@ -68,7 +68,7 @@ class User extends AbstractBaseModel {
             $userUpdateData['sip_password'] = $morResponse->getDeviceEntity()->getPassword();
             $userUpdateData['mor_user_id'] = $morResponse->getMoreUserId();
             if($this->mapper->update($userUpdateData)) {
-                return $this->mapper->select(array('phone' => $userCredinitial))->current();
+                return $this->mapper->select(array('name' => $userCredinitial))->current();
             }
         }
 
@@ -112,7 +112,7 @@ class User extends AbstractBaseModel {
         try {
             $twilio = $this->getServiceLocator()->get('Twilio\Service\TwilioService');
 //            $message = $twilio->account->messages->sendMessage(
-//                $user->phone,
+//                $user->name,
 //                '+37491450266',
 //                "Your pin is: " . $pin
 //            );
@@ -130,7 +130,7 @@ class User extends AbstractBaseModel {
 //                'device_token' => $device_token,
                 'client_version' => $client_version,
             ),
-            array('phone' => $userIdentity)
+            array('name' => $userIdentity)
         );
     }
     

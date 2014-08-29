@@ -68,7 +68,7 @@ class Module {
                     $dbTableAuthAdapter  = new Auth\CustomCredentialTreatmentAdapter(
                                                       $userModel,
                                                       $dbAdapter, 
-                                                      'user','phone','pin', 'MD5(?)');
+                                                      'users','name','pin', 'MD5(?)');
 
                     $authService = new \Zend\Authentication\AuthenticationService();
                     $authService->setAdapter($dbTableAuthAdapter);

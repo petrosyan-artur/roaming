@@ -1,62 +1,153 @@
-<h1><?php echo $this->translate('An error occurred') ?></h1>
-<h2><?php echo $this->message ?></h2>
+<div data-role="content">
+    <div class="content-primary">
+        <form action="" method="post">
+            <div data-role="fieldcontain">
+                <label for="cardholders_name">Cardholder's Name:</label>
+                <input class="required" type="text" id="cardholders_name" name="cardholders_name" maxlength="100">
 
-<?php if (isset($this->display_exceptions) && $this->display_exceptions): ?>
-
-<?php if(isset($this->exception) && $this->exception instanceof Exception): ?>
-<hr/>
-<h2><?php echo $this->translate('Additional information') ?>:</h2>
-<h3><?php echo get_class($this->exception); ?></h3>
-<dl>
-    <dt><?php echo $this->translate('File') ?>:</dt>
-    <dd>
-        <pre class="prettyprint linenums"><?php echo $this->exception->getFile() ?>:<?php echo $this->exception->getLine() ?></pre>
-    </dd>
-    <dt><?php echo $this->translate('Message') ?>:</dt>
-    <dd>
-        <pre class="prettyprint linenums"><?php echo $this->escapeHtml($this->exception->getMessage()) ?></pre>
-    </dd>
-    <dt><?php echo $this->translate('Stack trace') ?>:</dt>
-    <dd>
-        <pre class="prettyprint linenums"><?php echo $this->escapeHtml($this->exception->getTraceAsString()) ?></pre>
-    </dd>
-</dl>
-<?php
-    $e = $this->exception->getPrevious();
-    if ($e) :
-?>
-<hr/>
-<h2><?php echo $this->translate('Previous exceptions') ?>:</h2>
-<ul class="unstyled">
-    <?php while($e) : ?>
-    <li>
-        <h3><?php echo get_class($e); ?></h3>
-        <dl>
-            <dt><?php echo $this->translate('File') ?>:</dt>
-            <dd>
-                <pre class="prettyprint linenums"><?php echo $e->getFile() ?>:<?php echo $e->getLine() ?></pre>
-            </dd>
-            <dt><?php echo $this->translate('Message') ?>:</dt>
-            <dd>
-                <pre class="prettyprint linenums"><?php echo $this->escapeHtml($e->getMessage()) ?></pre>
-            </dd>
-            <dt><?php echo $this->translate('Stack trace') ?>:</dt>
-            <dd>
-                <pre class="prettyprint linenums"><?php echo $this->escapeHtml($e->getTraceAsString()) ?></pre>
-            </dd>
-        </dl>
-    </li>
-    <?php
-        $e = $e->getPrevious();
-        endwhile;
-    ?>
-</ul>
-<?php endif; ?>
-
-<?php else: ?>
-
-<h3><?php echo $this->translate('No Exception available') ?></h3>
-
-<?php endif ?>
-
-<?php endif ?>
+            </div>
+            <div data-role="fieldcontain">
+                <label for="card_number">Credit Card Number:</label>
+                <input class="required" type="text" id="card_number" name="card_number" maxlength="100">
+            </div>
+            <div data-role="fieldcontain">
+                <label for="card_number">Expiration Date:</label>
+                <select name="select-choice-0" id="select-choice-0">
+                    <option value="">Month</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+            </div>
+            <div data-role="fieldcontain">
+                <label for="payment_card_type">Credit Card Type:</label>
+                <input type="text" style="display:none" id="payment_card_type">
+                <div style="width:78%;display:inline-block">
+                    <div id="payment_card_type" style="display:inline-block;height:26px;width:172px;background-image:url(/img/card_types.png)">
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</div>
+<!--
+        <tr>
+            <td class="formLabel addPaymentFormLabel">Credit Card Number:</td>
+            <td id="ext-gen320">
+                <input type="text" class="x-form-text x-form-field newPaymentFormLabel" id="payment_cardnum" allowblank="false" vtype="nat" maxlength="16" onkeyup="profileDialogWindow.checkCardType(this.value)">
+            </td>
+        </tr>
+        <tr>
+            <td class="formLabel addPaymentFormLabel" nowrap="">Credit Card Type:</td>
+            <td>
+                <div id="payment_card_type" style="margin:10px 0px;height:26px;width:172px;background-image:url(/img/card_types.png)"> &nbsp;</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="formLabel addPaymentFormLabel">Expiration Date:</td>
+            <td>
+                <table cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td style="padding:0" id="ext-gen327">
+                                <div class="x-form-field-wrap x-form-field-trigger-wrap" id="payment_expmonth" style="width: 80px;">
+                                    <select style="width:80px">
+                                        <option value="">Month</option>
+                                                                                            <option value="1">1</option>
+                                                                                                <option value="2">2</option>
+                                                                                                <option value="3">3</option>
+                                                                                                <option value="4">4</option>
+                                                                                                <option value="5">5</option>
+                                                                                                <option value="6">6</option>
+                                                                                                <option value="7">7</option>
+                                                                                                <option value="8">8</option>
+                                                                                                <option value="9">9</option>
+                                                                                                <option value="10">10</option>
+                                                                                                <option value="11">11</option>
+                                                                                                <option value="12">12</option>
+                                                                                        </select>
+                                </div>
+                            </td>
+                            <td style="padding:0">/&nbsp;</td>
+                            <td style="padding:0" id="ext-gen332">
+                                <div class="x-form-field-wrap x-form-field-trigger-wrap" id="payment_expyear" style="width: 80px;">
+                                    <select style="width:80px">
+                                                                                        <option value="">Year</option>
+                                                                                            <option value="2014">2014</option>
+                                                                                                <option value="2015">2015</option>
+                                                                                                <option value="2016">2016</option>
+                                                                                                <option value="2017">2017</option>
+                                                                                                <option value="2018">2018</option>
+                                                                                                <option value="2019">2019</option>
+                                                                                                <option value="2020">2020</option>
+                                                                                                <option value="2021">2021</option>
+                                                                                                <option value="2022">2022</option>
+                                                                                                <option value="2023">2023</option>
+                                                                                                <option value="2024">2024</option>
+                                                                                        </select>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="formLabel addPaymentFormLabel">Credit Card Security Code:</td>
+            <td id="ext-gen321">
+                <input type="text" id="payment_cvv" allowblank="false" style="width: 72px; float: left;" vtype="nat" maxlength="4" value="" class="x-form-text x-form-field">
+            </td>
+        </tr>
+        <tr class="line_border">
+            <td colspan="2">
+                <div class="line_border"></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="formLabel addPaymentFormLabel" nowrap="">Billing Address:</td>
+            <td id="ext-gen322">
+                <input type="text" class="x-form-text x-form-field newPaymentFormLabel" id="payment_billing_address" allowblank="false" maxlength="255" value="">
+            </td>
+        </tr>
+        <tr>
+            <td class="formLabel addPaymentFormLabel" nowrap="">City/Town:</td>
+            <td id="ext-gen323">
+                <input type="text" class="x-form-text x-form-field newPaymentFormLabel" id="payment_city" allowblank="false" maxlength="255" value="">
+            </td>
+        </tr>
+        <tr>
+            <td class="formLabel addPaymentFormLabel" nowrap="">State/Province/Region:</td>
+            <td id="ext-gen324">
+                <input type="text" class="x-form-text x-form-field newPaymentFormLabel" id="payment_state" maxlength="255" allowblank="false" value="">
+            </td>
+        </tr>
+        <tr>
+            <td class="formLabel addPaymentFormLabel" nowrap="">Zip/Postal Code:</td>
+            <td id="ext-gen325">
+                <input type="text" class="x-form-text x-form-field newPaymentFormLabel" id="payment_zip" allowblank="false" maxlength="255" value="">
+            </td>
+        </tr>
+        <tr>
+            <td class="formLabel">Country:</td>
+            <td id="ext-gen337">
+                <div class="x-form-field-wrap x-form-field-trigger-wrap" id="payment_country" style="width: 170px;">
+                    <input type="text" size="24" autocomplete="off" id="ext-gen338" class="x-form-text x-form-field x-trigger-noedit" readonly="" style="width: 145px;">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="" class="x-form-trigger x-form-arrow-trigger" id="ext-gen340">
+                </div>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+    </tbody>
+</table>-->

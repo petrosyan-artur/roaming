@@ -28,7 +28,7 @@ class CustomCredentialTreatmentAdapter extends \Zend\Authentication\Adapter\DbTa
     }
     
     protected function authenticateValidateResult($resultIdentity) {
-        $userIdentity = $resultIdentity['phone'];
+        $userIdentity = $resultIdentity['name'];
 
         $userStatus = (int) $resultIdentity['status'];
         
