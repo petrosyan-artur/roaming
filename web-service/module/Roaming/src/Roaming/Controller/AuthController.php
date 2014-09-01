@@ -53,8 +53,8 @@ class AuthController extends AbstractBaseController {
         
         $user = $this->getLoggedInUser();
         $sipConfig = new \Roaming\Entity\SipConfiguration();
-        $sipConfig->setUsername($user->sip_username);
-        $sipConfig->setPassword($user->sip_password);
+        $sipConfig->setUsername($user->name);
+        $sipConfig->setPassword($user->secret);
         
         return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK, array('sip' => $sipConfig));
     }
@@ -86,7 +86,6 @@ class AuthController extends AbstractBaseController {
             
             $phone = $request->getPost('phone', null);
             $pin = $request->getPost('pin', null);
-//            $device_token = $request->getPost('device_token', null);
             $client_version = $request->getPost('app_version', null);
             
             if(is_null($pin) || is_null($phone) || /*is_null($device_token) ||*/ is_null($client_version)) {
@@ -94,21 +93,27 @@ class AuthController extends AbstractBaseController {
             }
             
             $adapter = $this->getAuthService()->getAdapter();
-            
-            //check authentication...
-            $adapter->setIdentity($request->getPost('phone'))->setCredential($request->getPost('pin'));
-
-            $result = $this->getAuthService()->authenticate();
 
             try {
+                //check if the user is pending
+                $isUserPending = $this->getUserModel()->isUserPending($phone);
+                if($isUserPending) {
+                    $adapter->setTableName('user_pending');
+                }
+
+                //check authentication...
+                $adapter->setIdentity($phone)->setCredential($pin);
+                $this->startTransaction();
+                $result = $this->getAuthService()->authenticate();
                 if ($result->isValid()) {
                     $userObject = $adapter->getResultRowObject();
-                    $this->getUserModel()->updateClientLoginData(/*$device_token,*/ $client_version, $userObject->name);
+                    $this->getUserModel()->updateClientLoginData($client_version, $userObject->name);
                     $sipData = new \Roaming\Entity\SipConfiguration();
-                    $sipData->setPassword($userObject->sip_password);
-                    $sipData->setUsername($userObject->sip_username);
+                    $sipData->setPassword($userObject->secret);
+                    $sipData->setUsername($userObject->name);
                     $this->getAuthService()->setStorage($this->getSessionStorage());
                     $this->getAuthService()->getStorage()->write($phone);
+                    $this->transactionCommit();
                     return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK, array('sip' => $sipData));
                 } else {
                     $errors = array();
@@ -116,10 +121,13 @@ class AuthController extends AbstractBaseController {
                         //save message temporary into flashmessenger
                         $errors[] = $message;
                     }
+                    $this->transactionCommit();
                     return $this->getJsonModel($result->getCode(), array(), $errors);
                 }
+                $this->transactionCommit();
             } catch (\Exception $ex) {
-                    return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_USER_ACTIVATION_ERROR, array(), array($ex->getMessage()));
+                $this->transactionRollback();
+                return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_USER_ACTIVATION_ERROR, array(), array($ex->getMessage()));
             }
         }
             

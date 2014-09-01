@@ -33,6 +33,18 @@ class AbstractBaseController extends \Zend\Mvc\Controller\AbstractActionControll
         return $this->authservice;
     }
     
+    public function startTransaction() {
+        $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter')->getDriver()->getConnection()->beginTransaction();
+    }
+    
+    public function transactionCommit() {
+        $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter')->getDriver()->getConnection()->commit();
+    }
+    
+    public function transactionRollback() {
+        $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter')->getDriver()->getConnection()->rollback();
+    }
+    
     /**
      * 
      * @param type $status

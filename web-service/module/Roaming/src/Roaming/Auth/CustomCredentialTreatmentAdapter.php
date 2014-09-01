@@ -41,32 +41,40 @@ class CustomCredentialTreatmentAdapter extends \Zend\Authentication\Adapter\DbTa
             return $this->authenticateCreateAuthResult();
         }
         
-        switch ($userStatus) {
-            case \Roaming\DbMapper\User::STATUS_PENDING:
-                $newIdentity = $this->getUserModel()->activate($userIdentity);
-                if(is_null($newIdentity)) {
-                    $this->authenticateResultInfo['code']       = \Roaming\Helper\RespCodes::RESPONSE_STATUS_UNKNOWN_ERROR;
-                    $this->authenticateResultInfo['messages'][] = \Roaming\Helper\RespCodes::getResponseMessage(\Roaming\Helper\RespCodes::RESPONSE_STATUS_UNKNOWN_ERROR);
-                    return $this->authenticateCreateAuthResult();
-                }
+        if($this->tableName == 'user_pending') {
+            //user is in temporary table and it is first success authentication, so lets move user to main DB
+            $newIdentity = $this->getUserModel()->activate($userIdentity);
+            if(is_null($newIdentity)) {
+                $this->authenticateResultInfo['code']       = \Roaming\Helper\RespCodes::RESPONSE_STATUS_UNKNOWN_ERROR;
+                $this->authenticateResultInfo['messages'][] = \Roaming\Helper\RespCodes::getResponseMessage(\Roaming\Helper\RespCodes::RESPONSE_STATUS_UNKNOWN_ERROR);
+                return $this->authenticateCreateAuthResult();
+            } else {
                 $resultIdentity = (array) $newIdentity;
-            case \Roaming\DbMapper\User::STATUS_ACTIVE:
-                unset($resultIdentity['zend_auth_credential_match']);
                 $this->resultRow = $resultIdentity;
                 $this->authenticateResultInfo['code']       = \Roaming\Helper\RespCodes::RESPONSE_STATUS_OK;
                 $this->authenticateResultInfo['messages'][] = 'Authentication successful.';
                 return $this->authenticateCreateAuthResult();
-            case \Roaming\DbMapper\User::STATUS_TEMPORARY_BLOCKED:
-                $this->authenticateResultInfo['code'] = \Roaming\Helper\RespCodes::RESPONSE_STATUS_AUTH_ERROR_ACCOUNT_TEMPORARY_BLOCKED;
-                $this->authenticateResultInfo['messages'][] = 
-                        \Roaming\Helper\RespCodes::getResponseMessage(\Roaming\Helper\RespCodes::RESPONSE_STATUS_AUTH_ERROR_ACCOUNT_TEMPORARY_BLOCKED);
-                return $this->authenticateCreateAuthResult();
-            case \Roaming\DbMapper\User::STATUS_DELETED:
-            default:
-                $this->authenticateResultInfo['code'] = \Roaming\Helper\RespCodes::RESPONSE_STATUS_AUTH_ERROR_ACCOUNT_BLOCKED;
-                $this->authenticateResultInfo['messages'][] = 
-                        \Roaming\Helper\RespCodes::getResponseMessage(\Roaming\Helper\RespCodes::RESPONSE_STATUS_AUTH_ERROR_ACCOUNT_BLOCKED);
-                return $this->authenticateCreateAuthResult();
+            }
+        } else {
+            switch ($userStatus) {
+                case \Roaming\DbMapper\User::STATUS_ACTIVE:
+                    unset($resultIdentity['zend_auth_credential_match']);
+                    $this->resultRow = $resultIdentity;
+                    $this->authenticateResultInfo['code']       = \Roaming\Helper\RespCodes::RESPONSE_STATUS_OK;
+                    $this->authenticateResultInfo['messages'][] = 'Authentication successful.';
+                    return $this->authenticateCreateAuthResult();
+                case \Roaming\DbMapper\User::STATUS_TEMPORARY_BLOCKED:
+                    $this->authenticateResultInfo['code'] = \Roaming\Helper\RespCodes::RESPONSE_STATUS_AUTH_ERROR_ACCOUNT_TEMPORARY_BLOCKED;
+                    $this->authenticateResultInfo['messages'][] = 
+                            \Roaming\Helper\RespCodes::getResponseMessage(\Roaming\Helper\RespCodes::RESPONSE_STATUS_AUTH_ERROR_ACCOUNT_TEMPORARY_BLOCKED);
+                    return $this->authenticateCreateAuthResult();
+                case \Roaming\DbMapper\User::STATUS_DELETED:
+                default:
+                    $this->authenticateResultInfo['code'] = \Roaming\Helper\RespCodes::RESPONSE_STATUS_AUTH_ERROR_ACCOUNT_BLOCKED;
+                    $this->authenticateResultInfo['messages'][] = 
+                            \Roaming\Helper\RespCodes::getResponseMessage(\Roaming\Helper\RespCodes::RESPONSE_STATUS_AUTH_ERROR_ACCOUNT_BLOCKED);
+                    return $this->authenticateCreateAuthResult();
+            }
         }
     }
 

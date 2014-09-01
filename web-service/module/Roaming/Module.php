@@ -55,6 +55,10 @@ class Module {
                     $adapter = $sm->get('Zend\Db\Adapter\Adapter');
                     return new \Roaming\DbMapper\User($adapter);
                 },
+                '\Roaming\DbMapper\PendingUser' => function ($sm) {
+                    $adapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    return new \Roaming\DbMapper\PendingUser($adapter);
+                },
                 '\Roaming\DbMapper\PinRequest' => function ($sm) {
                     $adapter = $sm->get('Zend\Db\Adapter\Adapter');
                     return new \Roaming\DbMapper\PinRequest($adapter);
@@ -68,7 +72,7 @@ class Module {
                     $dbTableAuthAdapter  = new Auth\CustomCredentialTreatmentAdapter(
                                                       $userModel,
                                                       $dbAdapter, 
-                                                      'users','name','pin', 'MD5(?)');
+                                                      'users', 'name','pin', 'MD5(?)');
 
                     $authService = new \Zend\Authentication\AuthenticationService();
                     $authService->setAdapter($dbTableAuthAdapter);
