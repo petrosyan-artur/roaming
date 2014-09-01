@@ -110,6 +110,8 @@ class User extends AbstractBaseModel {
             $this->getMapper()->insert(
                 array(
                     'name' => $userCredinitial,
+                    'username' => $userCredinitial,
+                    'roaming_number' => $userCredinitial,
                     'pin' => $pendingUser->pin,
                     'status' => \Roaming\DbMapper\User::STATUS_ACTIVE,
                     'secret' =>$sipPassword,
