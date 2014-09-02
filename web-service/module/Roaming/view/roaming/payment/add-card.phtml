@@ -3,21 +3,19 @@
         padding:4px;
     }
     
-    #expiration-container .ui-btn-inner {
+    #expiration-container .ui-btn {
         font-size:12px;
-        padding: .6em 7px;
-        padding-right:30px;
     }
     
     #expiration-container .ui-select .ui-btn-icon-right .ui-icon {
         right: 7px;
     }
     
-    .ui-br {
+    .ui-field-contain {
         border-bottom-style:none;
     }
     
-    .ui-field-contain, fieldset.ui-field-contain {
+    .ui-field-contain, .ui-mobile fieldset.ui-field-contain {
         padding: 0.6em 0;
     }
     
@@ -30,8 +28,6 @@
                 &nbsp;
             </div>
             <form action="" method="post">
-                <fieldset data-role="controlgroup">
-                    <legend>Card info:</legend>
                     <div data-role="fieldcontain" class="ui-hide-label">
                         <label for="cardholders_name">Name on card</label>
                         <input placeholder="Name on card" class="required" type="text" id="cardholders_name" name="cardholders_name" maxlength="100">
@@ -79,7 +75,6 @@
                         <label for="card_csv_code">SVC code (CVV or CV2):</label>
                         <input placeholder="SVC code (CVV or CV2)" class="required" type="text" id="card_csv_code" name="card_csv_code" maxlength="100">
                     </div>
-                </fieldset>
                 <div data-role="fieldcontain" class="ui-hide-label">
                     <label for="billing_address">Billing Address:</label>
                     <input placeholder="Billing Address" class="required" type="text" id="billing_address" name="billing_address" maxlength="100">
