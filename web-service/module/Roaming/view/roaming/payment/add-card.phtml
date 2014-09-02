@@ -16,22 +16,22 @@
                     <label for="card_number">Credit Card Number:</label>
                     <input placeholder="Card Number" class="required" type="text" id="card_number" name="card_number" maxlength="100">
                 </div>
-                <div data-role="fieldcontain">
+                <div data-role="fieldcontain" class="ui-hide-label">
                     <fieldset data-role="controlgroup" data-type="horizontal"   >
                     <legend>Expiration Date:</legend>
                     <!--<div class="ui-grid-a" name="expirarion" id="expirarion">-->
                         <!--<div class="ui-block-a">-->
                             <select name="expirarion-month" id="select-choice-0">
-                                <option value="">Month</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
+                                <option value="">Expiration month</option>
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
                                 <option value="10">10</option>
                                 <option value="11">11</option>
                                 <option value="12">12</option>
@@ -42,7 +42,7 @@
                             $year = date('Y');
                         ?>
                             <select name="expirarion-year" id="select-choice-0">
-                                <option value="">Year</option>
+                                <option value="">Expiration year</option>
                                 <?php
                                     $i = $year;
                                     while($i <= $year+10) {
