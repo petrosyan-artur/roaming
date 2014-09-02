@@ -1,89 +1,92 @@
 <div data-role="content">
     <div class="content-primary">
-        <form action="" method="post">
-            <div data-role="fieldcontain">
-                <label for="cardholders_name">Cardholder's Name:</label>
-                <input class="required" type="text" id="cardholders_name" name="cardholders_name" maxlength="100">
-            </div>
-            <div data-role="fieldcontain">
-                <label for="card_number">Credit Card Number:</label>
-                <input class="required" type="text" id="card_number" name="card_number" maxlength="100">
-            </div>
-            <div data-role="fieldcontain">
-                <fieldset data-role="controlgroup" data-type="horizontal"   >
-                <legend>Expiration Date:</legend>
-                <!--<div class="ui-grid-a" name="expirarion" id="expirarion">-->
-                    <!--<div class="ui-block-a">-->
-                        <select name="expirarion-month" id="select-choice-0">
-                            <option value="">Month</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                        </select>
+        <div data-collapsed="false" data-role="collapsible" data-content-theme="c">
+            <h3>Add new card</h3>
+            <form action="" method="post">
+                <div data-role="fieldcontain" class="ui-hide-label">
+                    <label for="cardholders_name">Name on card</label>
+                    <input placeholder="Name on card" style="margin-bottom: 5px;" class="required" type="text" id="cardholders_name" name="cardholders_name" maxlength="100">
+                </div>
+                <div data-role="fieldcontain" class="ui-hide-label">
+                    <label for="card_number">Credit Card Number:</label>
+                    <input placeholder="Card Number" class="required" type="text" id="card_number" name="card_number" maxlength="100">
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup" data-type="horizontal"   >
+                    <legend>Expiration Date:</legend>
+                    <!--<div class="ui-grid-a" name="expirarion" id="expirarion">-->
+                        <!--<div class="ui-block-a">-->
+                            <select name="expirarion-month" id="select-choice-0">
+                                <option value="">Month</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                        <!--</div>-->
+                        <!--<div class="ui-block-b">-->
+                        <?php
+                            $year = date('Y');
+                        ?>
+                            <select name="expirarion-year" id="select-choice-0">
+                                <option value="">Year</option>
+                                <?php
+                                    $i = $year;
+                                    while($i <= $year+10) {
+                                        ?>
+                                        <option value="<?=$i?>"><?=$i?></option>
+                                        <?php
+                                                $i++;
+                                    }
+                                ?>
+                            </select>
+                        <!--</div>-->
                     <!--</div>-->
-                    <!--<div class="ui-block-b">-->
-                    <?php
-                        $year = date('Y');
-                    ?>
-                        <select name="expirarion-year" id="select-choice-0">
-                            <option value="">Year</option>
-                            <?php
-                                $i = $year;
-                                while($i <= $year+10) {
-                                    ?>
-                                    <option value="<?=$i?>"><?=$i?></option>
-                                    <?php
-                                            $i++;
-                                }
-                            ?>
-                        </select>
-                    <!--</div>-->
-                <!--</div>-->
-                </fieldset>
-            </div>
-            <div data-role="fieldcontain">
-                <label for="payment_card_type">Credit Card Type:</label>
-                <input type="text" style="display:none" id="payment_card_type">
-                <div style="width:78%;display:inline-block">
-                    <div id="payment_card_type" style="display:inline-block;height:26px;width:172px;background-image:url(/img/card_types.png)">
-                        &nbsp;
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="payment_card_type">Credit Card Type:</label>
+                    <input type="text" style="display:none" id="payment_card_type">
+                    <div style="width:78%;display:inline-block">
+                        <div id="payment_card_type" style="display:inline-block;height:26px;width:172px;background-image:url(/img/card_types.png)">
+                            &nbsp;
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div data-role="fieldcontain">
-                <label for="card_csv_code">SVC code (CVV or CV2):</label>
-                <input style="width:50%" class="required" type="text" id="card_csv_code" name="card_csv_code" maxlength="100">
-            </div>
-            <div data-role="fieldcontain">
-                <label for="billing_address">Billing Address:</label>
-                <input class="required" type="text" id="billing_address" name="billing_address" maxlength="100">
-            </div>
-            <div data-role="fieldcontain">
-                <label for="city_town">City/Town:</label>
-                <input class="required" type="text" id="city_town" name="city_town" maxlength="100">
-            </div>
-            <div data-role="fieldcontain">
-                <label for="state_province">State/Province/Region:</label>
-                <input class="required" type="text" id="state_province" name="state_province" maxlength="100">
-            </div>
-            <div data-role="fieldcontain">
-                <label for="zip_code">Zip/Postal Code:</label>
-                <input class="required" type="text" id="zip_code" name="zip_code" maxlength="100">
-            </div>
-            <div data-role="fieldcontain">
-                <label for="country">Country:</label>
-                <input class="required" type="text" id="country" name="country" maxlength="100">
-            </div>
-            <input type="submit" value="Add card">
-        </form>
+                <div data-role="fieldcontain">
+                    <label for="card_csv_code">SVC code (CVV or CV2):</label>
+                    <input style="width:50%" class="required" type="text" id="card_csv_code" name="card_csv_code" maxlength="100">
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="billing_address">Billing Address:</label>
+                    <input class="required" type="text" id="billing_address" name="billing_address" maxlength="100">
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="city_town">City/Town:</label>
+                    <input class="required" type="text" id="city_town" name="city_town" maxlength="100">
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="state_province">State/Province/Region:</label>
+                    <input class="required" type="text" id="state_province" name="state_province" maxlength="100">
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="zip_code">Zip/Postal Code:</label>
+                    <input class="required" type="text" id="zip_code" name="zip_code" maxlength="100">
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="country">Country:</label>
+                    <input class="required" type="text" id="country" name="country" maxlength="100">
+                </div>
+                <input type="submit" value="Add card">
+            </form>
+        </div>
     </div>
 </div>
