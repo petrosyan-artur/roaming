@@ -2,6 +2,10 @@
     .ui-content {
         padding:4px;
     }
+    
+    #expiration-container .ui-btn-inner {
+        font-size:13px;
+    }
 </style>
 <div data-role="content">
     <div class="content-primary">
@@ -16,7 +20,7 @@
                     <label for="card_number">Credit Card Number:</label>
                     <input placeholder="Card Number" class="required" type="text" id="card_number" name="card_number" maxlength="100">
                 </div>
-                <div data-role="fieldcontain" class="ui-hide-label">
+                <div data-role="fieldcontain" class="ui-hide-label" id="expiration-container">
                     <fieldset data-role="controlgroup" data-type="horizontal"   >
                     <legend>Expiration Date:</legend>
                     <!--<div class="ui-grid-a" name="expirarion" id="expirarion">-->
