@@ -24,10 +24,11 @@
     <div class="content-primary">
         <div data-collapsed="false" data-role="collapsible" data-content-theme="c">
             <h3>Pay with credit card</h3>
-            <div id="payment_card_type" style="margin:0px auto;height:39px;width:250px;background-image:url(/img/card_types.png)">
+            <div id="payment_card_type" style="margin:0px auto;margin-top: 10px;height:39px;width:250px;background-image:url(/img/card_types.png)">
                 &nbsp;
             </div>
             <form action="" method="post">
+                <div style="font-weight:bold;margin-top: 17px;">Card info</div>
                     <div data-role="fieldcontain" class="ui-hide-label">
                         <label for="cardholders_name">Name on card</label>
                         <input placeholder="Name on card" class="required" type="text" id="cardholders_name" name="cardholders_name" maxlength="100">
@@ -75,6 +76,7 @@
                         <label for="card_csv_code">SVC code (CVV or CV2):</label>
                         <input placeholder="SVC code (CVV or CV2)" class="required" type="text" id="card_csv_code" name="card_csv_code" maxlength="100">
                     </div>
+                <div style="font-weight:bold;margin-top: 17px;">Billing info</div>
                 <div data-role="fieldcontain" class="ui-hide-label">
                     <label for="billing_address">Billing Address:</label>
                     <input placeholder="Billing Address" class="required" type="text" id="billing_address" name="billing_address" maxlength="100">
