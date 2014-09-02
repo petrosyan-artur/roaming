@@ -11,7 +11,7 @@
         <?php 
             echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
                     ->prependStylesheet($this->basePath() . '/css/jquery.mobile.css');
-            echo $this->headScript()->prependFile('http://code.jquery.com/jquery-1.7.1.min.js');
+            echo $this->headScript()->prependFile($this->basePath() . '/js/jquery-1.11.1.js');
             echo $this->headScript()->prependFile($this->basePath() . '/js/jquery.mobile.js');
         ?>
 
