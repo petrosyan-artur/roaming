@@ -31,10 +31,8 @@
                     <input placeholder="Card Number" class="required" type="text" id="card_number" name="card_number" maxlength="100">
                 </div>
                 <div data-role="fieldcontain" class="ui-hide-label" id="expiration-container">
-                    <fieldset data-role="controlgroup" data-type="horizontal"   >
+                    <fieldset data-role="controlgroup" data-type="horizontal">
                     <legend>Expiration Date:</legend>
-                    <!--<div class="ui-grid-a" name="expirarion" id="expirarion">-->
-                        <!--<div class="ui-block-a">-->
                             <select name="expirarion-month" id="select-choice-0">
                                 <option value="">Expiration month</option>
                                 <option value="1">01</option>
@@ -50,8 +48,6 @@
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                             </select>
-                        <!--</div>-->
-                        <!--<div class="ui-block-b">-->
                         <?php
                             $year = date('Y');
                         ?>
@@ -67,33 +63,31 @@
                                     }
                                 ?>
                             </select>
-                        <!--</div>-->
-                    <!--</div>-->
                     </fieldset>
                 </div>
-                <div data-role="fieldcontain">
+                <div data-role="fieldcontain" class="ui-hide-label">
                     <label for="card_csv_code">SVC code (CVV or CV2):</label>
-                    <input style="width:50%" class="required" type="text" id="card_csv_code" name="card_csv_code" maxlength="100">
+                    <input placeholder="SVC code (CVV or CV2)" class="required" type="text" id="card_csv_code" name="card_csv_code" maxlength="100">
                 </div>
-                <div data-role="fieldcontain">
+                <div data-role="fieldcontain" class="ui-hide-label">
                     <label for="billing_address">Billing Address:</label>
-                    <input class="required" type="text" id="billing_address" name="billing_address" maxlength="100">
+                    <input placeholder="Billing Address" class="required" type="text" id="billing_address" name="billing_address" maxlength="100">
                 </div>
-                <div data-role="fieldcontain">
+                <div data-role="fieldcontain" class="ui-hide-label">
                     <label for="city_town">City/Town:</label>
-                    <input class="required" type="text" id="city_town" name="city_town" maxlength="100">
+                    <input placeholder="City/Town" class="required" type="text" id="city_town" name="city_town" maxlength="100">
                 </div>
-                <div data-role="fieldcontain">
+                <div data-role="fieldcontain" class="ui-hide-label">
                     <label for="state_province">State/Province/Region:</label>
-                    <input class="required" type="text" id="state_province" name="state_province" maxlength="100">
+                    <input placeholder="State/Province/Region" class="required" type="text" id="state_province" name="state_province" maxlength="100">
                 </div>
-                <div data-role="fieldcontain">
+                <div data-role="fieldcontain" class="ui-hide-label">
                     <label for="zip_code">Zip/Postal Code:</label>
-                    <input class="required" type="text" id="zip_code" name="zip_code" maxlength="100">
+                    <input placeholder="Zip/Postal Code" class="required" type="text" id="zip_code" name="zip_code" maxlength="100">
                 </div>
-                <div data-role="fieldcontain">
+                <div data-role="fieldcontain" class="ui-hide-label">
                     <label for="country">Country:</label>
-                    <input class="required" type="text" id="country" name="country" maxlength="100">
+                    <input placeholder="" class="required" type="text" id="country" name="country" maxlength="100">
                 </div>
                 <input type="submit" value="Add card">
             </form>
