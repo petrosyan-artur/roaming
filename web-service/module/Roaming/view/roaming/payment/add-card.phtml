@@ -128,6 +128,7 @@
         $("#card_number").keyup(function() {
             var cardType = Stripe.card.cardType('' + $('#card_number').val());
 
+            alert(cardType);
             var position = '';
             switch (cardType) {
                 case "Visa":
