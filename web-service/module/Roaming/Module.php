@@ -59,9 +59,13 @@ class Module {
                     $adapter = $sm->get('Zend\Db\Adapter\Adapter');
                     return new \Roaming\DbMapper\PendingUser($adapter);
                 },
-                '\Roaming\DbMapper\PinRequest' => function ($sm) {
+                '\Roaming\DbMapper\PendingUser' => function ($sm) {
                     $adapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    return new \Roaming\DbMapper\PinRequest($adapter);
+                    return new \Roaming\DbMapper\PendingUser($adapter);
+                },
+                '\Roaming\DbMapper\CountryList' => function ($sm) {
+                    $adapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    return new \Roaming\DbMapper\CountryList($adapter);
                 },
                 '\Roaming\Auth\AuthStorage' => function($sm){
                     return new \Roaming\Auth\AuthStorage('auth');  
