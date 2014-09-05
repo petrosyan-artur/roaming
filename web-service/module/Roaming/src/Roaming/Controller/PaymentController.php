@@ -19,9 +19,9 @@ class PaymentController extends AbstractBaseController {
     public function addCardAction() {
         $request = $this->getRequest();
         
-        if(!$this->getAuthService()->hasIdentity()) {
-            return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_LOIN_REQUIRED);
-        }
+//        if(!$this->getAuthService()->hasIdentity()) {
+//            return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_LOIN_REQUIRED);
+//        }
         
         if($request->isPost()) {
             $token = $request->getPost('token', false);
