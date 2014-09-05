@@ -52,6 +52,10 @@ class PaymentController extends AbstractBaseController {
         
         $coutryListMapper = $this->getServiceLocator()->get('\Roaming\DbMapper\CountryList');
         $countries = $coutryListMapper->select()->toArray();
+        
+        $this->layout('layout/mobile');
+        return array('countries' => $countries);
+        
         $viewModel = new \Zend\View\Model\ViewModel();
         $viewModel->setVariables(array('countries' => $countries))
                   ->setTerminal(true);

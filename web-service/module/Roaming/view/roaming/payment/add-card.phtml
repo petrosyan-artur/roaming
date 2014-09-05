@@ -241,17 +241,17 @@
             </div>
             <form action="" method="post" id="payment_form">
                 <div style="font-weight:bold;margin-top: 17px;">Card info</div>
-                <div data-role="fieldcontain" class="ui-hide-label">
-                    <label for="cardholders_name">Name on card</label>
+                <div class="ui-field-contain">
+                    <label for="cardholders_name" class="ui-hidden-accessible">Name on card</label>
                     <input placeholder="Name on card" class="required" type="text" id="cardholders_name" name="cardholders_name" maxlength="100">
                 </div>
-                <div data-role="fieldcontain" class="ui-hide-label">
-                    <label for="card_number">Credit Card Number:</label>
+                <div class="ui-field-contain">
+                    <label for="card_number" class="ui-hidden-accessible">Credit Card Number:</label>
                     <input placeholder="Card Number" class="required" type="text" id="card_number" name="card_number" maxlength="100">
                 </div>
-                <div data-role="fieldcontain" class="ui-hide-label" id="expiration-container">
+                <div class="ui-field-contain" id="expiration-container">
                     <fieldset data-role="controlgroup" data-type="horizontal" id="expiration-container">
-                        <legend>Expiration Date:</legend>
+                        <legend class="ui-hidden-accessible">Expiration Date:</legend>
                         <select name="expirarion-month" id="expirarion-month">
                             <option value="">Expiration month</option>
                             <option value="1">01</option>
@@ -284,33 +284,33 @@
                         </select>
                     </fieldset>
                 </div>
-                <div data-role="fieldcontain" class="ui-hide-label">
-                    <label for="card_csv_code">SVC code (CVV or CV2):</label>
+                <div class="ui-field-contain" class="ui-hide-label">
+                    <label for="card_csv_code" class="ui-hidden-accessible">SVC code (CVV or CV2):</label>
                     <input placeholder="SVC code (CVV or CV2)" class="required" type="text" id="card_csv_code" name="card_csv_code" maxlength="100">
                 </div>
                 <div style="font-weight:bold;margin-top: 17px;">Billing info</div>
-                <div data-role="fieldcontain" class="ui-hide-label">
-                    <label for="email">Email:</label>
-                    <input placeholder="Email" class="required" type="text" id="email" name="email" maxlength="100">
+                <div class="ui-field-contain" class="ui-hide-label">
+                    <label for="email" class="ui-hidden-accessible">Email:</label>
+                    <input type="email" placeholder="Email" class="required" type="text" id="email" name="email" maxlength="100">
                 </div>
-                <div data-role="fieldcontain" class="ui-hide-label">
-                    <label for="billing_address">Billing Address:</label>
+                <div class="ui-field-contain" class="ui-hide-label">
+                    <label for="billing_address" class="ui-hidden-accessible">Billing Address:</label>
                     <input placeholder="Billing Address" class="required" type="text" id="billing_address" name="billing_address" maxlength="100">
                 </div>
-                <div data-role="fieldcontain" class="ui-hide-label">
-                    <label for="city_town">City/Town:</label>
+                <div class="ui-field-contain" class="ui-hide-label">
+                    <label for="city_town" class="ui-hidden-accessible">City/Town:</label>
                     <input placeholder="City/Town" class="required" type="text" id="city_town" name="city_town" maxlength="100">
                 </div>
-                <div data-role="fieldcontain" class="ui-hide-label">
-                    <label for="state_province">State/Province/Region:</label>
+                <div class="ui-field-contain" class="ui-hide-label">
+                    <label for="state_province" class="ui-hidden-accessible">State/Province/Region:</label>
                     <input placeholder="State/Province/Region" class="required" type="text" id="state_province" name="state_province" maxlength="100">
                 </div>
-                <div data-role="fieldcontain" class="ui-hide-label">
-                    <label for="zip_code">Zip/Postal Code:</label>
+                <div class="ui-field-contain" class="ui-hide-label">
+                    <label for="zip_code" class="ui-hidden-accessible">Zip/Postal Code:</label>
                     <input placeholder="Zip/Postal Code" class="required" type="text" id="zip_code" name="zip_code" maxlength="100">
                 </div>
-                <div data-role="fieldcontain" class="ui-hide-label" id="country-container">
-                    <label for="country">Country:</label>
+                <div class="ui-field-contain" class="ui-hide-label" id="country-container">
+                    <label for="country" class="ui-hidden-accessible">Country:</label>
                     <select name="country" id="country">
                         <option value="">Country</option>
                         <?php
@@ -322,7 +322,7 @@
                         ?>
                     </select>
                 </div>
-                <div data-role="fieldcontain">
+                <div class="ui-field-contain">
                     <fieldset data-role="controlgroup">
                            <input type="checkbox" name="auto-recharge" id="auto-recharge" class="custom" />
                            <label for="auto-recharge">Recharge my balance automatically</label>
