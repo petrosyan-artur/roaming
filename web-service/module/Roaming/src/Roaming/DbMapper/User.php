@@ -19,7 +19,7 @@ class User extends AbstractMapper {
 //    }
     
     public function getUserByIdentity($userIdentity) {
-        return $this->select(array('name' => $userIdentity))->current();
+        return $this->select(array('name = ?' => $userIdentity))->current();
     }
     
     public function insert($set) {
@@ -41,15 +41,15 @@ class User extends AbstractMapper {
      * @return bool
      */
     public function updatePin($userIdentity, $pin) {
-        $a = $this->update(array('pin' => md5($pin)), array('name' => $userIdentity));
+        $a = $this->update(array('pin' => md5($pin)), array('name = ?' => $userIdentity));
         return $a;
     }
 
     public function incrementFailLogin($phone) {
-        return $this->update(array('login_failure' => new \Zend\Db\Sql\Expression('login_failure + 1')), array('name' => $phone));
+        return $this->update(array('login_failure' => new \Zend\Db\Sql\Expression('login_failure + 1')), array('name = ?' => $phone));
     }
     
     public function resetLoginFailure($phone) {
-        return $this->update(array('login_failure' => 0), array('name' => $phone));
+        return $this->update(array('login_failure' => 0), array('name = ?' => $phone));
     }    
 }

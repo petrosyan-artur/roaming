@@ -43,6 +43,10 @@ class Module {
                     $model = new \Roaming\Model\User($tableGateway, $sm);
                     return $model;
                 },
+                '\Roaming\Model\Payment' => function($sm) {
+                    $model = new \Roaming\Model\Payment($sm);
+                    return $model;
+                },
                 '\Roaming\Model\Mor' => function($sm) {
                     $model = new \Roaming\Model\Mor($sm);
                     $model->setApiSec('aram22aram');

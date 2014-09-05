@@ -45,6 +45,14 @@ class AbstractBaseController extends \Zend\Mvc\Controller\AbstractActionControll
         $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter')->getDriver()->getConnection()->rollback();
     }
     
+    protected function getLoggedinUser() {
+        $userIdentity = $this->getLoogedinUserIdentity();
+        if(!$userIdentity) {
+            return null;
+        }
+        return $this->getServiceLocator()->get('\Roaming\DbMapper\User')->getUserByIdentity($userIdentity);
+    }
+    
     /**
      * 
      * @param type $status
@@ -68,11 +76,6 @@ class AbstractBaseController extends \Zend\Mvc\Controller\AbstractActionControll
         }
 
         return $this->loggedInUserIdentity;
-    }
-    
-    protected function getLoggedInUser() {
-        $identity = $this->getLoogedinUserIdentity();
-        return $userMapper = $this->getServiceLocator()->get('\Roaming\DbMapper\User')->getUserByIdentity($identity);
-    }
-    
+    }    
+
 }
