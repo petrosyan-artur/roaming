@@ -71,6 +71,10 @@ class Module {
                     $adapter = $sm->get('Zend\Db\Adapter\Adapter');
                     return new \Roaming\DbMapper\CountryList($adapter);
                 },
+                '\Roaming\DbMapper\PinRequest' => function ($sm) {
+                    $adapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    return new \Roaming\DbMapper\PinRequest($adapter);
+                },
                 '\Roaming\Auth\AuthStorage' => function($sm){
                     return new \Roaming\Auth\AuthStorage('auth');  
                 },
