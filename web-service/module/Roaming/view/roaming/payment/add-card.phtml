@@ -1,335 +1,306 @@
-<style>
-    
-    .input-error {
-        border: 1px solid red !important;
-    }
-    
-    .ui-content {
-        padding:4px;
-    }
+<div id="payment_page" data-role="page">
+    <div data-role="content">
+        <script>
+            var RESPONSE_STATUS_INVALID_ADDRESS_LINE1 = 54640;
+            var RESPONSE_STATUS_INVALID_ZIP_CODE = 54641;
+            var RESPONSE_STATUS_INVALID_COUNTRY = 54643;
+            var RESPONSE_STATUS_INVALID_CITY = 54644;
+            var RESPONSE_STATUS_INVALID_STATE = 54645;
 
-    #expiration-container .ui-btn {
-        font-size:12px;
-    }
+            $(document).ready(function() {
+                //    $(document).bind('pageinit', function() {
 
-    #expiration-container .ui-select .ui-btn-icon-right .ui-icon {
-        right: 7px;
-    }
+                $('#payment_form').on('submit', function(e) {
+                    e.preventDefault();
 
-    .ui-field-contain {
-        border-bottom-style:none;
-    }
-
-    .ui-field-contain, .ui-mobile fieldset.ui-field-contain {
-        padding: 0.6em 0;
-    }
-
-    #expirarion-month-button span {
-        min-width: 100px !important;
-    }
-    #expirarion-year-button span {
-        min-width: 90px !important;
-    }
-    
-    .ui-btn-icon-right {
-        padding-right: 2.3em;
-    }
-    
-</style>
-<script>
-    
-    var RESPONSE_STATUS_INVALID_ADDRESS_LINE1 = 54640;
-    var RESPONSE_STATUS_INVALID_ZIP_CODE = 54641;
-    var RESPONSE_STATUS_INVALID_COUNTRY = 54643;
-    var RESPONSE_STATUS_INVALID_CITY = 54644;
-    var RESPONSE_STATUS_INVALID_STATE = 54645;
-
-    $(document).ready(function() {
-//    $(document).bind('pageinit', function() {
-
-        $('#payment_form').on('submit', function(e) {
-            e.preventDefault();
-
-            if (checkCardFields()) {
-                $('.input-error').each(function(){
-                    $(this).removeClass('input-error');
-                });
-                Stripe.setPublishableKey('pk_test_ydWv0zg5npS3YyeVNoKEoH5P');
-                var data = {
-                    number: $('#card_number').val(),
-                    cvc: $('#card_csv_code').val(),
-                    exp_month: $('#expirarion-month').val(),
-                    exp_year: $('#expirarion-year').val(),
-                    name: $('#cardholders_name').val(),
-                    address_line1: $('#billing_address').val(),
-                    address_city: $('#city_town').val(),
-                    address_state: $('#state_province').val(),
-                    address_zip: $('#zip_code').val(),
-                    address_country: $('#country').val()
-                };
-                Stripe.createToken(data, function(status, response) {
-                    if (status === 200 && !response.error) {
-                        var token = response.id;
-                        var card = response.card;
-
-                        var data = {
-                            token: token,
-                            email: $('#email').val(),
-//                            card: card,
-                            auto_recharge: $('#auto-recharge').prop('checked') 
-                        };
-
-                        $.ajax({
-                            type: "POST",
-                            url: '/api/payment/add-card',
-                            data: data,
-                            success: function(resp) {
-                                var responseStatus = parseInt(resp['status'], 10);
-                                if(responseStatus !== 1) {
-                                    switch(responseStatus) {
-                                        case RESPONSE_STATUS_INVALID_ADDRESS_LINE1:
-                                            $('#billing_address').addClass('input-error');
-                                            break;
-                                        case RESPONSE_STATUS_INVALID_CITY:
-                                            $('#city_town').addClass('input-error');
-                                            break;
-                                        case RESPONSE_STATUS_INVALID_COUNTRY:
-                                            $('#country').addClass('input-error');
-                                            break;
-                                        case RESPONSE_STATUS_INVALID_STATE:
-                                            $('#state_province').addClass('input-error');
-                                            break;
-                                        case RESPONSE_STATUS_INVALID_ZIP_CODE:
-                                            $('#zip_code').addClass('input-error');
-                                            break;
-                                        case RESPONSE_STATUS_INVALID_EMAIL:
-                                            $('#email').addClass('input-error');
-                                            break;
-                                        default:
-                                            $('#card_number').addClass('input-error');
-                                            break
-                                    }
-                                } else {
-                                    
-                                }
-                            },
-                            error: function() {
-
-                            },
-                            dataType: 'json'
+                    if (checkCardFields()) {
+                        $('.input-error').each(function() {
+                            $(this).removeClass('input-error');
                         });
+                        Stripe.setPublishableKey('pk_test_ydWv0zg5npS3YyeVNoKEoH5P');
+                        var data = {
+                            number: $('#card_number').val(),
+                            cvc: $('#card_csv_code').val(),
+                            exp_month: $('#expirarion-month').val(),
+                            exp_year: $('#expirarion-year').val(),
+                            name: $('#cardholders_name').val(),
+                            address_line1: $('#billing_address').val(),
+                            address_city: $('#city_town').val(),
+                            address_state: $('#state_province').val(),
+                            address_zip: $('#zip_code').val(),
+                            address_country: $('#country').val()
+                        };
+                        Stripe.createToken(data, function(status, response) {
+                            if (status === 200 && !response.error) {
+                                var token = response.id;
+                                var card = response.card;
 
-//                    Request.sendPOST(Framework.userURL + '?type=' + type + '&nocache=' + Math.random(), data, callback);
-                    } else {
-                        switch (response.error.code) {
-                            case 'incorrect_number':
-                                break;
-                            case 'invalid_expiry_month':
-                                break;
-                            default:
-                                break;
-                        }
+                                var data = {
+                                    token: token,
+                                    email: $('#email').val(),
+                                    //                            card: card,
+                                    auto_recharge: $('#auto-recharge').prop('checked')
+                                };
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: '/api/payment/add-card',
+                                    data: data,
+                                    success: function(resp) {
+                                        var responseStatus = parseInt(resp['status'], 10);
+                                        if (responseStatus !== 1) {
+                                            switch (responseStatus) {
+                                                case RESPONSE_STATUS_INVALID_ADDRESS_LINE1:
+                                                    $('#billing_address').addClass('input-error');
+                                                    break;
+                                                case RESPONSE_STATUS_INVALID_CITY:
+                                                    $('#city_town').addClass('input-error');
+                                                    break;
+                                                case RESPONSE_STATUS_INVALID_COUNTRY:
+                                                    $('#country').addClass('input-error');
+                                                    break;
+                                                case RESPONSE_STATUS_INVALID_STATE:
+                                                    $('#state_province').addClass('input-error');
+                                                    break;
+                                                case RESPONSE_STATUS_INVALID_ZIP_CODE:
+                                                    $('#zip_code').addClass('input-error');
+                                                    break;
+                                                case RESPONSE_STATUS_INVALID_EMAIL:
+                                                    $('#email').addClass('input-error');
+                                                    break;
+                                                default:
+                                                    $('#card_number').addClass('input-error');
+                                                    break
+                                            }
+                                        } else {
+
+                                        }
+                                    },
+                                    error: function() {
+
+                                    },
+                                    dataType: 'json'
+                                });
+
+                                //                    Request.sendPOST(Framework.userURL + '?type=' + type + '&nocache=' + Math.random(), data, callback);
+                            } else {
+                                switch (response.error.code) {
+                                    case 'incorrect_number':
+                                        break;
+                                    case 'invalid_expiry_month':
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                        });
                     }
                 });
-            }
-        });
 
-        function checkCardFields() {
-            var cardNumberElement = $('#card_number');
-            var ret = true;
-            
-            $('.input-error').each(function(){
-                $(this).removeClass('input-error');
+                function checkCardFields() {
+                    var cardNumberElement = $('#card_number');
+                    var ret = true;
+
+                    $('.input-error').each(function() {
+                        $(this).removeClass('input-error');
+                    });
+
+                    if (!Stripe.card.validateCardNumber(cardNumberElement.val())) {
+                        ret = false;
+                        cardNumberElement.addClass('input-error');
+                    }
+
+                    var exp_year = $('#expirarion-year').val();
+                    var exp_month = $('#expirarion-month').val();
+                    if (!Stripe.card.validateExpiry(exp_month, exp_year)) {
+                        ret = false;
+                        $('#expiration-container .ui-controlgroup-controls').addClass('input-error');
+                    }
+                    var csvElement = $('#card_csv_code');
+                    if (!Stripe.card.validateCVC(csvElement.val())) {
+                        ret = false;
+                        csvElement.addClass('input-error');
+                    }
+
+                    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+                    if (!regex.test($('#email').val())) {
+                        ret = false;
+                        $('#email').addClass('input-error');
+                    }
+
+                    if ($('#billing_address').val() === '') {
+                        ret = false;
+                        $('#billing_address').addClass('input-error');
+                    }
+                    if ($('#cardholders_name').val() === '') {
+                        ret = false;
+                        $('#cardholders_name').addClass('input-error');
+                    }
+
+                    if ($('#city_town').val() === '') {
+                        ret = false;
+                        $('#city_town').addClass('input-error');
+                    }
+
+                    if ($('#country').val() === '') {
+                        ret = false;
+                        $('#country-container #country-button').addClass('input-error');
+                    }
+                    if ($('#state_province').val() === '') {
+                        ret = false;
+                        $('#state_province').addClass('input-error');
+                    }
+                    if ($('#zip_code').val() === '') {
+                        ret = false;
+                        $('#zip_code').addClass('input-error');
+                    }
+
+                    return ret;
+
+                }
+
+
+                $("#card_number").keyup(function() {
+                    var cardType = Stripe.card.cardType('' + $('#card_number').val());
+
+                    var position = '';
+                    switch (cardType) {
+                        case "Visa":
+                            position = "0px -38px";
+                            break;
+                        case "MasterCard":
+                            position = "0px -76px";
+                            break;
+                        case "American Express":
+                            position = "0px -117px";
+                            break;
+                        case "Discover":
+                            position = "0px -155px";
+                            break;
+                        default:
+                            position = "0px 0px";
+                    }
+                    $('#payment_card_type').css('background-position', position);
+
+                });
+
             });
-            
-            if(!Stripe.card.validateCardNumber(cardNumberElement.val())) {
-                ret = false;
-                cardNumberElement.addClass('input-error');
-            }
-            
-            var exp_year = $('#expirarion-year').val();
-            var exp_month = $('#expirarion-month').val();
-            if(!Stripe.card.validateExpiry(exp_month, exp_year)) {
-                ret = false;
-                $('#expiration-container .ui-controlgroup-controls').addClass('input-error');
-            }
-            var csvElement = $('#card_csv_code');
-            if(!Stripe.card.validateCVC(csvElement.val())) {
-                ret = false;
-                csvElement.addClass('input-error');
-            }
-            
-            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-            
-            if(!regex.test($('#email').val())) {
-                ret = false;
-                $('#email').addClass('input-error');
-            }
-            
-            if($('#billing_address').val() === '') {
-                ret = false;
-                $('#billing_address').addClass('input-error');
-            }
-            if($('#cardholders_name').val() === '') {
-                ret = false;
-                $('#cardholders_name').addClass('input-error');
-            }
-            
-            if($('#city_town').val() === '') {
-                ret = false;
-                $('#city_town').addClass('input-error');
-            }
-            
-            if($('#country').val() === '') {
-                ret = false;
-                $('#country-container #country-button').addClass('input-error');
-            }
-            if($('#state_province').val() === '') {
-                ret = false;
-                $('#state_province').addClass('input-error');
-            }
-            if($('#zip_code').val() === '') {
-                ret = false;
-                $('#zip_code').addClass('input-error');
-            }
-            
-            return ret;
-            
-        }
 
-
-        $("#card_number").keyup(function() {
-            var cardType = Stripe.card.cardType('' + $('#card_number').val());
-
-            var position = '';
-            switch (cardType) {
-                case "Visa":
-                    position = "0px -38px";
-                    break;
-                case "MasterCard":
-                    position = "0px -76px";
-                    break;
-                case "American Express":
-                    position = "0px -117px";
-                    break;
-                case "Discover":
-                    position = "0px -155px";
-                    break;
-                default:
-                    position = "0px 0px";
+            function getEscapedValue(obj) {
+                var currentValue = obj.value;
+                currentValue = currentValue.replace(/(<([^>]+)>)/ig, '');
+                obj.value = currentValue;
+                return currentValue;
             }
-            $('#payment_card_type').css('background-position', position);
 
-        });
-
-    });
-
-    function getEscapedValue(obj) {
-        var currentValue = obj.value;
-        currentValue = currentValue.replace(/(<([^>]+)>)/ig, '');
-        obj.value = currentValue;
-        return currentValue;
-    }
-    
-</script>
-<div data-role="content">
-    <div class="content-primary">
-        <div data-collapsed="false" data-role="collapsible" data-content-theme="c">
-            <h3>Pay with credit card</h3>
-            <div id="payment_card_type" style="margin:0px auto;margin-top: 10px;height:39px;width:250px;background-image:url(/img/card_types.png)">
-                &nbsp;
-            </div>
-            <form action="" method="post" id="payment_form">
-                <div style="font-weight:bold;margin-top: 17px;">Card info</div>
-                <div class="ui-field-contain">
-                    <label for="cardholders_name" class="ui-hidden-accessible">Name on card</label>
-                    <input placeholder="Name on card" class="required" type="text" id="cardholders_name" name="cardholders_name" maxlength="100">
+        </script>
+        <div class="content-primary">
+            <div data-role="tabs" id="tabs" data-active="1">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#new-card-tab" data-ajax="false">New card</a></li>
+                        <li><a href="#existing-card" data-ajax="false">Make a payment</a></li>
+                    </ul>
                 </div>
-                <div class="ui-field-contain">
-                    <label for="card_number" class="ui-hidden-accessible">Credit Card Number:</label>
-                    <input pattern="[0-9]*" placeholder="Card Number" class="required" type="text" id="card_number" name="card_number" maxlength="100">
-                </div>
-                <div class="ui-field-contain" id="expiration-container">
-                    <fieldset data-role="controlgroup" data-type="horizontal" id="expiration-container">
-                        <legend class="ui-hidden-accessible">Expiration Date:</legend>
-                        <select name="expirarion-month" id="expirarion-month">
-                            <option value="">Expiration month</option>
-                            <option value="1">01</option>
-                            <option value="2">02</option>
-                            <option value="3">03</option>
-                            <option value="4">04</option>
-                            <option value="5">05</option>
-                            <option value="6">06</option>
-                            <option value="7">07</option>
-                            <option value="8">08</option>
-                            <option value="9">09</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                        </select>
-                        <?php
-                        $year = date('Y');
-                        ?>
-                        <select name="expirarion-year" id="expirarion-year">
-                            <option value="">Expiration year</option>
-                            <?php
-                            $i = $year;
-                            while ($i <= $year + 10) {
-                                ?>
-                                <option value="<?= $i ?>"><?= $i ?></option>
+                <div id="new-card-tab" class="ui-body-d ui-content">
+                    <div id="payment_card_type" style="margin:0px auto;margin-top: 10px;height:39px;width:250px;background-image:url(/img/card_types.png)">
+                        &nbsp;
+                    </div>
+                    <form action="" method="post" id="payment_form">
+                        <div style="font-weight:bold;margin-top: 17px;">Card info</div>
+                        <div class="ui-field-contain">
+                            <label for="cardholders_name" class="ui-hidden-accessible">Name on card</label>
+                            <input placeholder="Name on card" class="required" type="text" id="cardholders_name" name="cardholders_name" maxlength="100">
+                        </div>
+                        <div class="ui-field-contain">
+                            <label for="card_number" class="ui-hidden-accessible">Credit Card Number:</label>
+                            <input pattern="[0-9]*" placeholder="Card Number" class="required" type="text" id="card_number" name="card_number" maxlength="100">
+                        </div>
+                        <div class="ui-field-contain" id="expiration-container">
+                            <fieldset data-role="controlgroup" data-type="horizontal" id="expiration-container">
+                                <legend class="ui-hidden-accessible">Expiration Date:</legend>
+                                <select name="expirarion-month" id="expirarion-month">
+                                    <option value="">Expiration month</option>
+                                    <option value="1">01</option>
+                                    <option value="2">02</option>
+                                    <option value="3">03</option>
+                                    <option value="4">04</option>
+                                    <option value="5">05</option>
+                                    <option value="6">06</option>
+                                    <option value="7">07</option>
+                                    <option value="8">08</option>
+                                    <option value="9">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
                                 <?php
-                                $i++;
-                            }
-                            ?>
-                        </select>
-                    </fieldset>
+                                $year = date('Y');
+                                ?>
+                                <select name="expirarion-year" id="expirarion-year">
+                                    <option value="">Expiration year</option>
+                                    <?php
+                                    $i = $year;
+                                    while ($i <= $year + 10) {
+                                        ?>
+                                        <option value="<?= $i ?>"><?= $i ?></option>
+                                        <?php
+                                        $i++;
+                                    }
+                                    ?>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="ui-field-contain" class="ui-hide-label">
+                            <label for="card_csv_code" class="ui-hidden-accessible">SVC code (CVV or CV2):</label>
+                            <input placeholder="SVC code (CVV or CV2)" class="required" type="text" id="card_csv_code" name="card_csv_code" maxlength="100">
+                        </div>
+                        <div style="font-weight:bold;margin-top: 17px;">Billing info</div>
+                        <div class="ui-field-contain" class="ui-hide-label">
+                            <label for="email" class="ui-hidden-accessible">Email:</label>
+                            <input type="email" placeholder="Email" class="required" type="text" id="email" name="email" maxlength="100">
+                        </div>
+                        <div class="ui-field-contain" class="ui-hide-label">
+                            <label for="billing_address" class="ui-hidden-accessible">Billing Address:</label>
+                            <input placeholder="Billing Address" class="required" type="text" id="billing_address" name="billing_address" maxlength="100">
+                        </div>
+                        <div class="ui-field-contain" class="ui-hide-label">
+                            <label for="city_town" class="ui-hidden-accessible">City/Town:</label>
+                            <input placeholder="City/Town" class="required" type="text" id="city_town" name="city_town" maxlength="100">
+                        </div>
+                        <div class="ui-field-contain" class="ui-hide-label">
+                            <label for="state_province" class="ui-hidden-accessible">State/Province/Region:</label>
+                            <input placeholder="State/Province/Region" class="required" type="text" id="state_province" name="state_province" maxlength="100">
+                        </div>
+                        <div class="ui-field-contain" class="ui-hide-label">
+                            <label for="zip_code" class="ui-hidden-accessible">Zip/Postal Code:</label>
+                            <input placeholder="Zip/Postal Code" class="required" type="text" id="zip_code" name="zip_code" maxlength="100">
+                        </div>
+                        <div class="ui-field-contain" class="ui-hide-label" id="country-container">
+                            <label for="country" class="ui-hidden-accessible">Country:</label>
+                            <select name="country" id="country">
+                                <option value="">Country</option>
+                                <?php
+                                foreach ($countries as $country) {
+                                    ?>
+                                    <option value="<?= $country['alpha1'] ?>"><?= $country['name'] ?></option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="ui-field-contain">
+                            <fieldset data-role="controlgroup">
+                                <input type="checkbox" name="auto-recharge" id="auto-recharge" class="custom" />
+                                <label for="auto-recharge">Recharge my balance automatically</label>
+                            </fieldset>
+                        </div>
+                        <input type="submit" value="Add card">
+                    </form>
                 </div>
-                <div class="ui-field-contain" class="ui-hide-label">
-                    <label for="card_csv_code" class="ui-hidden-accessible">SVC code (CVV or CV2):</label>
-                    <input placeholder="SVC code (CVV or CV2)" class="required" type="text" id="card_csv_code" name="card_csv_code" maxlength="100">
-                </div>
-                <div style="font-weight:bold;margin-top: 17px;">Billing info</div>
-                <div class="ui-field-contain" class="ui-hide-label">
-                    <label for="email" class="ui-hidden-accessible">Email:</label>
-                    <input type="email" placeholder="Email" class="required" type="text" id="email" name="email" maxlength="100">
-                </div>
-                <div class="ui-field-contain" class="ui-hide-label">
-                    <label for="billing_address" class="ui-hidden-accessible">Billing Address:</label>
-                    <input placeholder="Billing Address" class="required" type="text" id="billing_address" name="billing_address" maxlength="100">
-                </div>
-                <div class="ui-field-contain" class="ui-hide-label">
-                    <label for="city_town" class="ui-hidden-accessible">City/Town:</label>
-                    <input placeholder="City/Town" class="required" type="text" id="city_town" name="city_town" maxlength="100">
-                </div>
-                <div class="ui-field-contain" class="ui-hide-label">
-                    <label for="state_province" class="ui-hidden-accessible">State/Province/Region:</label>
-                    <input placeholder="State/Province/Region" class="required" type="text" id="state_province" name="state_province" maxlength="100">
-                </div>
-                <div class="ui-field-contain" class="ui-hide-label">
-                    <label for="zip_code" class="ui-hidden-accessible">Zip/Postal Code:</label>
-                    <input placeholder="Zip/Postal Code" class="required" type="text" id="zip_code" name="zip_code" maxlength="100">
-                </div>
-                <div class="ui-field-contain" class="ui-hide-label" id="country-container">
-                    <label for="country" class="ui-hidden-accessible">Country:</label>
-                    <select name="country" id="country">
-                        <option value="">Country</option>
-                        <?php
-                        foreach ($countries as $country) {
-                            ?>
-                            <option value="<?= $country['alpha1'] ?>"><?= $country['name'] ?></option>
-                            <?php
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div class="ui-field-contain">
-                    <fieldset data-role="controlgroup">
-                           <input type="checkbox" name="auto-recharge" id="auto-recharge" class="custom" />
-                           <label for="auto-recharge">Recharge my balance automatically</label>
-                    </fieldset>
-                </div>
-                <input type="submit" value="Add card">
-            </form>
+                <div data-active="true" id="existing-card-tab" class="ui-body-d ui-content"></div>
+            </div>
         </div>
     </div>
 </div>

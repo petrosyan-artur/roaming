@@ -55,12 +55,12 @@ class PaymentController extends AbstractBaseController {
         
         $this->layout('layout/mobile');
         return array('countries' => $countries);
-        
-        $viewModel = new \Zend\View\Model\ViewModel();
-        $viewModel->setVariables(array('countries' => $countries))
-                  ->setTerminal(true);
-
-        return $viewModel;
+//        
+//        $viewModel = new \Zend\View\Model\ViewModel();
+//        $viewModel->setVariables(array('countries' => $countries))
+//                  ->setTerminal(true);
+//
+//        return $viewModel;
     }
     
     public function indexAction() {

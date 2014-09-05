@@ -15,6 +15,45 @@
             echo $this->headScript()->prependFile($this->basePath() . '/js/jquery-1.11.1.js');
             echo $this->headScript()->prependFile($this->basePath() . '/js/jquery.mobile.js');
         ?>
+        
+    <style>
+
+        .input-error {
+            border: 1px solid red !important;
+        }
+
+        .ui-content {
+            padding:4px;
+        }
+
+        #expiration-container .ui-btn {
+            font-size:12px;
+        }
+
+        #expiration-container .ui-select .ui-btn-icon-right .ui-icon {
+            right: 7px;
+        }
+
+        .ui-field-contain {
+            border-bottom-style:none;
+        }
+
+        .ui-field-contain, .ui-mobile fieldset.ui-field-contain {
+            padding: 0.6em 0;
+        }
+
+        #expirarion-month-button span {
+            min-width: 100px !important;
+        }
+        #expirarion-year-button span {
+            min-width: 90px !important;
+        }
+
+        .ui-btn-icon-right {
+            padding-right: 2.3em;
+        }
+
+    </style>
 
     </head>
     <body>

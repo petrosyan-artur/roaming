@@ -18,7 +18,6 @@ class PinRequest extends AbstractMapper {
 //    }
     
     public function insert($set) {
-        $set['date_created'] = new \Zend\Db\Sql\Expression('now()');
         $set['date_updated'] = new \Zend\Db\Sql\Expression('now()');
         $set['status'] = self::STATUS_ACTIVE;
         parent::insert($set);

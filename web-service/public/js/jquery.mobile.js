@@ -721,7 +721,6 @@ $.ui.plugin = {
 
 		// Enhance child elements
 		enhanceWithin: function() {
-                    debugger;
 			var index,
 				widgetElements = {},
 				keepNative = $.mobile.page.prototype.keepNativeSelector(),
