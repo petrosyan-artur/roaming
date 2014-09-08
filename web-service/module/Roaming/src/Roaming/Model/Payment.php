@@ -21,14 +21,13 @@ class Payment extends AbstractBaseModel {
      * @return null | varchar
      * @throws \Exception
      */
-    public function createOrUpdateCustomer($user, $token) {
+    public function createOrUpdateCustomer($user, $token, $email, $auto_recharge) {
         $client = new \ZfrStripe\Client\StripeClient('sk_test_ThBNVSmFjQwxX2H2kuQCMdKJ');
         
         if($user->stripe_customer_id) {
             $client->deleteCustomer(
                 array(
-                    'card' => $user->stripe_customer_id,
-                    'description' => $user->name . '@telasco.co.uk'
+                    'id' => $user->stripe_customer_id,
                 )
             );
         }
@@ -36,7 +35,7 @@ class Payment extends AbstractBaseModel {
         $customer = $client->createCustomer(
             array(
                 'card' => $token,
-                'description' => $user->name . '@telasco.co.uk'
+                'description' => $email
             )
         );
         
@@ -60,7 +59,8 @@ class Payment extends AbstractBaseModel {
         
         $this->getServiceLocator()->get('\Roaming\DbMapper\User')->update(
             array(
-                'stripe_customer_id' => $customer['id']
+                'stripe_customer_id' => $customer['id'],
+                'auto_recharge' => (int) $auto_recharge
             ),
             array(
                 'id = ?' => $user->id

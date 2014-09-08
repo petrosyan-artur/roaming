@@ -67,7 +67,7 @@ class AbstractBaseController extends \Zend\Mvc\Controller\AbstractActionControll
     
     protected function getLoogedinUserIdentity() {
         if(!$this->getAuthService()->hasIdentity()) {
-            throw new \Exception('not logged in', \Roaming\Helper\RespCodes::RESPONSE_STATUS_LOIN_REQUIRED);
+            return null;
         }
         
         if (!$this->loggedInUserIdentity) {

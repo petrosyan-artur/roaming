@@ -24,7 +24,7 @@ class SipConfiguration {
     public $port;
 
     public function __construct() {
-        $this->setHost('95.211.27.30');
+        $this->setHost('37.48.84.64');
         $this->setPort('5060');
     }
     

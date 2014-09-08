@@ -19,25 +19,31 @@ class PaymentController extends AbstractBaseController {
     public function addCardAction() {
         $request = $this->getRequest();
         
-//        if(!$this->getAuthService()->hasIdentity()) {
-//            return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_LOIN_REQUIRED);
-//        }
+        $user = $this->getLoggedinUser();
+        if(!$user) {
+            return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_LOIN_REQUIRED);
+        }
         
         if($request->isPost()) {
             $token = $request->getPost('token', false);
             $email = $request->getPost('email', false);
-//            $card = $request->getPost('card', false);
+            $auto_recharge = $request->getPost('auto_recharge', false);
+            
+            if(!$token) {
+                return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_UNKNOWN_ERROR, array(), array());
+            } elseif(!$email) {
+                return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_EMAIL, array(), array());
+            }
             
             $paymentModel = $this->getPaymentModel();
-            $user = $this->getLoggedinUser();
+            
             
             try {
-                $stripe_customer_id = $paymentModel->createOrUpdateCustomer($user, $token);
-                if(!is_null($stripe_customer_id)) {
+                $stripe_customer_id = $paymentModel->createOrUpdateCustomer($user, $token, $email, $auto_recharge);
+                if(is_null($stripe_customer_id)) {
                     return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_UNKNOWN_ERROR, array(), array());
                 }
-//                $paymentModel->upda
-            } catch (Exception $exc) {
+            } catch (\Exception $exc) {
                 $code = $exc->getCode();
                 if(!\Roaming\Helper\RespCodes::checkRespCodeExist($code)) {
                     $code = \Roaming\Helper\RespCodes::RESPONSE_STATUS_UNKNOWN_ERROR;
@@ -45,8 +51,6 @@ class PaymentController extends AbstractBaseController {
                 return $this->getJsonModel($code, array(), array($exc->getMessage()));
             }
         
-//            sleep(3);
-            var_dump($customer);die;
             return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK);
         }
         
@@ -54,7 +58,7 @@ class PaymentController extends AbstractBaseController {
         $countries = $coutryListMapper->select()->toArray();
         
         $this->layout('layout/mobile');
-        return array('countries' => $countries);
+        return array('countries' => $countries, 'stripe_customer_id' =>$user->stripe_customer_id);
 //        
 //        $viewModel = new \Zend\View\Model\ViewModel();
 //        $viewModel->setVariables(array('countries' => $countries))

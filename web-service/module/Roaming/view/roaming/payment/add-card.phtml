@@ -39,7 +39,7 @@
                                     token: token,
                                     email: $('#email').val(),
                                     //                            card: card,
-                                    auto_recharge: $('#auto-recharge').prop('checked')
+                                    auto_recharge: ($('#auto-recharge').prop('checked')? 1 : 0)
                                 };
 
                                 $.ajax({
@@ -196,13 +196,16 @@
 
         </script>
         <div class="content-primary">
-            <div data-role="tabs" id="tabs" data-active="1">
+            <?php if($stripe_customer_id): ?>
+            <div data-role="tabs" id="tabs" data-active="0">
                 <div data-role="navbar">
                     <ul>
-                        <li><a href="#new-card-tab" data-ajax="false">New card</a></li>
                         <li><a href="#existing-card" data-ajax="false">Make a payment</a></li>
+                        <li><a href="#settings" data-ajax="false">Settings</a></li>
+                        <li><a href="#new-card-tab" data-ajax="false">New card</a></li>
                     </ul>
                 </div>
+                <?php endif; ?>
                 <div id="new-card-tab" class="ui-body-d ui-content">
                     <div id="payment_card_type" style="margin:0px auto;margin-top: 10px;height:39px;width:250px;background-image:url(/img/card_types.png)">
                         &nbsp;
@@ -292,15 +295,30 @@
                         </div>
                         <div class="ui-field-contain">
                             <fieldset data-role="controlgroup">
-                                <input type="checkbox" name="auto-recharge" id="auto-recharge" class="custom" />
+                                <input type="checkbox" name="auto-recharge" id="auto-recharge" class="custom"/>
                                 <label for="auto-recharge">Recharge my balance automatically</label>
                             </fieldset>
                         </div>
                         <input type="submit" value="Add card">
                     </form>
                 </div>
+                <?php if($stripe_customer_id): ?>
                 <div data-active="true" id="existing-card-tab" class="ui-body-d ui-content"></div>
+                <div id="settings">
+                    <form action="/api/payment/settings" method="post" id="settings_form">
+                        <div class="ui-field-contain">
+                            <fieldset data-role="controlgroup">
+                                <input type="checkbox" name="auto-recharge_settings" id="auto-recharge_settings" class="custom" />
+                                <label for="auto-recharge_settings">Recharge my balance automatically</label>
+                            </fieldset>
+                        </div>
+                        <input type="submit" value="Save settings">
+                    </form>
+                </div>
             </div>
+            <?php
+            endif;
+            ?>
         </div>
     </div>
 </div>
