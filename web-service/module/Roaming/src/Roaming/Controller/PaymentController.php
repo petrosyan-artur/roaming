@@ -20,9 +20,9 @@ class PaymentController extends AbstractBaseController {
         $request = $this->getRequest();
         
         $user = $this->getLoggedinUser();
-        if(!$user) {
-            return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_LOIN_REQUIRED);
-        }
+//        if(!$user) {
+//            return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_LOIN_REQUIRED);
+//        }
         
         if($request->isPost()) {
             $token = $request->getPost('token', false);
@@ -58,13 +58,35 @@ class PaymentController extends AbstractBaseController {
         $countries = $coutryListMapper->select()->toArray();
         
         $this->layout('layout/mobile');
-        return array('countries' => $countries, 'stripe_customer_id' =>$user->stripe_customer_id);
+        return array('countries' => $countries, 'stripe_customer_id' =>$user->stripe_customer_id,
+                    'auto_recharge' => $user->auto_recharge);
 //        
 //        $viewModel = new \Zend\View\Model\ViewModel();
 //        $viewModel->setVariables(array('countries' => $countries))
 //                  ->setTerminal(true);
 //
 //        return $viewModel;
+    }
+    
+    public function settingsAction() {
+        $request = $this->getRequest();
+        
+        $user = $this->getLoggedinUser();
+        if(!$user) {
+            return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_LOIN_REQUIRED);
+        }
+        
+        if($request->isPost()) {
+            $autoRecharge = $request->getPost('auto_recharge', null);
+            if(is_null($autoRecharge)) {
+                return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS, array(), array());
+            }
+            
+            $this->getPaymentModel()->changeSettings($autoRecharge, $this->getLoogedinUserIdentity());
+            return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK, array(), array());
+        }
+        
+        return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_REQUEST, array(), array());
     }
     
     public function indexAction() {

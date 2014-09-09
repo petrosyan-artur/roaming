@@ -69,4 +69,10 @@ class Payment extends AbstractBaseModel {
         
         return $customer['id'];
     }
+    
+    public function changeSettings($autoRecharge, $userCredinitial) {
+        $this->getServiceLocator()->get('\Roaming\DbMapper\User')->
+                    update(array('auto_recharge' => $autoRecharge), array('name=?' => $userCredinitial));
+    }
+    
 }

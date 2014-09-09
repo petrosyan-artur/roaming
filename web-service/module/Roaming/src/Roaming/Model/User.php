@@ -33,7 +33,7 @@ class User extends AbstractBaseModel {
     public static function handleTemporaryBlockedUsers() {
 //        $mapper = 
     }
-    
+        
     public function getUsers() {
         return $this->mapper->select();
     }
@@ -111,7 +111,7 @@ class User extends AbstractBaseModel {
                 array(
                     'name' => $userCredinitial,
                     'username' => $userCredinitial,
-                    'roaming_number' => $userCredinitial,
+                    'cli_number' => $userCredinitial,
                     'pin' => $pendingUser->pin,
                     'status' => \Roaming\DbMapper\User::STATUS_ACTIVE,
                     'secret' =>$sipPassword,

@@ -9,7 +9,54 @@
 
             $(document).ready(function() {
                 //    $(document).bind('pageinit', function() {
+                
+                $('#settings_form').on('submit', function(e) {
+                    e.preventDefault();
+                    
+                    var data = {auto_recharge: ($('#auto-recharge_settings').prop('checked')? 1 : 0)}
 
+                                $.ajax({
+                                    type: "POST",
+                                    url: '/api/payment/settings',
+                                    data: data,
+                                    success: function(resp) {
+                                        var responseStatus = parseInt(resp['status'], 10);
+                                        if (responseStatus !== 1) {
+                                            switch (responseStatus) {
+                                                case RESPONSE_STATUS_INVALID_ADDRESS_LINE1:
+                                                    $('#billing_address').addClass('input-error');
+                                                    break;
+                                                case RESPONSE_STATUS_INVALID_CITY:
+                                                    $('#city_town').addClass('input-error');
+                                                    break;
+                                                case RESPONSE_STATUS_INVALID_COUNTRY:
+                                                    $('#country').addClass('input-error');
+                                                    break;
+                                                case RESPONSE_STATUS_INVALID_STATE:
+                                                    $('#state_province').addClass('input-error');
+                                                    break;
+                                                case RESPONSE_STATUS_INVALID_ZIP_CODE:
+                                                    $('#zip_code').addClass('input-error');
+                                                    break;
+                                                case RESPONSE_STATUS_INVALID_EMAIL:
+                                                    $('#email').addClass('input-error');
+                                                    break;
+                                                default:
+                                                    $('#card_number').addClass('input-error');
+                                                    break
+                                            }
+                                        } else {
+
+                                        }
+                                    },
+                                    error: function() {
+
+                                    },
+                                    dataType: 'json'
+                                });
+
+                });
+                
                 $('#payment_form').on('submit', function(e) {
                     e.preventDefault();
 
@@ -193,14 +240,25 @@
                 obj.value = currentValue;
                 return currentValue;
             }
-
         </script>
+<!--        
+        <div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
+            <div data-role="header" data-theme="a">
+            <h1>Settings successfully update</h1>
+            </div>
+            <div role="main" class="ui-content">
+                <h3 class="ui-title">Are you sure you want to delete this page?</h3>
+            <p>This action cannot be undone.</p>
+                <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Cancel</a>
+                <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" data-transition="flow">Delete</a>
+            </div>
+        </div>-->
+        
         <div class="content-primary">
             <?php if($stripe_customer_id): ?>
             <div data-role="tabs" id="tabs" data-active="0">
                 <div data-role="navbar">
                     <ul>
-                        <li><a href="#existing-card" data-ajax="false">Make a payment</a></li>
                         <li><a href="#settings" data-ajax="false">Settings</a></li>
                         <li><a href="#new-card-tab" data-ajax="false">New card</a></li>
                     </ul>
@@ -303,16 +361,22 @@
                     </form>
                 </div>
                 <?php if($stripe_customer_id): ?>
-                <div data-active="true" id="existing-card-tab" class="ui-body-d ui-content"></div>
                 <div id="settings">
                     <form action="/api/payment/settings" method="post" id="settings_form">
                         <div class="ui-field-contain">
-                            <fieldset data-role="controlgroup">
-                                <input type="checkbox" name="auto-recharge_settings" id="auto-recharge_settings" class="custom" />
-                                <label for="auto-recharge_settings">Recharge my balance automatically</label>
-                            </fieldset>
+                            <label for="auto-recharge_settings">Enable Auto-recharge when I'm running low on credit 
+                                <a href="#auto-recharge_settings_popup" data-rel="popup" 
+                                   data-transition="pop" 
+                                   class="my-tooltip-btn ui-btn ui-alt-icon ui-nodisc-icon ui-btn-inline ui-icon-info 
+                                   ui-btn-icon-notext" title="Learn more">Learn more</a></p></label>
+                            <div data-role="popup" id="auto-recharge_settings_popup" class="ui-content" data-theme="a" style="max-width:350px;">
+                                <p>Auto-recharge saves you time and hassle. We'll credit your account with the amount selected above when your balance falls below €2,00. In order to enable Auto-recharge, we'll store your preferred payment method and use it for recurring payments. You can disable Auto-recharge any time in My Account, under Billing and Payments.</p>
+                            </div>
+                            <select name="auto-recharge_settings" id="auto-recharge_settings" data-role="slider">
+                                <option <?=!$auto_recharge ? 'selected="selected"' : ''?> value="0">Off</option>
+                                <option <?=$auto_recharge ? 'selected="selected"' : ''?> value="1">On</option>
+                            </select>
                         </div>
-                        <input type="submit" value="Save settings">
                     </form>
                 </div>
             </div>
