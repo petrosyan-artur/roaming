@@ -1,23 +1,20 @@
-<div id="payment_page" data-role="page">
-    <div data-role="content">
-        <script>
+<script>
             var RESPONSE_STATUS_INVALID_ADDRESS_LINE1 = 54640;
             var RESPONSE_STATUS_INVALID_ZIP_CODE = 54641;
             var RESPONSE_STATUS_INVALID_COUNTRY = 54643;
             var RESPONSE_STATUS_INVALID_CITY = 54644;
             var RESPONSE_STATUS_INVALID_STATE = 54645;
 
-            
-            function changePage(elem) {
-                $.mobile.changePage($(elem).attr('href'));
-            }
 
             $(document).ready(function() {
                 //    $(document).bind('pageinit', function() {
             
+            
                 $('.ui-checkbox a').bind("tap click", function( event, data ){
                     event.stopPropagation();
-                    changePage(this));
+//                    debugger;
+                    $( $(this).attr('href') ).popup( "open" );
+//                    $.mobile.changePage($(this).attr('href'));
                 });
             
                 $('#settings_form').on('submit', function(e) {
@@ -263,7 +260,8 @@
                 <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" data-transition="flow">Delete</a>
             </div>
         </div>-->
-        
+<div id="payment_page" data-role="page">
+    <div data-role="content">
         <div class="content-primary">
             <?php if($stripe_customer_id): ?>
             <div data-role="tabs" id="tabs" data-active="0">
