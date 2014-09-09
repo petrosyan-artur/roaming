@@ -7,9 +7,19 @@
             var RESPONSE_STATUS_INVALID_CITY = 54644;
             var RESPONSE_STATUS_INVALID_STATE = 54645;
 
+            
+            function changePage(elem) {
+                $.mobile.changePage($(elem).attr('href'));
+            }
+
             $(document).ready(function() {
                 //    $(document).bind('pageinit', function() {
-                
+            
+                $('.ui-checkbox a').bind("tap click", function( event, data ){
+                    event.stopPropagation();
+                    changePage(this));
+                });
+            
                 $('#settings_form').on('submit', function(e) {
                     e.preventDefault();
                     
@@ -364,18 +374,18 @@
                 <div id="settings">
                     <form action="/api/payment/settings" method="post" id="settings_form">
                         <div class="ui-field-contain">
-                            <label for="auto-recharge_settings">Enable Auto-recharge when I'm running low on credit 
-                                <a href="#auto-recharge_settings_popup" data-rel="popup" 
-                                   data-transition="pop" 
-                                   class="my-tooltip-btn ui-btn ui-alt-icon ui-nodisc-icon ui-btn-inline ui-icon-info 
-                                   ui-btn-icon-notext" title="Learn more">Learn more</a></p></label>
                             <div data-role="popup" id="auto-recharge_settings_popup" class="ui-content" data-theme="a" style="max-width:350px;">
                                 <p>Auto-recharge saves you time and hassle. We'll credit your account with the amount selected above when your balance falls below €2,00. In order to enable Auto-recharge, we'll store your preferred payment method and use it for recurring payments. You can disable Auto-recharge any time in My Account, under Billing and Payments.</p>
                             </div>
-                            <select name="auto-recharge_settings" id="auto-recharge_settings" data-role="slider">
-                                <option <?=!$auto_recharge ? 'selected="selected"' : ''?> value="0">Off</option>
-                                <option <?=$auto_recharge ? 'selected="selected"' : ''?> value="1">On</option>
-                            </select>
+                            <fieldset data-role="controlgroup">
+                                <input type="checkbox" <?=$auto_recharge ? 'checked="checked"' : ''?> name="auto-recharge_settings" id="auto-recharge_settings" class="custom" />
+                                <label for="auto-recharge_settings">Recharge my balance automatically
+                                <a href="#auto-recharge_settings_popup" data-rel="popup" 
+                                   data-transition="pop" 
+                                   class="my-tooltip-btn ui-btn ui-alt-icon ui-nodisc-icon ui-btn-inline ui-icon-info 
+                                   ui-btn-icon-notext" title="Learn more">Learn more</a>
+                                </label>
+                            </fieldset>
                         </div>
                     </form>
                 </div>
