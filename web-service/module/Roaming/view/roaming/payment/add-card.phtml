@@ -381,6 +381,10 @@
                         </div>
                     </div>
                     <form action="/api/payment/settings" method="post" id="settings_form">
+                        <div class="ui-field-contain" class="ui-hide-label">
+                            <label for="zip_code" class="ui-hidden-accessible">Amount:</label>
+                            <input placeholder="Amount to pay" class="required" type="text" id="amount" name="amount" maxlength="100">
+                        </div>
                         <div class="ui-field-contain">
                             <fieldset data-role="controlgroup" id="auto_recharge_setting_id">
                                 <input type="checkbox" <?=$auto_recharge ? 'checked="checked"' : ''?> name="auto-recharge_settings" id="auto-recharge_settings" class="custom" />
@@ -392,6 +396,7 @@
                                 </label>
                             </fieldset>
                         </div>
+                        <input type="submit" value="Pay">
                     </form>
                 </div>
             </div>
