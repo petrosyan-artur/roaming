@@ -1,3 +1,8 @@
+<style>
+    #auto_recharge_setting_id .ui-controlgroup-controls .ui-btn-icon-notext {
+        padding: .3em 1em !important;
+    }
+</style>
 <script>
             var RESPONSE_STATUS_INVALID_ADDRESS_LINE1 = 54640;
             var RESPONSE_STATUS_INVALID_ZIP_CODE = 54641;
@@ -386,11 +391,11 @@
                     </div>
                     <form action="/api/payment/settings" method="post" id="settings_form">
                         <div class="ui-field-contain">
-                            <fieldset data-role="controlgroup">
+                            <fieldset data-role="controlgroup" id="auto_recharge_setting_id">
                                 <input type="checkbox" <?=$auto_recharge ? 'checked="checked"' : ''?> name="auto-recharge_settings" id="auto-recharge_settings" class="custom" />
-                                <label for="auto-recharge_settings">Recharge my balance automatically
+                                <label style="border-width:1px;border-bottom-right-radius:inherit;border-bottom-left-radius:inherit;" for="auto-recharge_settings">Recharge my balance automatically
                                 <a href="#auto-recharge_settings_popup" data-rel="popup" 
-                                   data-transition="pop" 
+                                   data-transition="pop" style="border-radius:initial"
                                    class="my-tooltip-btn ui-btn ui-alt-icon ui-nodisc-icon ui-btn-inline ui-icon-info 
                                    ui-btn-icon-notext" title="Learn more">Learn more</a>
                                 </label>
