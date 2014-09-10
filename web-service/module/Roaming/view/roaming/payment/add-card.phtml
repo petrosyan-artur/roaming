@@ -372,7 +372,7 @@
                             <fieldset data-role="controlgroup">
                                 <input type="checkbox" name="auto-recharge" id="auto-recharge" class="custom"/>
                                 <label for="auto-recharge">Recharge my balance automatically</label>
-                            </fieldset>
+                              </fieldset>
                         </div>
                         <input type="submit" value="Add card">
                     </form>
@@ -380,7 +380,9 @@
                 <?php if($stripe_customer_id): ?>
                 <div id="settings">
                     <div data-role="popup" id="auto_recharge_settings_popup" class="ui-content" data-theme="a" style="max-width:350px;">
-                        <p>Auto-recharge saves you time and hassle. We'll credit your account with the amount selected above when your balance falls below $2,00. In order to enable Auto-recharge, we'll store your preferred payment method and use it for recurring payments. You can disable Auto-recharge any time in My Account, under Billing and Payments.</p>
+                        <div data-role="content">
+                            <p>Auto-recharge saves you time and hassle. We'll credit your account with the amount selected above when your balance falls below $2,00. In order to enable Auto-recharge, we'll store your preferred payment method and use it for recurring payments. You can disable Auto-recharge any time in My Account, under Billing and Payments.</p>
+                        </div>
                     </div>
                     <form action="/api/payment/settings" method="post" id="settings_form">
                         <div class="ui-field-contain">
