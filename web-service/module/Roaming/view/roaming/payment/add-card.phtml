@@ -16,21 +16,12 @@
             
             
                 $('.ui-checkbox a').bind("tap click", function( event, data ){
-                    $( '#auto_recharge_settings_popup').popup( "open" );
+                    $( $(this).attr('href')).popup( "open" );
                     event.stopPropagation();
                     event.stopPropagation();
                     return false;
-//                    $( $(this).attr('href') ).popup( "open" );
-//                    $.mobile.changePage($(this).attr('href'));
                 });
 
-                $('#mumu').bind("tap click", function( event, data ){
-                    event.stopPropagation();
-//                    $.mobile.changePage('#auto-recharge_settings_popup', 'pop', true, true);
-                    $( '#auto_recharge_settings_popup').popup( "open" );
-//                    $.mobile.changePage($(this).attr('href'));
-                });
-            
                 $('#settings_form').on('submit', function(e) {
                     e.preventDefault();
                     
@@ -281,7 +272,7 @@
             <div data-role="tabs" id="tabs" data-active="0">
                 <div data-role="navbar">
                     <ul>
-                        <li><a href="#settings" data-ajax="false">Settings</a></li>
+                        <li><a href="#settings" data-ajax="false">Make a payment</a></li>
                         <li><a href="#new-card-tab" data-ajax="false">New card</a></li>
                     </ul>
                 </div>
