@@ -272,7 +272,7 @@
             <div data-role="tabs" id="tabs" data-active="0">
                 <div data-role="navbar">
                     <ul>
-                        <li><a href="#settings" data-ajax="false">Make a payment</a></li>
+                        <li <?= $stripe_customer_id?'class="ui-tabs-active"':'' ?>><a href="#settings" <?= $stripe_customer_id?'class="ui-btn-active"':'' ?> data-ajax="false">Make a payment</a></li>
                         <li><a href="#new-card-tab" data-ajax="false">New card</a></li>
                     </ul>
                 </div>
