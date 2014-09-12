@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="14A314h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zaX-bP-Gh4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A343f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zaX-bP-Gh4">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--Your Phone Number-->
@@ -13,9 +12,13 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" id="E5B-Tk-YEa">
-                                <rect key="frame" x="80" y="130" width="240" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="phoneNumberBackground.png" id="ipz-Iq-3aC">
+                                <rect key="frame" x="0.0" y="122" width="320" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="E5B-Tk-YEa">
+                                <rect key="frame" x="95" y="130" width="214" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
@@ -30,16 +33,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="s5l-fX-dav">
-                                <rect key="frame" x="12" y="130" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="28" y="126" width="62" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="+374">
+                                <state key="normal" title="+1">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="mUj-hx-lkd" kind="push" identifier="selectCountryIdentifier" id="bdh-bT-Smx"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -52,7 +52,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="countryCodeButton" destination="s5l-fX-dav" id="9tF-kg-JUj"/>
                         <outlet property="doneButton" destination="gQ8-rZ-Le1" id="Np7-Iw-dKg"/>
                         <outlet property="phoneNumberTextField" destination="E5B-Tk-YEa" id="QLh-uD-aGc"/>
                         <segue destination="l8E-VX-ysm" kind="push" identifier="pinRequestPageIdentifier" id="WDa-jN-WrD"/>
@@ -62,34 +61,39 @@
             </objects>
             <point key="canvasLocation" x="97" y="561"/>
         </scene>
-        <!--Select Country-->
-        <scene sceneID="Bk0-wS-3pl">
+        <!--View Controller-->
+        <scene sceneID="YKs-xK-woQ">
             <objects>
-                <viewController id="mUj-hx-lkd" customClass="CountryPickerViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="j67-5u-w0Z">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <viewController id="2mY-uT-Gqi" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0tR-Ue-iRE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="J05-P0-r69">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="mUj-hx-lkd" id="rbn-1C-SoU"/>
-                                    <outlet property="delegate" destination="mUj-hx-lkd" id="Nd9-I3-D1g"/>
-                                </connections>
-                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request for push" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ewZ-iS-LRK">
+                                <rect key="frame" x="85" y="129" width="132" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Nfv-K7-riE">
+                                <rect key="frame" x="118" y="190" width="52" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="request">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Select Country" id="r1Q-GD-nFv"/>
+                    <navigationItem key="navigationItem" id="RWM-CV-cdl"/>
                     <connections>
-                        <outlet property="countriesTabelView" destination="J05-P0-r69" id="VuW-GX-ctp"/>
+                        <segue destination="qSh-ht-dGm" kind="push" id="uaS-ep-eLF"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mmR-4i-AWP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2nW-ur-6bV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="451" y="1205"/>
+            <point key="canvasLocation" x="331" y="1402"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="z73-xZ-UAg">
@@ -107,10 +111,91 @@
             </objects>
             <point key="canvasLocation" x="-437" y="504"/>
         </scene>
-        <!--View Controller-->
+        <!--Contacts-->
+        <scene sceneID="VGT-v0-oyk">
+            <objects>
+                <viewController id="hZT-UP-gpX" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NTo-Yc-q9B">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Contacts" id="Gzs-pD-4IF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1HN-ss-Pg6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="398" y="-1240"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="K5h-BC-Qr8">
+            <objects>
+                <viewController id="uYb-gL-g9n" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ed5-gm-JST">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" id="9Ob-0E-d9C"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Iqo-NI-x9s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="85" y="-154"/>
+        </scene>
+        <!--Phone-->
+        <scene sceneID="v8Q-Qk-Wtl">
+            <objects>
+                <viewController id="nqZ-P6-KKm" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ugR-Yj-H2o">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Phone" id="9kT-Rz-vSp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="thB-Sa-56n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="403" y="-626"/>
+        </scene>
+        <!--Call Log-->
+        <scene sceneID="uqT-T1-FkW">
+            <objects>
+                <viewController id="zXp-aa-9L9" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BKm-XF-p5D">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Call Log" id="9ph-ky-1av"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UBS-cc-dPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="398" y="-1844"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="99e-7s-nNC">
+            <objects>
+                <tabBarController useStoryboardIdentifierAsRestorationIdentifier="YES" id="xyl-lw-KKa" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="auC-l5-Llb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="zXp-aa-9L9" kind="relationship" relationship="viewControllers" id="PxO-xF-2Sa"/>
+                        <segue destination="hZT-UP-gpX" kind="relationship" relationship="viewControllers" id="FKa-A5-40Q"/>
+                        <segue destination="nqZ-P6-KKm" kind="relationship" relationship="viewControllers" id="mha-3a-rl9"/>
+                        <segue destination="uYb-gL-g9n" kind="relationship" relationship="viewControllers" id="2Ed-5u-g7T"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0ks-JB-bh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-127" y="-955"/>
+        </scene>
+        <!--Pin Code Sending View Controller-->
         <scene sceneID="Slk-2h-GkR">
             <objects>
-                <viewController id="l8E-VX-ysm" sceneMemberID="viewController">
+                <viewController id="l8E-VX-ysm" customClass="PinCodeSendingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6fM-Ng-36D">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -127,22 +212,131 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="Sbn-q0-a7i">
+                                <rect key="frame" x="112" y="127" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="l8E-VX-ysm" id="0ub-1t-z5c"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="_  _  _  _" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aYp-BB-XM6">
+                                <rect key="frame" x="112" y="127" width="97" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="resendCodeBackground.png" id="Wxm-0j-4l7">
+                                <rect key="frame" x="0.0" y="174" width="320" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vLj-Do-mRI">
+                                <rect key="frame" x="0.0" y="183" width="320" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Resend code">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resendButtonClicked:" destination="l8E-VX-ysm" eventType="touchUpInside" id="c29-YE-upl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="bfS-ff-vXP"/>
+                    <navigationItem key="navigationItem" id="bfS-ff-vXP">
+                        <barButtonItem key="rightBarButtonItem" title="Confirm" id="k8o-e1-E6M">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="l8E-VX-ysm" id="CTq-Fd-aoc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="doneButton" destination="k8o-e1-E6M" id="752-Sa-VPh"/>
+                        <outlet property="pinCodeField" destination="Sbn-q0-a7i" id="ORe-C3-ulZ"/>
+                        <outlet property="pinCodeLabel" destination="aYp-BB-XM6" id="4NQ-ko-DnW"/>
+                        <outlet property="resendButton" destination="vLj-Do-mRI" id="DrO-AH-rl5"/>
+                        <segue destination="2mY-uT-Gqi" kind="push" identifier="requestPermisions" id="c3X-xM-yGH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8xF-Cw-q3V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="597" y="349"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="adM-Kr-ggh">
+            <objects>
+                <viewController id="g2g-wK-Egn" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2kn-e4-UDT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request for contacts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HtR-Oo-Zj6">
+                                <rect key="frame" x="85" y="129" width="161" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fUl-Hy-YMg">
+                                <rect key="frame" x="118" y="190" width="52" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="request">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="oKz-rE-62o"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Chg-2m-3sX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1372" y="1402"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="x84-qL-WmJ">
+            <objects>
+                <viewController id="qSh-ht-dGm" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sJW-dN-LrT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request for microphone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="klY-bi-ORa">
+                                <rect key="frame" x="85" y="129" width="186" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bRk-1R-Hh5">
+                                <rect key="frame" x="118" y="190" width="52" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="request">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="D9e-lh-Bmz"/>
+                    <connections>
+                        <segue destination="g2g-wK-Egn" kind="push" id="UBJ-B2-XDg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SJX-3i-j0R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="812" y="1402"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="phoneNumberBackground.png" width="320" height="45"/>
+        <image name="resendCodeBackground.png" width="320" height="60"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4">
-            <size key="portraitSize" width="320" height="568"/>
-            <size key="landscapeSize" width="568" height="320"/>
-        </simulatedScreenMetrics>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
 </document>
