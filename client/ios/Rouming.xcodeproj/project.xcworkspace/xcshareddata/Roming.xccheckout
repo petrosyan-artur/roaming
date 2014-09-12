@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>57CCC2B7-94F3-48AB-A6B8-015C53B721C0</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Roming</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>865F0F392B8BABBA56ECE101B8250A91FEE3BC5B</key>
+		<string>https://github.com/petrosyan-artur/rouming.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>client/ios/Roming.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>865F0F392B8BABBA56ECE101B8250A91FEE3BC5B</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/petrosyan-artur/rouming.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>865F0F392B8BABBA56ECE101B8250A91FEE3BC5B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>865F0F392B8BABBA56ECE101B8250A91FEE3BC5B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>rouming</string>
+		</dict>
+	</array>
+</dict>
+</plist>

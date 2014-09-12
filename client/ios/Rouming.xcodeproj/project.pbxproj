@@ -30,6 +30,8 @@
 		9C100B6F199B8220005AC8D6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C100B51199B8220005AC8D6 /* UIKit.framework */; };
 		9C100B77199B8220005AC8D6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C100B75199B8220005AC8D6 /* InfoPlist.strings */; };
 		9C100B79199B8220005AC8D6 /* RomingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C100B78199B8220005AC8D6 /* RomingTests.m */; };
+		9C2ED09419AB29B000C7B746 /* PinCodeSendingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2ED09319AB29B000C7B746 /* PinCodeSendingViewController.m */; };
+		9C3E48A419AF79180025E246 /* phoneNumberBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3E48A319AF79180025E246 /* phoneNumberBackground@2x.png */; };
 		9C4E00BE19A8A2FC000B3877 /* BaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E00BB19A8A2FC000B3877 /* BaseService.m */; };
 		9C4E00BF19A8A2FC000B3877 /* PinProcessingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E00BD19A8A2FC000B3877 /* PinProcessingService.m */; };
 		9C4E00C319A8A32E000B3877 /* ResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E00C219A8A32E000B3877 /* ResponseObject.m */; };
@@ -38,6 +40,10 @@
 		9C4E00D019A8AE7B000B3877 /* CountryCodeProcessingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E00CF19A8AE7B000B3877 /* CountryCodeProcessingService.m */; };
 		9C4E00D319A8AE9E000B3877 /* CountryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E00D219A8AE9E000B3877 /* CountryObject.m */; };
 		9C4E00DB19A8B4A0000B3877 /* CountryPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E00DA19A8B4A0000B3877 /* CountryPickerViewController.m */; };
+		9CD7A32419C2FA640001F5C2 /* resendCodeBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD7A32219C2FA640001F5C2 /* resendCodeBackground.png */; };
+		9CD7A32519C2FA640001F5C2 /* resendCodeBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD7A32319C2FA640001F5C2 /* resendCodeBackground@2x.png */; };
+		9CE44DC319C1F2990042E3ED /* SipObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE44DC219C1F2990042E3ED /* SipObject.m */; };
+		9CE44DC619C1F3750042E3ED /* ErrorObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE44DC519C1F3750042E3ED /* ErrorObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +95,9 @@
 		9C100B74199B8220005AC8D6 /* RoumingTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RoumingTests-Info.plist"; sourceTree = "<group>"; };
 		9C100B76199B8220005AC8D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9C100B78199B8220005AC8D6 /* RomingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RomingTests.m; sourceTree = "<group>"; };
+		9C2ED09219AB29B000C7B746 /* PinCodeSendingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinCodeSendingViewController.h; sourceTree = "<group>"; };
+		9C2ED09319AB29B000C7B746 /* PinCodeSendingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinCodeSendingViewController.m; sourceTree = "<group>"; };
+		9C3E48A319AF79180025E246 /* phoneNumberBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phoneNumberBackground@2x.png"; sourceTree = "<group>"; };
 		9C4E00B219A8A0BF000B3877 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		9C4E00BA19A8A2FC000B3877 /* BaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseService.h; path = Roming/Services/BaseService.h; sourceTree = SOURCE_ROOT; };
 		9C4E00BB19A8A2FC000B3877 /* BaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseService.m; path = Roming/Services/BaseService.m; sourceTree = SOURCE_ROOT; };
@@ -105,6 +114,12 @@
 		9C4E00D219A8AE9E000B3877 /* CountryObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryObject.m; sourceTree = "<group>"; };
 		9C4E00D919A8B4A0000B3877 /* CountryPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryPickerViewController.h; sourceTree = "<group>"; };
 		9C4E00DA19A8B4A0000B3877 /* CountryPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryPickerViewController.m; sourceTree = "<group>"; };
+		9CD7A32219C2FA640001F5C2 /* resendCodeBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resendCodeBackground.png; sourceTree = "<group>"; };
+		9CD7A32319C2FA640001F5C2 /* resendCodeBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resendCodeBackground@2x.png"; sourceTree = "<group>"; };
+		9CE44DC119C1F2990042E3ED /* SipObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SipObject.h; sourceTree = "<group>"; };
+		9CE44DC219C1F2990042E3ED /* SipObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SipObject.m; sourceTree = "<group>"; };
+		9CE44DC419C1F3750042E3ED /* ErrorObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorObject.h; sourceTree = "<group>"; };
+		9CE44DC519C1F3750042E3ED /* ErrorObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,9 +149,8 @@
 		9C01148319A3B1FF00A4E509 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9CFC3F0319C31BB4008D5796 /* LoginPart */,
 				9C4E00D519A8B38A000B3877 /* Helpers */,
-				9C4E00C719A8A8CF000B3877 /* PhoneNumberViewController.h */,
-				9C4E00C819A8A8CF000B3877 /* PhoneNumberViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -263,6 +277,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9C3E48A219AF790C0025E246 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				9CD7A32219C2FA640001F5C2 /* resendCodeBackground.png */,
+				9CD7A32319C2FA640001F5C2 /* resendCodeBackground@2x.png */,
+				9C3E48A319AF79180025E246 /* phoneNumberBackground@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		9C4E00B119A8A07E000B3877 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +305,10 @@
 				9C4E00C219A8A32E000B3877 /* ResponseObject.m */,
 				9C4E00D119A8AE9E000B3877 /* CountryObject.h */,
 				9C4E00D219A8AE9E000B3877 /* CountryObject.m */,
+				9CE44DC119C1F2990042E3ED /* SipObject.h */,
+				9CE44DC219C1F2990042E3ED /* SipObject.m */,
+				9CE44DC419C1F3750042E3ED /* ErrorObject.h */,
+				9CE44DC519C1F3750042E3ED /* ErrorObject.m */,
 			);
 			name = DataModels;
 			path = Models;
@@ -289,6 +317,7 @@
 		9C4E00CA19A8AE35000B3877 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9C3E48A219AF790C0025E246 /* Images */,
 				9C4E00CB19A8AE42000B3877 /* country_codes.json */,
 			);
 			path = Resources;
@@ -310,6 +339,17 @@
 				9C4E00DA19A8B4A0000B3877 /* CountryPickerViewController.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		9CFC3F0319C31BB4008D5796 /* LoginPart */ = {
+			isa = PBXGroup;
+			children = (
+				9C4E00C719A8A8CF000B3877 /* PhoneNumberViewController.h */,
+				9C4E00C819A8A8CF000B3877 /* PhoneNumberViewController.m */,
+				9C2ED09219AB29B000C7B746 /* PinCodeSendingViewController.h */,
+				9C2ED09319AB29B000C7B746 /* PinCodeSendingViewController.m */,
+			);
+			name = LoginPart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,6 +399,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = telasco;
 				TargetAttributes = {
+					9C100B49199B8220005AC8D6 = {
+						DevelopmentTeam = THZXVERPDK;
+					};
 					9C100B6A199B8220005AC8D6 = {
 						TestTargetID = 9C100B49199B8220005AC8D6;
 					};
@@ -389,7 +432,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C100B66199B8220005AC8D6 /* Images.xcassets in Resources */,
+				9CD7A32519C2FA640001F5C2 /* resendCodeBackground@2x.png in Resources */,
+				9CD7A32419C2FA640001F5C2 /* resendCodeBackground.png in Resources */,
 				9C100B58199B8220005AC8D6 /* InfoPlist.strings in Resources */,
+				9C3E48A419AF79180025E246 /* phoneNumberBackground@2x.png in Resources */,
 				9C100B61199B8220005AC8D6 /* Main.storyboard in Resources */,
 				9C4E00CC19A8AE42000B3877 /* country_codes.json in Resources */,
 			);
@@ -413,6 +459,7 @@
 				9C029C9319AA4ABE00316F62 /* AFSecurityPolicy.m in Sources */,
 				9C4E00C919A8A8CF000B3877 /* PhoneNumberViewController.m in Sources */,
 				9C029C9219AA4ABE00316F62 /* AFNetworkReachabilityManager.m in Sources */,
+				9CE44DC319C1F2990042E3ED /* SipObject.m in Sources */,
 				9C4E00D019A8AE7B000B3877 /* CountryCodeProcessingService.m in Sources */,
 				9C029C9419AA4ABE00316F62 /* AFURLConnectionOperation.m in Sources */,
 				9C029C8F19AA4ABE00316F62 /* AFHTTPRequestOperation.m in Sources */,
@@ -424,6 +471,8 @@
 				9C4E00DB19A8B4A0000B3877 /* CountryPickerViewController.m in Sources */,
 				9C029C9019AA4ABE00316F62 /* AFHTTPRequestOperationManager.m in Sources */,
 				9C4E00C319A8A32E000B3877 /* ResponseObject.m in Sources */,
+				9CE44DC619C1F3750042E3ED /* ErrorObject.m in Sources */,
+				9C2ED09419AB29B000C7B746 /* PinCodeSendingViewController.m in Sources */,
 				9C029C9619AA4ABE00316F62 /* AFURLResponseSerialization.m in Sources */,
 				9C4E00BE19A8A2FC000B3877 /* BaseService.m in Sources */,
 				9C4E00D319A8AE9E000B3877 /* CountryObject.m in Sources */,
@@ -494,6 +543,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Karen Ghandilyan (JV3MG6M7DC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -512,6 +562,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "5f52b98d-79ed-41c0-b9a6-5bbd2619044a";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -532,6 +583,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Karen Ghandilyan (JV3MG6M7DC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -543,6 +595,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PROVISIONING_PROFILE = "5f52b98d-79ed-41c0-b9a6-5bbd2619044a";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -553,10 +606,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Roming/Rouming-Prefix.pch";
 				INFOPLIST_FILE = "Roming/Rouming-Info.plist";
 				PRODUCT_NAME = Rouming;
+				PROVISIONING_PROFILE = "5f52b98d-79ed-41c0-b9a6-5bbd2619044a";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -566,10 +621,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Roming/Rouming-Prefix.pch";
 				INFOPLIST_FILE = "Roming/Rouming-Info.plist";
 				PRODUCT_NAME = Rouming;
+				PROVISIONING_PROFILE = "5f52b98d-79ed-41c0-b9a6-5bbd2619044a";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

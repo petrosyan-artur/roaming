@@ -22,7 +22,7 @@
 
     
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:url];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
     NSMutableDictionary *postParams = [NSMutableDictionary dictionaryWithDictionary:parameters];
     

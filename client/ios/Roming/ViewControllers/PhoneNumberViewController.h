@@ -11,7 +11,7 @@
 @interface PhoneNumberViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (strong, nonatomic) IBOutlet UITextField *phoneNumberTextField;
-@property (strong, nonatomic) IBOutlet UIButton *countryCodeButton;
+
 
 
 @end

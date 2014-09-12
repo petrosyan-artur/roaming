@@ -11,5 +11,6 @@
 @interface PinProcessingService : BaseService
 -(void)requestPinCodeForPhoneNumber:(NSString *)phoneNumber
                          completion:(void(^)(ResponseObject *responseObj, BOOL success, NSString *errorMessage))success ;
-
+-(void)sendPinCodeWithPhoneNumber:(NSString *)phoneNumber withPinCode:(NSString *)pinCode withAppVersion:(NSString *)version
+                       completion:(void(^)(ResponseObject *responseObj, BOOL success, NSString *errorMessage))success ;
 @end
