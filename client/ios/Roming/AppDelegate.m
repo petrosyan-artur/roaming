@@ -7,12 +7,29 @@
 //
 
 #import "AppDelegate.h"
-
+#import "Constants.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+    BOOL isRequested = [userDefs boolForKey:PUSH_NOTIFICATION_REQUSTED];
+
+    if (isRequested) {
+//        if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+            // use registerUserNotificationSettings
+            [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert) categories:nil]];
+            
+//        } else {
+//            // use registerForRemoteNotifications
+//            [application registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+//        }
+    }
+    
+    if ([userDefs objectForKey:SIP_CONNECTION_DETAILS]) {
+        [self  switchToCallView];
+    }
     return YES;
 }
 							
@@ -41,6 +58,28 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"not err: %@",error);
+}
+
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSString *str = [[NSString alloc] initWithData:deviceToken encoding:NSUTF8StringEncoding];
+    NSLog(@"token: %@",str);
+}
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+}
+
+#pragma mark - PublicFuncitons
+-(void)switchToCallView {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *innerViewController = [storyboard instantiateViewControllerWithIdentifier:@"MainCallScreen"];
+    self.window.rootViewController = innerViewController;
+
+    
 }
 
 @end

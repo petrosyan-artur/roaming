@@ -71,7 +71,13 @@
         [service requestPinCodeForPhoneNumber:phoneNumber completion:^(ResponseObject *responseObj, BOOL success, NSString *errorMessage) {
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             if(responseObj.responseStatus == RESPONSE_STATUS_OK) {
-                _resendCounter =  [responseObj.responseData objectForKey:@"next_try"];
+
+                if (responseObj.responseData.count) {
+                    _resendCounter = [responseObj.responseData objectForKey:@"next_try"];
+                } else {
+                    _resendCounter = @120;
+                }
+                
                 
                 [self performSegueWithIdentifier:@"pinRequestPageIdentifier" sender:self];
             } else {

@@ -12,7 +12,7 @@
 
 @property (nonatomic, assign) ResponseStatus responseStatus;
 @property (nonatomic, strong) NSDictionary *responseData;
-@property (nonatomic, strong) NSDictionary *responseError;
+@property (nonatomic, strong) NSArray *responseError;
 
 -(id)initWithDictionary:(NSDictionary *)dictionary;
 @end

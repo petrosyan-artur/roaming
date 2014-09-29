@@ -17,6 +17,8 @@
 		9C029C9619AA4ABE00316F62 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C029C8C19AA4ABE00316F62 /* AFURLResponseSerialization.m */; };
 		9C029C9719AA4ABE00316F62 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C029C8E19AA4ABE00316F62 /* AFURLSessionManager.m */; };
 		9C029C9B19AA4AF100316F62 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C029C9A19AA4AF100316F62 /* MBProgressHUD.m */; };
+		9C06116719D5950300315378 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C06116619D5950300315378 /* ContactsViewController.m */; };
+		9C06116B19D5964900315378 /* ContactsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C06116A19D5964900315378 /* ContactsData.m */; };
 		9C100B4E199B8220005AC8D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C100B4D199B8220005AC8D6 /* Foundation.framework */; };
 		9C100B50199B8220005AC8D6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C100B4F199B8220005AC8D6 /* CoreGraphics.framework */; };
 		9C100B52199B8220005AC8D6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C100B51199B8220005AC8D6 /* UIKit.framework */; };
@@ -44,6 +46,10 @@
 		9CD7A32519C2FA640001F5C2 /* resendCodeBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD7A32319C2FA640001F5C2 /* resendCodeBackground@2x.png */; };
 		9CE44DC319C1F2990042E3ED /* SipObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE44DC219C1F2990042E3ED /* SipObject.m */; };
 		9CE44DC619C1F3750042E3ED /* ErrorObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE44DC519C1F3750042E3ED /* ErrorObject.m */; };
+		9CF0BEFA19D9728A00B577B2 /* PhoneContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF0BEF919D9728A00B577B2 /* PhoneContact.m */; };
+		9CFC3F0719C31D8D008D5796 /* MicrophonePermisionRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFC3F0619C31D8D008D5796 /* MicrophonePermisionRequestViewController.m */; };
+		9CFC3F0A19C31D9D008D5796 /* ContactsPermisionRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFC3F0919C31D9D008D5796 /* ContactsPermisionRequestViewController.m */; };
+		9CFC3F0D19C31DBA008D5796 /* PushNotificationsPermisionRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFC3F0C19C31DBA008D5796 /* PushNotificationsPermisionRequestViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +84,10 @@
 		9C029C8E19AA4ABE00316F62 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		9C029C9919AA4AF100316F62 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		9C029C9A19AA4AF100316F62 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		9C06116519D5950300315378 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
+		9C06116619D5950300315378 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
+		9C06116919D5964900315378 /* ContactsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsData.h; sourceTree = "<group>"; };
+		9C06116A19D5964900315378 /* ContactsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsData.m; sourceTree = "<group>"; };
 		9C100B4A199B8220005AC8D6 /* Rouming.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rouming.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C100B4D199B8220005AC8D6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9C100B4F199B8220005AC8D6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -120,6 +130,14 @@
 		9CE44DC219C1F2990042E3ED /* SipObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SipObject.m; sourceTree = "<group>"; };
 		9CE44DC419C1F3750042E3ED /* ErrorObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorObject.h; sourceTree = "<group>"; };
 		9CE44DC519C1F3750042E3ED /* ErrorObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorObject.m; sourceTree = "<group>"; };
+		9CF0BEF819D9728A00B577B2 /* PhoneContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhoneContact.h; path = MBProgressHud/PhoneContact.h; sourceTree = "<group>"; };
+		9CF0BEF919D9728A00B577B2 /* PhoneContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhoneContact.m; path = MBProgressHud/PhoneContact.m; sourceTree = "<group>"; };
+		9CFC3F0519C31D8D008D5796 /* MicrophonePermisionRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MicrophonePermisionRequestViewController.h; sourceTree = "<group>"; };
+		9CFC3F0619C31D8D008D5796 /* MicrophonePermisionRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MicrophonePermisionRequestViewController.m; sourceTree = "<group>"; };
+		9CFC3F0819C31D9D008D5796 /* ContactsPermisionRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsPermisionRequestViewController.h; sourceTree = "<group>"; };
+		9CFC3F0919C31D9D008D5796 /* ContactsPermisionRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsPermisionRequestViewController.m; sourceTree = "<group>"; };
+		9CFC3F0B19C31DBA008D5796 /* PushNotificationsPermisionRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationsPermisionRequestViewController.h; sourceTree = "<group>"; };
+		9CFC3F0C19C31DBA008D5796 /* PushNotificationsPermisionRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationsPermisionRequestViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +167,9 @@
 		9C01148319A3B1FF00A4E509 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9CFC3F0319C31BB4008D5796 /* LoginPart */,
+				9C06116419D594F500315378 /* CallTab */,
+				9CFC3F0419C31D61008D5796 /* PermisionsRequestPart */,
+				9CFC3F0319C31BB4008D5796 /* LoginProcessPart */,
 				9C4E00D519A8B38A000B3877 /* Helpers */,
 			);
 			path = ViewControllers;
@@ -158,6 +178,8 @@
 		9C029C7A19AA4ABE00316F62 /* thrid-party */ = {
 			isa = PBXGroup;
 			children = (
+				9CF0BEF819D9728A00B577B2 /* PhoneContact.h */,
+				9CF0BEF919D9728A00B577B2 /* PhoneContact.m */,
 				9C029C9819AA4AF100316F62 /* MBProgressHud */,
 				9C029C7B19AA4ABE00316F62 /* AFNetworking */,
 			);
@@ -197,6 +219,15 @@
 				9C029C9A19AA4AF100316F62 /* MBProgressHUD.m */,
 			);
 			path = MBProgressHud;
+			sourceTree = "<group>";
+		};
+		9C06116419D594F500315378 /* CallTab */ = {
+			isa = PBXGroup;
+			children = (
+				9C06116519D5950300315378 /* ContactsViewController.h */,
+				9C06116619D5950300315378 /* ContactsViewController.m */,
+			);
+			name = CallTab;
 			sourceTree = "<group>";
 		};
 		9C100B41199B8220005AC8D6 = {
@@ -309,6 +340,8 @@
 				9CE44DC219C1F2990042E3ED /* SipObject.m */,
 				9CE44DC419C1F3750042E3ED /* ErrorObject.h */,
 				9CE44DC519C1F3750042E3ED /* ErrorObject.m */,
+				9C06116919D5964900315378 /* ContactsData.h */,
+				9C06116A19D5964900315378 /* ContactsData.m */,
 			);
 			name = DataModels;
 			path = Models;
@@ -341,7 +374,7 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		9CFC3F0319C31BB4008D5796 /* LoginPart */ = {
+		9CFC3F0319C31BB4008D5796 /* LoginProcessPart */ = {
 			isa = PBXGroup;
 			children = (
 				9C4E00C719A8A8CF000B3877 /* PhoneNumberViewController.h */,
@@ -349,7 +382,20 @@
 				9C2ED09219AB29B000C7B746 /* PinCodeSendingViewController.h */,
 				9C2ED09319AB29B000C7B746 /* PinCodeSendingViewController.m */,
 			);
-			name = LoginPart;
+			name = LoginProcessPart;
+			sourceTree = "<group>";
+		};
+		9CFC3F0419C31D61008D5796 /* PermisionsRequestPart */ = {
+			isa = PBXGroup;
+			children = (
+				9CFC3F0519C31D8D008D5796 /* MicrophonePermisionRequestViewController.h */,
+				9CFC3F0619C31D8D008D5796 /* MicrophonePermisionRequestViewController.m */,
+				9CFC3F0819C31D9D008D5796 /* ContactsPermisionRequestViewController.h */,
+				9CFC3F0919C31D9D008D5796 /* ContactsPermisionRequestViewController.m */,
+				9CFC3F0B19C31DBA008D5796 /* PushNotificationsPermisionRequestViewController.h */,
+				9CFC3F0C19C31DBA008D5796 /* PushNotificationsPermisionRequestViewController.m */,
+			);
+			name = PermisionsRequestPart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -461,6 +507,7 @@
 				9C029C9219AA4ABE00316F62 /* AFNetworkReachabilityManager.m in Sources */,
 				9CE44DC319C1F2990042E3ED /* SipObject.m in Sources */,
 				9C4E00D019A8AE7B000B3877 /* CountryCodeProcessingService.m in Sources */,
+				9CFC3F0D19C31DBA008D5796 /* PushNotificationsPermisionRequestViewController.m in Sources */,
 				9C029C9419AA4ABE00316F62 /* AFURLConnectionOperation.m in Sources */,
 				9C029C8F19AA4ABE00316F62 /* AFHTTPRequestOperation.m in Sources */,
 				9C029C9119AA4ABE00316F62 /* AFHTTPSessionManager.m in Sources */,
@@ -472,12 +519,17 @@
 				9C029C9019AA4ABE00316F62 /* AFHTTPRequestOperationManager.m in Sources */,
 				9C4E00C319A8A32E000B3877 /* ResponseObject.m in Sources */,
 				9CE44DC619C1F3750042E3ED /* ErrorObject.m in Sources */,
+				9C06116719D5950300315378 /* ContactsViewController.m in Sources */,
+				9CFC3F0A19C31D9D008D5796 /* ContactsPermisionRequestViewController.m in Sources */,
+				9CFC3F0719C31D8D008D5796 /* MicrophonePermisionRequestViewController.m in Sources */,
 				9C2ED09419AB29B000C7B746 /* PinCodeSendingViewController.m in Sources */,
 				9C029C9619AA4ABE00316F62 /* AFURLResponseSerialization.m in Sources */,
 				9C4E00BE19A8A2FC000B3877 /* BaseService.m in Sources */,
 				9C4E00D319A8AE9E000B3877 /* CountryObject.m in Sources */,
 				9C100B5E199B8220005AC8D6 /* AppDelegate.m in Sources */,
+				9C06116B19D5964900315378 /* ContactsData.m in Sources */,
 				9C100B5A199B8220005AC8D6 /* main.m in Sources */,
+				9CF0BEFA19D9728A00B577B2 /* PhoneContact.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

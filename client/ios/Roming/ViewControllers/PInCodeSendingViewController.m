@@ -11,6 +11,7 @@
 #import "MBProgressHUD.h"
 #import "ResponseObject.h"
 #import "SipObject.h"
+#import "ErrorObject.h"
 
 @interface PinCodeSendingViewController ()<UITextFieldDelegate> {
     float resendTime;
@@ -146,10 +147,21 @@
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             if (success) {
                 if (responseObj.responseData) {
-                    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-                    [userDefaults setObject:responseObj.responseData forKey:SIP_CONNECTION_DETAILS];
-                    
+                    if (responseObj.responseData.count) {
+                        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                        [userDefaults setObject:responseObj.responseData forKey:SIP_CONNECTION_DETAILS];
+                        [userDefaults synchronize];
+                        [self performSegueWithIdentifier:@"requestPermisionsIdentifier" sender:self];
+                        return;
+                    }
                 }
+                
+                if (responseObj.responseError) {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Something goes wrong" message:responseObj.responseError[0] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                    [alert show];
+//                    ErrorObject *err = [[ErrorObject alloc] initWithResponseObjec:responseObj];
+                }
+                
             }
         }];
     }
