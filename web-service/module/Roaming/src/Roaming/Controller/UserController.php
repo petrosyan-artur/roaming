@@ -21,7 +21,7 @@ class UserController extends AbstractBaseController {
         $this->getServiceLocator()->get('\Roaming\Auth\AuthStorage')->forgetMe();
         $this->getServiceLocator()->get('\Roaming\Auth\AuthService')->clearIdentity();
         
-        return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK);
+        return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK, array('next_try' => self::NEXT_TRY));
     }
 
     public function addCronAction() {
