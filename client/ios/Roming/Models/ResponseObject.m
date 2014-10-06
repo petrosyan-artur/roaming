@@ -22,7 +22,7 @@
 
 -(void)parseAndFillDataForDictionary:(NSDictionary *)dict {
     self.responseData = dict[@"data"];
-    self.responseError = dict[@"error"];
+    self.responseError = dict[@"errors"];
     self.responseStatus = [dict[@"status"] intValue];
 }
 

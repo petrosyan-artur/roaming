@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A343f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zaX-bP-Gh4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zaX-bP-Gh4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
@@ -61,16 +61,16 @@
             </objects>
             <point key="canvasLocation" x="97" y="561"/>
         </scene>
-        <!--View Controller-->
+        <!--Microphone Permision Request View Controller-->
         <scene sceneID="YKs-xK-woQ">
             <objects>
-                <viewController id="2mY-uT-Gqi" sceneMemberID="viewController">
+                <viewController id="2mY-uT-Gqi" customClass="MicrophonePermisionRequestViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0tR-Ue-iRE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request for push" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ewZ-iS-LRK">
-                                <rect key="frame" x="85" y="129" width="132" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request for microphone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ewZ-iS-LRK">
+                                <rect key="frame" x="85" y="129" width="186" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -82,13 +82,22 @@
                                 <state key="normal" title="request">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="requestMicrophonePermision:" destination="2mY-uT-Gqi" eventType="touchUpInside" id="rmM-qe-Kkh"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="RWM-CV-cdl"/>
+                    <navigationItem key="navigationItem" id="RWM-CV-cdl">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="fKL-JQ-y95">
+                            <connections>
+                                <action selector="nextButtonPressed:" destination="2mY-uT-Gqi" id="daU-NP-JtJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="qSh-ht-dGm" kind="push" id="uaS-ep-eLF"/>
+                        <segue destination="qSh-ht-dGm" kind="push" identifier="pushNotificationsRequestIdentifer" id="uaS-ep-eLF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2nW-ur-6bV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -114,17 +123,35 @@
         <!--Contacts-->
         <scene sceneID="VGT-v0-oyk">
             <objects>
-                <viewController id="hZT-UP-gpX" sceneMemberID="viewController">
+                <viewController id="hZT-UP-gpX" customClass="ContactsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NTo-Yc-q9B">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Contacts" id="Gzs-pD-4IF"/>
+                    <navigationItem key="navigationItem" id="xX1-af-Kzc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1HN-ss-Pg6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="398" y="-1240"/>
+            <point key="canvasLocation" x="852" y="-2040"/>
+        </scene>
+        <!--Call Log-->
+        <scene sceneID="l54-R1-ozz">
+            <objects>
+                <navigationController id="etD-AP-hZ4" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Call Log" id="vLD-dx-kL2"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qgt-J9-Br6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="zXp-aa-9L9" kind="relationship" relationship="rootViewController" id="e5h-sh-MOL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QEh-Mc-D5y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="446" y="-2666"/>
         </scene>
         <!--Settings-->
         <scene sceneID="K5h-BC-Qr8">
@@ -136,10 +163,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="9Ob-0E-d9C"/>
+                    <navigationItem key="navigationItem" id="Fj3-xo-EJ8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iqo-NI-x9s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="85" y="-154"/>
+            <point key="canvasLocation" x="852" y="-706"/>
         </scene>
         <!--Phone-->
         <scene sceneID="v8Q-Qk-Wtl">
@@ -151,10 +179,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Phone" id="9kT-Rz-vSp"/>
+                    <navigationItem key="navigationItem" id="ULD-da-jgC"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="thB-Sa-56n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="403" y="-626"/>
+            <point key="canvasLocation" x="853" y="-1384"/>
         </scene>
         <!--Call Log-->
         <scene sceneID="uqT-T1-FkW">
@@ -163,18 +192,26 @@
                     <view key="view" contentMode="scaleToFill" id="BKm-XF-p5D">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5Nu-sj-a9h">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Call Log" id="9ph-ky-1av"/>
+                    <navigationItem key="navigationItem" id="WAX-pn-LBF"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBS-cc-dPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="398" y="-1844"/>
+            <point key="canvasLocation" x="853" y="-2666"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="99e-7s-nNC">
             <objects>
-                <tabBarController useStoryboardIdentifierAsRestorationIdentifier="YES" id="xyl-lw-KKa" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainCallScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xyl-lw-KKa" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="auC-l5-Llb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -182,15 +219,15 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="zXp-aa-9L9" kind="relationship" relationship="viewControllers" id="PxO-xF-2Sa"/>
-                        <segue destination="hZT-UP-gpX" kind="relationship" relationship="viewControllers" id="FKa-A5-40Q"/>
-                        <segue destination="nqZ-P6-KKm" kind="relationship" relationship="viewControllers" id="mha-3a-rl9"/>
-                        <segue destination="uYb-gL-g9n" kind="relationship" relationship="viewControllers" id="2Ed-5u-g7T"/>
+                        <segue destination="etD-AP-hZ4" kind="relationship" relationship="viewControllers" id="TIO-gA-9mB"/>
+                        <segue destination="k5J-AL-Ufy" kind="relationship" relationship="viewControllers" id="Wd3-i4-3BX"/>
+                        <segue destination="IcT-OB-g6O" kind="relationship" relationship="viewControllers" id="hts-fu-H2m"/>
+                        <segue destination="m8Z-0i-bhu" kind="relationship" relationship="viewControllers" id="7Xe-nP-kFP"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ks-JB-bh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-127" y="-955"/>
+            <point key="canvasLocation" x="-79" y="-1703"/>
         </scene>
         <!--Pin Code Sending View Controller-->
         <scene sceneID="Slk-2h-GkR">
@@ -257,17 +294,17 @@
                         <outlet property="pinCodeField" destination="Sbn-q0-a7i" id="ORe-C3-ulZ"/>
                         <outlet property="pinCodeLabel" destination="aYp-BB-XM6" id="4NQ-ko-DnW"/>
                         <outlet property="resendButton" destination="vLj-Do-mRI" id="DrO-AH-rl5"/>
-                        <segue destination="2mY-uT-Gqi" kind="push" identifier="requestPermisions" id="c3X-xM-yGH"/>
+                        <segue destination="2mY-uT-Gqi" kind="push" identifier="requestPermisionsIdentifier" id="c3X-xM-yGH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8xF-Cw-q3V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="597" y="349"/>
         </scene>
-        <!--View Controller-->
+        <!--Contacts Permision Request View Controller-->
         <scene sceneID="adM-Kr-ggh">
             <objects>
-                <viewController id="g2g-wK-Egn" sceneMemberID="viewController">
+                <viewController id="g2g-wK-Egn" customClass="ContactsPermisionRequestViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2kn-e4-UDT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -285,6 +322,9 @@
                                 <state key="normal" title="request">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="requestForContactsPermission:" destination="g2g-wK-Egn" eventType="touchUpInside" id="UrN-e8-5hd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -295,16 +335,16 @@
             </objects>
             <point key="canvasLocation" x="1372" y="1402"/>
         </scene>
-        <!--View Controller-->
+        <!--Push Notifications Permision Request View Controller-->
         <scene sceneID="x84-qL-WmJ">
             <objects>
-                <viewController id="qSh-ht-dGm" sceneMemberID="viewController">
+                <viewController id="qSh-ht-dGm" customClass="PushNotificationsPermisionRequestViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sJW-dN-LrT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request for microphone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="klY-bi-ORa">
-                                <rect key="frame" x="85" y="129" width="186" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request for push" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="klY-bi-ORa">
+                                <rect key="frame" x="85" y="129" width="132" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -316,18 +356,78 @@
                                 <state key="normal" title="request">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="requestForPushNotifications:" destination="qSh-ht-dGm" eventType="touchUpInside" id="znm-nC-vJq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="D9e-lh-Bmz"/>
+                    <navigationItem key="navigationItem" id="D9e-lh-Bmz">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="s8E-zF-gjo">
+                            <connections>
+                                <action selector="nextButtonPressed:" destination="qSh-ht-dGm" id="c0B-9K-okz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="g2g-wK-Egn" kind="push" id="UBJ-B2-XDg"/>
+                        <segue destination="g2g-wK-Egn" kind="push" identifier="requestForContactsIdentifier" id="UBJ-B2-XDg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SJX-3i-j0R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="812" y="1402"/>
+        </scene>
+        <!--Contacts-->
+        <scene sceneID="JjF-75-ty1">
+            <objects>
+                <navigationController id="k5J-AL-Ufy" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Contacts" id="v0U-eF-Sq6"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sZw-8t-39R">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hZT-UP-gpX" kind="relationship" relationship="rootViewController" id="X7x-RT-P8S"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iy4-63-Y4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="451" y="-2040"/>
+        </scene>
+        <!--Phone-->
+        <scene sceneID="SyL-Xy-Yp6">
+            <objects>
+                <navigationController id="IcT-OB-g6O" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Phone" id="kKg-rr-H6N"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kJg-2A-7S4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="nqZ-P6-KKm" kind="relationship" relationship="rootViewController" id="jQI-Wz-iXa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gpY-yY-Sfz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="451" y="-1374"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="jlp-Us-cAk">
+            <objects>
+                <navigationController id="m8Z-0i-bhu" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" id="msr-It-ePY"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="B5D-ad-OBQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="uYb-gL-g9n" kind="relationship" relationship="rootViewController" id="uIc-MP-mZT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MPf-g3-oOh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="426" y="-706"/>
         </scene>
     </scenes>
     <resources>

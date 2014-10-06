@@ -30,4 +30,6 @@ typedef enum {
 
 #define USER_REQUESTED_PERMISIONS @"user_requested_permisions"
 #define SIP_CONNECTION_DETAILS @"sip_connections_detailss"
+
+#define PUSH_NOTIFICATION_REQUSTED @"push_notification_requested"
 #endif
