@@ -2,7 +2,6 @@
 
 namespace Roaming\Controller;
 
-
 class UserController extends AbstractBaseController {
     
     const NEXT_TRY = 120;

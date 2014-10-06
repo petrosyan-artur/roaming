@@ -89,6 +89,8 @@ class User extends AbstractBaseModel {
             $password .= $this->getRandomCharacter($numbers);
         }
         
+        $password = str_shuffle($password);
+        
         return $password;
         
     }
