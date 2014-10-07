@@ -61,7 +61,7 @@ class User extends AbstractBaseModel {
     }
     
     protected function generateSipPassword() {
-        $specialCharacters = str_shuffle('$%*&#@');
+        $specialCharacters = str_shuffle('$%*#@()');
         $charactersUP = str_shuffle('ABSDEFGHIGKLMNOPQRSTUVWXYZ');
         $charactersDOWN = str_shuffle('abcdefghigklmnopqrstuvwxyz');
         $numbers = str_shuffle('0123456789');
