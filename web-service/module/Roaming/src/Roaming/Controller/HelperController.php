@@ -29,6 +29,7 @@ class HelperController extends AbstractBaseController {
             $c = array();
             $c['id'] = $country['id'];
             $c['name'] = $country['name'];
+            $c['code'] = $country['code'];
             $c['image_url'] = 'http://' . $serverHost . '/country/' . $country['id']. '.png';
             $finalCountries[] = $c;
         }
