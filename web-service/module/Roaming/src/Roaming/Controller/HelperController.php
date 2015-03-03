@@ -20,7 +20,7 @@ class HelperController extends AbstractBaseController {
         $request = $this->getRequest();
 
         $coutryListMapper = $this->getServiceLocator()->get('\Roaming\DbMapper\CountryList');
-        $countries = $coutryListMapper->select()->toArray();
+        $countries = $coutryListMapper->select('id <= 10')->toArray();
         $finalCountries = array();
         
         $serverHost = $this->getRequest()->getServer('HTTP_HOST');
