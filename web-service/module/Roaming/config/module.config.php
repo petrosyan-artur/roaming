@@ -76,6 +76,7 @@ return array(
         'invokables' => array(
             'Roaming\Controller\User' => 'Roaming\Controller\UserController',
             'Roaming\Controller\Payment' => 'Roaming\Controller\PaymentController',
+            'Roaming\Controller\Helper' => 'Roaming\Controller\HelperController',
             'Roaming\Controller\Auth' => 'Roaming\Controller\AuthController',
         ),
     ),
