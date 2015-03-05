@@ -94,7 +94,7 @@ class AuthController extends AbstractBaseController {
             
             $adapter = $this->getAuthService()->getAdapter();
 
-//            try {
+            try {
                 //check if the user is pending
                 $isUserPending = $this->getUserModel()->isUserPending($phone);
                 if($isUserPending) {
@@ -104,7 +104,9 @@ class AuthController extends AbstractBaseController {
                 //check authentication...
                 $adapter->setIdentity($phone)->setCredential($pin);
                 $this->startTransaction();
+                var_dump('sss');
                 $result = $this->getAuthService()->authenticate();
+                var_dump('aaa');
                 if ($result->isValid()) {
                     $userObject = $adapter->getResultRowObject();
                     $this->getUserModel()->updateClientLoginData($client_version, $userObject->name);
@@ -124,15 +126,12 @@ class AuthController extends AbstractBaseController {
                     $this->transactionCommit();
                     return $this->getJsonModel($result->getCode(), array(), $errors);
                 }
-                
-                
-                
                 $this->transactionCommit();
-//            } catch (\Exception $ex) {
-//                $this->transactionRollback();
+            } catch (\Exception $ex) {
+                $this->transactionRollback();
                 
-//                return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_USER_ACTIVATION_ERROR, array(), array($ex->getMessage()));
-//            }
+                return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_USER_ACTIVATION_ERROR, array(), array($ex->getMessage()));
+            }
         }
             
         return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_REQUEST, array(), array('only post request accepted'));
