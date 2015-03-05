@@ -61,7 +61,12 @@ class AbstractBaseController extends \Zend\Mvc\Controller\AbstractActionControll
      * @return \Zend\View\Model\JsonModel
      */
     protected function getJsonModel($status, array $data = array(), array $errors = array()) {
-        $all = array('data' => $data, 'errors' => $errors, 'status' => $status);
+        if($errors) {
+            $error = array_pop($errors);
+        } else {
+            $error = '';
+        }
+        $all = array('data' => $data, 'errors' => $error, 'status' => $status);
         return new \Zend\View\Model\JsonModel($all);
     }
     
