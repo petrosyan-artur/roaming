@@ -87,8 +87,9 @@ class AuthController extends AbstractBaseController {
             $phone = $request->getPost('phone', null);
             $pin = $request->getPost('pin', null);
             $client_version = $request->getPost('app_version', null);
+            $device_token = $request->getPost('device_token', null);
             
-            if(is_null($pin) || is_null($phone) || /*is_null($device_token) ||*/ is_null($client_version)) {
+            if(is_null($pin) || is_null($phone) || is_null($device_token)  || is_null($client_version)) {
                 return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS);
             }
             
