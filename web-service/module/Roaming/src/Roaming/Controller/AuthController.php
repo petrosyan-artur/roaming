@@ -105,9 +105,9 @@ class AuthController extends AbstractBaseController {
                 //check authentication...
                 $adapter->setIdentity($phone)->setCredential($pin);
                 $this->startTransaction();
-                var_dump('sss');
+                error_log(var_export(1, true));
                 $result = $this->getAuthService()->authenticate();
-                var_dump('aaa');
+                error_log(var_export(2, true));
                 if ($result->isValid()) {
                     $userObject = $adapter->getResultRowObject();
                     $this->getUserModel()->updateClientLoginData($client_version, $userObject->name);
