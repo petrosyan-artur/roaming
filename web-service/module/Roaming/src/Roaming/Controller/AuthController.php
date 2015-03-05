@@ -94,6 +94,7 @@ class AuthController extends AbstractBaseController {
             
             $adapter = $this->getAuthService()->getAdapter();
 
+            error_log(var_export($_REQUEST, true));
             try {
                 //check if the user is pending
                 $isUserPending = $this->getUserModel()->isUserPending($phone);
