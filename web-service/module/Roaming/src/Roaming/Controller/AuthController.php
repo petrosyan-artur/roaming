@@ -94,7 +94,6 @@ class AuthController extends AbstractBaseController {
             
             $adapter = $this->getAuthService()->getAdapter();
 
-            error_log(var_export($_REQUEST, true));
             try {
                 //check if the user is pending
                 $isUserPending = $this->getUserModel()->isUserPending($phone);
@@ -105,9 +104,7 @@ class AuthController extends AbstractBaseController {
                 //check authentication...
                 $adapter->setIdentity($phone)->setCredential($pin);
                 $this->startTransaction();
-                error_log(var_export(1, true));
                 $result = $this->getAuthService()->authenticate();
-                error_log(var_export(2, true));
                 if ($result->isValid()) {
                     $userObject = $adapter->getResultRowObject();
                     $this->getUserModel()->updateClientLoginData($client_version, $userObject->name);
