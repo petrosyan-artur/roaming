@@ -127,7 +127,7 @@ class AuthController extends AbstractBaseController {
                 $this->transactionCommit();
             } catch (\Exception $ex) {
                 $this->transactionRollback();
-                error_log(var_export($ex, true));
+                var_dump($ex);
                 return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_USER_ACTIVATION_ERROR, array(), array($ex->getMessage()));
             }
         }
