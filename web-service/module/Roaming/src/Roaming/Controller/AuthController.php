@@ -124,6 +124,9 @@ class AuthController extends AbstractBaseController {
                     $this->transactionCommit();
                     return $this->getJsonModel($result->getCode(), array(), $errors);
                 }
+                
+                
+                
                 $this->transactionCommit();
 //            } catch (\Exception $ex) {
 //                $this->transactionRollback();
