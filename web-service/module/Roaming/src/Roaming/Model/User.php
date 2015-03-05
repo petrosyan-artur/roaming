@@ -138,7 +138,7 @@ class User extends AbstractBaseModel {
     
     public function incrementFailLogin($phone) {
         $this->mapper->incrementFailLogin($phone);
-        $changedUserData = $this->mapper->select(array('phone=?' => $phone))->current();
+        $changedUserData = $this->mapper->select(array('name=?' => $phone))->current();
         if($changedUserData->login_failure >= self::MAX_LOGIN_ATTEMPTS) {
             $this->mapper->update(array('status' => \Roaming\DbMapper\User::STATUS_TEMPORARY_BLOCKED), array('phone=?' => $phone));
         }
