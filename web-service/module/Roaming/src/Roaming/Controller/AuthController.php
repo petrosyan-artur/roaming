@@ -108,7 +108,7 @@ class AuthController extends AbstractBaseController {
                 $result = $this->getAuthService()->authenticate();
                 if ($result->isValid()) {
                     $userObject = $adapter->getResultRowObject();
-                    $this->getUserModel()->updateClientLoginData($client_version, $userObject->name);
+                    $this->getUserModel()->updateClientLoginData($device_token, $client_version, $userObject->name);
                     $sipData = new \Roaming\Entity\SipConfiguration();
                     $sipData->setPassword($userObject->secret);
                     $sipData->setUsername($userObject->name);
