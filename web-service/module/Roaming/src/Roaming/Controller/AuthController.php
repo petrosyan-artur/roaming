@@ -81,7 +81,12 @@ class AuthController extends AbstractBaseController {
         $request = $this->getRequest();
         if ($request->isPost()) {
             if($this->getAuthService()->hasIdentity()) {
-                return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_ALREADY_LOGGED_IN);
+                
+                $this->getSessionStorage()->forgetMe();
+                $this->getAuthService()->clearIdentity();
+                
+                //@TODO change
+                //return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_ALREADY_LOGGED_IN);
             }
             
             $phone = $request->getPost('phone', null);
