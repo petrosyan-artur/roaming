@@ -66,7 +66,7 @@ class AbstractBaseController extends \Zend\Mvc\Controller\AbstractActionControll
         } elseif($status !== \Roaming\Helper\RespCodes::RESPONSE_STATUS_OK) {
             $error = '';
         } else {
-            $error = null;
+            $error = NULL;
         }
         $all = array('data' => $data, 'errors' => $error, 'status' => $status);
         return new \Zend\View\Model\JsonModel($all);
