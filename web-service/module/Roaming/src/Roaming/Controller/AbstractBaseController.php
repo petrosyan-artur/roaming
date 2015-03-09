@@ -64,7 +64,7 @@ class AbstractBaseController extends \Zend\Mvc\Controller\AbstractActionControll
         if($errors) {
             $error = array_pop($errors);
         } else {
-            $error = "";
+            $error = '';
         }
         $all = array('data' => $data, 'errors' => $error, 'status' => $status);
         return new \Zend\View\Model\JsonModel($all);
