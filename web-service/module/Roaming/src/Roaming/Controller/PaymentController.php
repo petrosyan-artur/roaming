@@ -92,7 +92,11 @@ class PaymentController extends AbstractBaseController {
     public function indexAction() {
         $this->layout('layout/mobile');
     }
+
     
+    public function testAction() {
+        $this->layout('layout/mobile');
+    }
     
     /**
      * 
