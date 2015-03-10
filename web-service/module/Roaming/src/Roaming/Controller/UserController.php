@@ -105,7 +105,7 @@ class UserController extends AbstractBaseController {
             return $this->getJsonModel($code, array(), array($exc->getMessage()));
         }
         
-        $responseData = array('next_try' => self::NEXT_TRY);
+        $responseData = array('next_try' => self::NEXT_TRY, 'phone' => $phone);
         
         $this->log(self::LOG_DEBUG, "Sending OK Response", $responseData);
         
