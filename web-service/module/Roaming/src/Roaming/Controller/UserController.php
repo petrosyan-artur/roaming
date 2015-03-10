@@ -46,7 +46,9 @@ class UserController extends AbstractBaseController {
      *      RESPONSE_STATUS_INVALID_REQUEST
      */
     public function requestPinAction() {
+        
         if($this->getAuthService()->hasIdentity()) {
+            $this->log(self::LOG_DEBUG, "User has identity", (array) $this->getAuthService()->getIdentity());
             try {
                 return $this->requestPinForLoggedUser();
             } catch (\Exception $exc) {
@@ -54,24 +56,30 @@ class UserController extends AbstractBaseController {
                 if(!\Roaming\Helper\RespCodes::checkRespCodeExist($code)) {
                     $code = \Roaming\Helper\RespCodes::RESPONSE_STATUS_UNKNOWN_ERROR;
                 }
+                $this->log(self::LOG_WARN, "Exception occured: ". $exc->getMessage(), $exc->getTrace());
                 return $this->getJsonModel($code, array(), array($exc->getMessage()));
             }
+        } else {
+            $this->log(self::LOG_DEBUG, "User has NO identity");
         }
         
         $request = $this->getRequest();
         
         if (!$request->isPost()) {
+            $this->log(self::LOG_WARN, "Request is not POST, but shold be (exiting) !!!");
             return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_REQUEST, array(), array('only post request accepted'));
         }
         
         $phone = $request->getPost('phone');
         
         if(!$phone) {
+            $this->log(self::LOG_WARN, "No Phone parameter in the post", $request->getPost());
             return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS, array(), array('phone number missing'));
         }
         
         $validator = new \Zend\Validator\Digits();
         if(!$validator->isValid($phone)) {
+            $this->log(self::LOG_WARN, "Invalid phone", array($phone));
             return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS, array(), array_values($validator->getMessages()));
         }
         
@@ -79,19 +87,27 @@ class UserController extends AbstractBaseController {
         
         try {
             if(!$userModel->registered($phone)) {
+                $this->log(self::LOG_DEBUG, "User is not registered, registering user", array($phone));
                 $userModel->register($phone);
+            } else {
+                $this->log(self::LOG_DEBUG, "User is already registered", array($phone));
             }
             
+            
+            $this->log(self::LOG_DEBUG, "Generating and sending pin");
             $userModel->generateAndSendPin($phone);
         } catch (\Exception $exc) {
             $code = $exc->getCode();
             if(!\Roaming\Helper\RespCodes::checkRespCodeExist($code)) {
                 $code = \Roaming\Helper\RespCodes::RESPONSE_STATUS_UNKNOWN_ERROR;
             }
+            $this->log(self::LOG_WARN, "Exception occured: ". $exc->getMessage(), $exc->getTrace());
             return $this->getJsonModel($code, array(), array($exc->getMessage()));
         }
         
         $responseData = array('next_try' => self::NEXT_TRY);
+        
+        $this->log(self::LOG_DEBUG, "Sending OK Response", $responseData);
         
         return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK, $responseData);
     }

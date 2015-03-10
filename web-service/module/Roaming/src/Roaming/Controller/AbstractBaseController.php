@@ -15,11 +15,39 @@ namespace Roaming\Controller;
  */
 class AbstractBaseController extends \Zend\Mvc\Controller\AbstractActionController {
     
+    const LOG_INFO = 1;
+    const LOG_DEBUG = 2;
+    const LOG_WARN = 3;
     
     protected $authservice;
     
     protected $loggedInUserIdentity;
 
+    protected $logger;
+    
+    public function __construct() {
+        $writer = new \Zend\Log\Writer\Stream('../logs/app.log');
+        $this->logger = new \Zend\Log\Logger;
+        $this->logger->addWriter($writer);
+    }
+    
+    protected function log($loglevel, $message, array $data = []) {
+        switch ($loglevel) {
+            case self::LOG_DEBUG:
+                $this->logger->debug($message, $data);
+                break;
+            case self::LOG_INFO:
+                $this->logger->info($message, $data);
+                break;
+            case self::LOG_WARN:
+                $this->logger->warn($message, $data);
+                break;
+            default:
+                break;
+        }
+        
+    }
+    
     /**
      * 
      * @return \Zend\Authentication\AuthenticationService
