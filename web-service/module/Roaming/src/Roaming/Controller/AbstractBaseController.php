@@ -26,7 +26,7 @@ class AbstractBaseController extends \Zend\Mvc\Controller\AbstractActionControll
     protected $logger;
     
     public function __construct() {
-        $writer = new \Zend\Log\Writer\Stream('../logs/app.log');
+        $writer = new \Zend\Log\Writer\Stream('app.log');
         $this->logger = new \Zend\Log\Logger;
         $this->logger->addWriter($writer);
     }
