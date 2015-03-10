@@ -82,6 +82,8 @@ class AuthController extends AbstractBaseController {
         if ($request->isPost()) {
             if($this->getAuthService()->hasIdentity()) {
                 
+                $this->log(self::LOG_DEBUG, "Auth: User HAS identity, clearing it");
+                
                 $this->getSessionStorage()->forgetMe();
                 $this->getAuthService()->clearIdentity();
                 
@@ -95,6 +97,7 @@ class AuthController extends AbstractBaseController {
             $device_token = $request->getPost('device_token', null);
             
             if(is_null($pin) || is_null($phone) || is_null($device_token)  || is_null($client_version)) {
+                $this->log(self::LOG_WARN, "Auth: Invalid parameters", $request->getPost());
                 return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS);
             }
             
@@ -104,6 +107,7 @@ class AuthController extends AbstractBaseController {
                 //check if the user is pending
                 $isUserPending = $this->getUserModel()->isUserPending($phone);
                 if($isUserPending) {
+                    $this->log(self::LOG_DEBUG, "Auth: User is in pending state");
                     $adapter->setTableName('user_pending');
                 }
 
@@ -112,6 +116,7 @@ class AuthController extends AbstractBaseController {
                 $this->startTransaction();
                 $result = $this->getAuthService()->authenticate();
                 if ($result->isValid()) {
+                    $this->log(self::LOG_DEBUG, "Auth: User provided parameters are valid", $request->getPost());
                     $userObject = $adapter->getResultRowObject();
                     $this->getUserModel()->updateClientLoginData($device_token, $client_version, $userObject->name);
                     $sipData = new \Roaming\Entity\SipConfiguration();
@@ -120,22 +125,28 @@ class AuthController extends AbstractBaseController {
                     $this->getAuthService()->setStorage($this->getSessionStorage());
                     $this->getAuthService()->getStorage()->write($phone);
                     $this->transactionCommit();
+                    
+                    $this->log(self::LOG_DEBUG, "Auth: Returning OK response", $sipData);
                     return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK, array('sip' => $sipData));
                 } else {
                     $errors = array();
+                    $this->log(self::LOG_WARN, "Auth: User provided parameters are NOT valid", $request->getPost());
                     foreach ($result->getMessages() as $message) {
                         //save message temporary into flashmessenger
                         $errors[] = $message;
                     }
                     $this->transactionCommit();
+                    $this->log(self::LOG_WARN, "Auth: Returning ERROR response", $errors);
                     return $this->getJsonModel($result->getCode(), array(), $errors);
                 }
                 $this->transactionCommit();
             } catch (\Exception $ex) {
                 $this->transactionRollback();
-                
+                $this->log(self::LOG_WARN, "Auth: Exception occured, " . $ex->getMessage(), array($ex->getTrace()));
                 return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_USER_ACTIVATION_ERROR, array(), array($ex->getTrace()));
             }
+        } else {
+            $this->log(self::LOG_WARN, "Auth: Invalid request, not post request", $request->getPost());
         }
             
         return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_REQUEST, array(), array('only post request accepted'));
