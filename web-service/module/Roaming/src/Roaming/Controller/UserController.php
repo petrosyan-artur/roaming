@@ -47,7 +47,7 @@ class UserController extends AbstractBaseController {
      */
     public function requestPinAction() {
         
-        if($this->getAuthService()->hasIdentity()) {
+        if($this->getAuthService()->hasIdentity() && 0) {
             $this->log(self::LOG_DEBUG, "User has identity", (array) $this->getAuthService()->getIdentity());
             try {
                 return $this->requestPinForLoggedUser();
