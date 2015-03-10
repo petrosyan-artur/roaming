@@ -31,7 +31,10 @@ class AbstractBaseController extends \Zend\Mvc\Controller\AbstractActionControll
         $this->logger->addWriter($writer);
     }
     
-    protected function log($loglevel, $message, array $data = []) {
+    protected function log($loglevel, $message, $data = []) {
+        if(!is_array($data)) {
+            $data = array($data);
+        }
         switch ($loglevel) {
             case self::LOG_DEBUG:
                 $this->logger->debug($message, $data);
