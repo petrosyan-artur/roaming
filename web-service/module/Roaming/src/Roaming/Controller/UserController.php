@@ -47,7 +47,7 @@ class UserController extends AbstractBaseController {
      */
     public function requestPinAction() {
         
-        if($this->getAuthService()->hasIdentity() && 0) {
+        if($this->getAuthService()->hasIdentity() && 0 /*@TODO REMOVE*/) {
             $this->log(self::LOG_DEBUG, "User has identity", (array) $this->getAuthService()->getIdentity());
             try {
                 return $this->requestPinForLoggedUser();
@@ -105,7 +105,7 @@ class UserController extends AbstractBaseController {
             return $this->getJsonModel($code, array(), array($exc->getMessage()));
         }
         
-        $responseData = array('next_try' => self::NEXT_TRY, 'phone' => $phone);
+        $responseData = array('next_try' => self::NEXT_TRY);
         
         $this->log(self::LOG_DEBUG, "Sending OK Response", $responseData);
         
