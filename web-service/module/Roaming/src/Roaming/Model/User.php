@@ -119,7 +119,7 @@ class User extends AbstractBaseModel {
                     'secret' =>$sipPassword,
                     'rate_sheet_id' => 1,
                     'country_id' => 1,
-                    'balnce' => 2 //@TODO Remove
+                    'balance' => 2 //@TODO Remove
                 )
             );
             
