@@ -118,7 +118,8 @@ class User extends AbstractBaseModel {
                     'status' => \Roaming\DbMapper\User::STATUS_ACTIVE,
                     'secret' =>$sipPassword,
                     'rate_sheet_id' => 1,
-                    'country_id' => 1
+                    'country_id' => 1,
+                    'balnce' => 2 //@TODO Remove
                 )
             );
             
