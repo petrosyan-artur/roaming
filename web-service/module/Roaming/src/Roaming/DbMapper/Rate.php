@@ -32,7 +32,7 @@ class Rate extends AbstractMapper {
             )
            ->where->equalTo(new Expression("LOCATE(code, $phone)"), 1);
 
-        echo($select);die;
+        echo($select->getSqlString());die;
         $res = $this->selectWith($select);
 
         if($res) {
