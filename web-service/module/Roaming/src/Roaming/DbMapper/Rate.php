@@ -25,7 +25,7 @@ class Rate extends AbstractMapper {
             ->columns(array('code', 'price', 'increment'))
             ->order(array(new Expression("LENGTH(r.code) DESC")))
             ->limit(1)
-            ->join(array('u' => 'user'), 'r.rate_sheet_id = u.rate_sheet_id', '')
+            ->join(array('u' => 'user'), 'r.rate_sheet_id = u.rate_sheet_id', nulls)
             ->where(
                 array(
                     'u.id' => $userId,
