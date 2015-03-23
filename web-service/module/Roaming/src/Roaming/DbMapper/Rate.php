@@ -20,7 +20,7 @@ class Rate extends AbstractMapper {
      */
     public function getRate($phone, $userId) {
         $select = new Select();
-        $select->from(array($this->tblName))
+        $select->from($this->tblName)
             ->columns(array('code', 'price', 'increment'))
             ->order(array(new Expression("LENGTH(code) DESC")))
             ->limit(1)
