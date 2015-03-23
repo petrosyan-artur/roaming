@@ -19,6 +19,7 @@ class Rate extends AbstractMapper {
      * @return bool|null|int
      */
     public function getRate($phone, $userId) {
+        $expr = new Expression("LOCATE(code, $phone) = 1");
         $select = new Select();
         $select->from($this->tblName)
             ->columns(array('code', 'price', 'increment'))
@@ -30,7 +31,7 @@ class Rate extends AbstractMapper {
                     'u.id' => $userId,
                 )
             )
-           ->where(new Expression("LOCATE(code, $phone) = 1"));
+           ->where($expr->getExpression());
 
 //        echo($select->getSqlString(new \Zend\Db\Adapter\Platform\Mysql()));die;
         $res = $this->selectWith($select);
