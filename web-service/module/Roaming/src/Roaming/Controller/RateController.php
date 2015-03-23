@@ -23,8 +23,8 @@ class RateController extends AbstractBaseController {
 
         if ($request->isPost()) {
             $user = $this->getLoggedinUser();
-            var_dump($user);die;
-            if(is_null($user)) {
+
+            if(!$user) {
 
                 return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_NOT_LOGGED_IN);
 
@@ -53,28 +53,7 @@ class RateController extends AbstractBaseController {
         }
 
     }
-    
-    public function settingsAction() {
-        $request = $this->getRequest();
-        
-        $user = $this->getLoggedinUser();
-        if(!$user) {
-            return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_LOIN_REQUIRED);
-        }
-        
-        if($request->isPost()) {
-            $autoRecharge = $request->getPost('auto_recharge', null);
-            if(is_null($autoRecharge)) {
-                return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS, array(), array());
-            }
-            
-            $this->getPaymentModel()->changeSettings($autoRecharge, $this->getLoogedinUserIdentity());
-            return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK, array(), array());
-        }
 
-        return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_REQUEST, array(), array());
-    }
-    
     /**
      * 
      * @return \Roaming\Model\Rate
