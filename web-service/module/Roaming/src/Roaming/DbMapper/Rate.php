@@ -28,9 +28,9 @@ class Rate extends AbstractMapper {
             ->where(
                 array(
                     'u.id' => $userId,
-                    new Expression("LOCATE(r.code, $phone) = 1")
                 )
-            );
+            )
+           ->where->equalTo(new Expression("LOCATE(r.code, $phone)"), 1);
 
         $res = $this->selectWith($select);
 
