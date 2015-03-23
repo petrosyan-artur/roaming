@@ -34,6 +34,7 @@ class RespCodes {
     const RESPONSE_STATUS_INVALID_EMAIL = 54647;
     const RESPONSE_STATUS_INVALID_REQUEST = 54691;
     const RESPONSE_STATUS_UNKNOWN_ERROR = 54699;
+    const RESPONSE_NO_RATE_AVAILABLE = 54701;
     
     protected static $RESPCODES = array(
         self::RESPONSE_STATUS_OK => 'Ok',
@@ -56,6 +57,7 @@ class RespCodes {
         self::RESPONSE_STATUS_INVALID_REQUEST => '',
         self::RESPONSE_STATUS_USER_ACTIVATION_ERROR => '',
         self::RESPONSE_STATUS_UNKNOWN_ERROR => 'unknown error',
+        self::RESPONSE_NO_RATE_AVAILABLE => 'no rate available for specified location',
     );
     
     public static function getResponseMessage($code) {
