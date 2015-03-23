@@ -66,7 +66,11 @@ class Rate extends AbstractBaseModel {
     }
 
     public function checkRate($phone, $userId) {
-        return $this->getServiceLocator()->get('\Roaming\DbMapper\Rate')->getRate($phone, $userId);
+        $rate = $this->getServiceLocator()->get('\Roaming\DbMapper\Rate')->getRate($phone, $userId);
+        if(is_null($rate)) {
+            $rate = -1;
+        }
+        return $rate;
     }
 
     public function changeSettings($autoRecharge, $userCredinitial) {
