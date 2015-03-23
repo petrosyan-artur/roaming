@@ -40,8 +40,7 @@ class RateController extends AbstractBaseController {
 
             $rateModel = $this->RateModel();
             try {
-                var_dump($user['name']);die;
-                $rate = $rateModel->checkRate($phoneNumber, $user->getUserId);
+                $rate = $rateModel->checkRate($phoneNumber, $user['name']);
             } catch(Exception $ex) {
                 return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_UNKNOWN_ERROR, array(), array());
             }
