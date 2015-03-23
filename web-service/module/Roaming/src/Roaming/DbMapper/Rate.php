@@ -30,7 +30,7 @@ class Rate extends AbstractMapper {
                     'u.id' => $userId,
                 )
             )
-           ->where->equalTo(new Expression("LOCATE(code, $phone)"), 1);
+           ->where(new Expression("LOCATE(code, $phone) = 1"));
 
 //        echo($select->getSqlString(new \Zend\Db\Adapter\Platform\Mysql()));die;
         $res = $this->selectWith($select);
