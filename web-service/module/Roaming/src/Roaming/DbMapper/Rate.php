@@ -28,7 +28,7 @@ class Rate extends AbstractMapper {
             ->join(array('u' => 'users'), 'r.rate_sheet_id = u.rate_sheet_id', array('id'))
             ->where(
                 array(
-                    'u.id' => $userId,
+                    'u.name' => $userId,
                 )
             )
            ->where($expr->getExpression());
