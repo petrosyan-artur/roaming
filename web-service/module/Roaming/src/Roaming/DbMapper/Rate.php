@@ -21,11 +21,11 @@ class Rate extends AbstractMapper {
     public function getRate($phone, $userId) {
         $expr = new Expression("LOCATE(code, $phone) = 1");
         $select = new Select();
-        $select->from($this->tblName)
+        $select->from(array('r' => $this->tblName))
             ->columns(array('code', 'price', 'increment'))
-            ->order(array(new Expression("LENGTH(code) DESC")))
+            ->order(array(new Expression("LENGTH(r.code) DESC")))
             ->limit(1)
-            ->join(array('user' => 'u'), 'r.rate_sheet_id = u.rate_sheet_id')
+            ->join(array('u' => 'user'), 'r.rate_sheet_id = u.rate_sheet_id', '')
             ->where(
                 array(
                     'u.id' => $userId,
