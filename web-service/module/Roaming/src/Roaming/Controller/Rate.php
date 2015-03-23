@@ -16,7 +16,7 @@ namespace Roaming\Controller;
 
 class RateController extends AbstractBaseController {
     
-    public function addCardAction() {
+    public function getAction() {
         $request = $this->getRequest();
         
 
