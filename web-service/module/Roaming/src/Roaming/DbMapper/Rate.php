@@ -20,9 +20,10 @@ class Rate extends AbstractMapper {
      */
     public function getRate($phone, $userId) {
         $select = new Select();
+        $a = new Expression("LENGTH(r.code)");
         $select->from(array($this->tblName => 'r'))
             ->columns(array('code', 'price', 'increment'))
-            ->order(array(new Expression("LENGTH(r.code)") => 'desc'))
+            ->order(array($a => 'desc'))
             ->limit(1)
             ->join(array('user' => 'u'), 'r.rate_sheet_id = u.rate_sheet_id')
             ->where(
