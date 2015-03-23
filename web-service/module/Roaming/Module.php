@@ -47,6 +47,10 @@ class Module {
                     $model = new \Roaming\Model\Payment($sm);
                     return $model;
                 },
+                '\Roaming\Model\Rate' => function($sm) {
+                    $model = new \Roaming\Model\Rate($sm);
+                    return $model;
+                },
                 '\Roaming\Model\Mor' => function($sm) {
                     $model = new \Roaming\Model\Mor($sm);
                     $model->setApiSec('aram22aram');
@@ -58,6 +62,10 @@ class Module {
                 '\Roaming\DbMapper\User' => function ($sm) {
                     $adapter = $sm->get('Zend\Db\Adapter\Adapter');
                     return new \Roaming\DbMapper\User($adapter);
+                },
+                '\Roaming\DbMapper\Rate' => function ($sm) {
+                    $adapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    return new \Roaming\DbMapper\Rate($adapter);
                 },
                 '\Roaming\DbMapper\PendingUser' => function ($sm) {
                     $adapter = $sm->get('Zend\Db\Adapter\Adapter');
