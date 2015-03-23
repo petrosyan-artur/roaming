@@ -30,7 +30,7 @@ class RateController extends AbstractBaseController {
 
             }
 
-            $phoneNumbers = $request->getPost('phone', false);
+            $phoneNumbers = $request->getPost('phones', false);
 
             if(!$phoneNumbers || !is_array($phoneNumbers)) {
                 return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS, array(), array("No phone number provided"));
