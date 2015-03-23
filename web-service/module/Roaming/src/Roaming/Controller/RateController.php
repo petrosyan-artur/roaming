@@ -38,7 +38,7 @@ class RateController extends AbstractBaseController {
 
             foreach ($phoneNumbers as $key => $phoneNumber) {
                 $phoneNumber = preg_replace('/\s+/', '', $phoneNumber);
-                var_dump($phoneNumber);
+                $phoneNumber = preg_replace('~\x{00a0}~siu', '', $phoneNumber);
                 error_log($phoneNumber);
                 if(!is_numeric($phoneNumber)) {
                     return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS, array(), array("Invalid phone number, only numbers accepted"));
