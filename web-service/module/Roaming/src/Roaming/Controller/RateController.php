@@ -30,23 +30,28 @@ class RateController extends AbstractBaseController {
 
             }
 
-            $phoneNumber = $request->getPost('phone', false);
+            $phoneNumbers = $request->getPost('phone', false);
 
-            if(!$phoneNumber) {
+            if(!$phoneNumbers || !is_array($phoneNumbers)) {
                 return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS, array(), array("No phone number provided"));
-            } elseif(!is_numeric($phoneNumber)) {
-                return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS, array(), array("Invalid phone number, only numbers accepted"));
             }
+
+            foreach ($phoneNumbers as $phoneNumber) {
+                if(!is_numeric($phoneNumber)) {
+                    return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS, array(), array("Invalid phone number, only numbers accepted"));
+                }
+            }
+
 
             $rateModel = $this->RateModel();
             try {
-                $rate = $rateModel->checkRate($phoneNumber, $user['name']);
+                $rates = $rateModel->checkRate($phoneNumbers, $user['name']);
             } catch(Exception $ex) {
                 return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_UNKNOWN_ERROR, array(), array());
             }
             return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK,
                 array(
-                    'rate' => $rate
+                    'rates' => $rates
                 ), array());
         } else {
             return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_REQUEST, array(), array());
