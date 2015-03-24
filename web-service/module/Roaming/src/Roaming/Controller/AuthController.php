@@ -125,8 +125,8 @@ class AuthController extends AbstractBaseController {
                     $this->getAuthService()->setStorage($this->getSessionStorage());
                     $this->getAuthService()->getStorage()->write($phone);
                     $this->transactionCommit();
-                    var_dump($this->getAuthService());die;
-                    $sessionId = $this->getAuthService()->session->getManager()->getId();
+                    $sessionId = $this->getAuthService()->getStorage()->session->getManager()->getId();
+                    var_dump($sessionId);die;
 
 
                     $this->log(self::LOG_DEBUG, "Auth: Returning OK response", $sipData);
