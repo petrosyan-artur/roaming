@@ -19,7 +19,6 @@ class AuthStorage extends \Zend\Authentication\Storage\Session {
 
         if(isset($_POST['iosAppSessionId'])) {
             $sessionId = $_POST['iosAppSessionId'];
-            var_dump($sessionId);die;
             $manager = new \Zend\Session\SessionManager();
             $manager->setId($sessionId);
         }
