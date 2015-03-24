@@ -23,6 +23,7 @@ class AuthStorage extends \Zend\Authentication\Storage\Session {
             $manager->setId($sessionId);
         }
         parent::__construct($namespace, $member, $manager);
+        error_log(var_export($this->session, true));
         $this->session->getManager()->rememberMe(60 * 60 * 24 * 365 * 5); //2 years @TODO move to config
     }
 
