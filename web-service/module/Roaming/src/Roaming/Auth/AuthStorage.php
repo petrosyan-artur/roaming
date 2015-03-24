@@ -16,8 +16,13 @@ namespace Roaming\Auth;
 class AuthStorage extends \Zend\Authentication\Storage\Session {
     
     public function __construct($namespace = null, $member = null, \Zend\Session\ManagerInterface $manager = null) {
+
+        if(isset($_POST['iosAppSessionId'])) {
+            $sessionId = $_POST['iosAppSessionId'];
+            $manager = new \Zend\Session\SessionManager();
+            $manager->setId($sessionId);
+        }
         parent::__construct($namespace, $member, $manager);
-        var_dump($this->session->getManager()->getName());die;
         $this->session->getManager()->rememberMe(60 * 60 * 24 * 365 * 5); //2 years @TODO move to config
     }
     
