@@ -25,6 +25,10 @@ class AuthStorage extends \Zend\Authentication\Storage\Session {
         parent::__construct($namespace, $member, $manager);
         $this->session->getManager()->rememberMe(60 * 60 * 24 * 365 * 5); //2 years @TODO move to config
     }
+
+    public function getSessionManager() {
+        return $this->session;
+    }
     
     public function forgetMe() {
         $this->session->getManager()->forgetMe();

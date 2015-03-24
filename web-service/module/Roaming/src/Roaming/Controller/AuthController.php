@@ -125,7 +125,7 @@ class AuthController extends AbstractBaseController {
                     $this->getAuthService()->setStorage($this->getSessionStorage());
                     $this->getAuthService()->getStorage()->write($phone);
                     $this->transactionCommit();
-                    $sessionId = $this->getAuthService()->getStorage()->session->getManager()->getId();
+                    $sessionId = $this->getAuthService()->getStorage()->getSessionManager()->getManager()->getId();
                     var_dump($sessionId);die;
 
 
