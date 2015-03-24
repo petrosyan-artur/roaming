@@ -126,6 +126,7 @@ class AuthController extends AbstractBaseController {
                     $this->getAuthService()->getStorage()->write($phone);
                     $this->transactionCommit();
                     $sessionId = $this->getAuthService()->getStorage()->getSessionManager()->getManager()->getId();
+                    error_log($sessionId);
 
                     $this->log(self::LOG_DEBUG, "Auth: Returning OK response", $sipData);
                     return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK, array('iosAppSessionId' => $sessionId, 'sip' => $sipData));
