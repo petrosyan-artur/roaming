@@ -1,6 +1,6 @@
 <?php
 
-var_dump(session_save_path());die;
+phpinfo();die;
 /**
  * This makes our life easier when dealing with paths. Everything is relative
  * to the application root now.
