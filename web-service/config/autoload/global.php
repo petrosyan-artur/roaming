@@ -52,7 +52,7 @@ return array(
     ),
     'db' => array(
         'username' => 'root',
-        'password' => '',
+        'password' => '0416771',
         'driver' => 'Pdo',
         'dsn' => 'mysql:dbname=roaming-app;host=localhost',
         'driver_options' => array(
