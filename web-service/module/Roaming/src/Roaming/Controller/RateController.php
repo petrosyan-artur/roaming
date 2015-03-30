@@ -15,7 +15,6 @@ namespace Roaming\Controller;
  */
 
 class RateController extends AbstractBaseController {
-    
     public function getAction() {
         $request = $this->getRequest();
         
@@ -37,18 +36,21 @@ class RateController extends AbstractBaseController {
                 return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS, array(), array("No phone number provided"));
             }
 
+            $invalidPhoneNumbers = array();
+            $rateModel = $this->RateModel();
             foreach ($phoneNumbers as $key => $phoneNumber) {
                 $phoneNumber = preg_replace('/\s+/', '', $phoneNumber);
                 $phoneNumber = preg_replace('~\x{00a0}~siu', '', $phoneNumber);
-                error_log($phoneNumber);
+//                error_log($phoneNumber);
                 if(!is_numeric($phoneNumber)) {
-                    return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS, array(), array("Invalid phone number, only numbers accepted"));
+                    $invalidPhoneNumbers[$phoneNumber] = $rateModel::NO_RATE_FOR_SPECIFIED_NUMBER;
+//                    return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS, array(), array("Invalid phone number, only numbers accepted"));
+                } else {
+                    $phoneNumbers[$key] = $phoneNumber;
                 }
-                $phoneNumbers[$key] = $phoneNumber;
             }
 
 
-            $rateModel = $this->RateModel();
             try {
                 $rates = $rateModel->checkRate($phoneNumbers, $user['name']);
             } catch(Exception $ex) {

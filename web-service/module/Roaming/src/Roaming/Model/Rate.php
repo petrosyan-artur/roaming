@@ -10,7 +10,9 @@ use Zend\Db\Sql\Select;
  */
 
 class Rate extends AbstractBaseModel {
-    
+
+    const NO_RATE_FOR_SPECIFIED_NUMBER = -1;
+
     public function __construct(\Zend\ServiceManager\ServiceLocatorInterface $sm) {
         parent::__construct($sm);
     }    
@@ -71,7 +73,7 @@ class Rate extends AbstractBaseModel {
         foreach ($phoneNumbers as $phoneNumber) {
             $rate = $this->getServiceLocator()->get('\Roaming\DbMapper\Rate')->getRate($phoneNumber, $userId);
             if(is_null($rate)) {
-                $rate = -1;
+                $rate = self::NO_RATE_FOR_SPECIFIED_NUMBER;
             }
             $rates[$phoneNumber] = $rate;
         }
