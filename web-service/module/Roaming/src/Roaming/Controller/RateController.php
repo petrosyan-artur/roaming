@@ -43,7 +43,6 @@ class RateController extends AbstractBaseController {
             foreach ($phoneNumbers as $key => $phoneNumber) {
                 $phoneNumber = preg_replace('/\s+/', '', $phoneNumber);
                 $phoneNumber = preg_replace('~\x{00a0}~siu', '', $phoneNumber);
-                var_dump($phoneNumber);
 //                error_log($phoneNumber);
                 if(!is_numeric($phoneNumber)) {
                     $invalidPhoneNumbers[$phoneNumber] = $rateModel::NO_RATE_FOR_SPECIFIED_NUMBER;
@@ -52,8 +51,6 @@ class RateController extends AbstractBaseController {
                     $preProcessedPhoneNumbers[$key] = $phoneNumber;
                 }
             }
-
-            die;
 
             try {
                 if($phoneNumbers) {
