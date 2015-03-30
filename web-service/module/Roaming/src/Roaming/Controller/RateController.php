@@ -38,6 +38,7 @@ class RateController extends AbstractBaseController {
 
             $invalidPhoneNumbers = array();
             $preProcessedPhoneNumbers = array();
+            
             $rateModel = $this->RateModel();
             foreach ($phoneNumbers as $key => $phoneNumber) {
                 $phoneNumber = preg_replace('/\s+/', '', $phoneNumber);
