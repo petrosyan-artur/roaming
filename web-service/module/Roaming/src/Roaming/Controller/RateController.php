@@ -56,6 +56,7 @@ class RateController extends AbstractBaseController {
             } catch(Exception $ex) {
                 return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_UNKNOWN_ERROR, array(), array());
             }
+            $rates = array_merge($rates, $invalidPhoneNumbers);
             return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK,
                 array(
                     'rates' => $rates
