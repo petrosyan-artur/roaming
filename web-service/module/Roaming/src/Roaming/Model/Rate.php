@@ -75,7 +75,7 @@ class Rate extends AbstractBaseModel {
             if(is_null($rate)) {
                 $rate = self::NO_RATE_FOR_SPECIFIED_NUMBER;
             }
-            $rates[$phoneNumber] = $rate;
+            $rates["" . $phoneNumber] = $rate;
         }
 
         return $rates;
