@@ -71,12 +71,16 @@ class Rate extends AbstractBaseModel {
 
         $rates = array();
         foreach ($phoneNumbers as $phoneNumber) {
+
             $rate = $this->getServiceLocator()->get('\Roaming\DbMapper\Rate')->getRate($phoneNumber, $userId);
             if(is_null($rate)) {
                 $rate = self::NO_RATE_FOR_SPECIFIED_NUMBER;
             }
-            $rates["" . $phoneNumber] = $rate;
+            $phoneNumber = "" . $phoneNumber;
+            $rates[$phoneNumber] = $rate;
         }
+
+        var_dump($rates);
 
         return $rates;
     }
