@@ -56,13 +56,13 @@ class RateController extends AbstractBaseController {
                 if($phoneNumbers) {
 
                     $rates = $rateModel->checkRate($preProcessedPhoneNumbers, $user['name']);
-                    var_dump($preProcessedPhoneNumbers, $rates, $invalidPhoneNumbers);die;
                 } else {
                     $rates = array();
                 }
             } catch(Exception $ex) {
                 return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_UNKNOWN_ERROR, array(), array());
             }
+            var_dump($rates, $invalidPhoneNumbers);die;
             $rates = array_merge($rates, $invalidPhoneNumbers);
             return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK,
                 array(
