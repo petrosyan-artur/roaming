@@ -56,7 +56,7 @@ class RateController extends AbstractBaseController {
                 if($phoneNumbers) {
 
                     $rates = $rateModel->checkRate($preProcessedPhoneNumbers, $user['name']);
-                    var_dump($preProcessedPhoneNumbers, $rates);die;
+                    var_dump($preProcessedPhoneNumbers, $rates, $invalidPhoneNumbers);die;
                 } else {
                     $rates = array();
                 }
