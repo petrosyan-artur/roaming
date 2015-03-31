@@ -63,7 +63,6 @@ class RateController extends AbstractBaseController {
                 return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_UNKNOWN_ERROR, array(), array());
             }
             $rates = $rates + $invalidPhoneNumbers;
-            var_dump($rates);die;
             return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK,
                 array(
                     'rates' => $rates
