@@ -80,7 +80,6 @@ class Rate extends AbstractBaseModel {
             $rates[$phoneNumber] = $rate;
         }
 
-        var_dump($rates);
 
         return $rates;
     }
