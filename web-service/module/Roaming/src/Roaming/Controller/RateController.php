@@ -45,7 +45,7 @@ class RateController extends AbstractBaseController {
                 $phoneNumber = preg_replace('~\x{00a0}~siu', '', $phoneNumber);
 //                error_log($phoneNumber);
                 if(!is_numeric($phoneNumber)) {
-                    $invalidPhoneNumbers[$phoneNumber] = $rateModel::NO_RATE_FOR_SPECIFIED_NUMBER;
+                    $invalidPhoneNumbers[$phoneNumber] = array('location' => '', 'rate' => $rateModel::NO_RATE_FOR_SPECIFIED_NUMBER);
 //                    return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_INVALID_PARAMETERS, array(), array("Invalid phone number, only numbers accepted"));
                 } else {
                     $preProcessedPhoneNumbers["" . $key] = $phoneNumber;
