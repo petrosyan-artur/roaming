@@ -129,7 +129,7 @@ class AuthController extends AbstractBaseController {
                     error_log($sessionId);
 
                     $this->log(self::LOG_DEBUG, "Auth: Returning OK response", $sipData);
-                    return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK, array('iosAppSessionId' => $sessionId, 'sip' => $sipData));
+                    return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK, array('sip' => $sipData));
                 } else {
                     $errors = array();
                     $this->log(self::LOG_WARN, "Auth: User provided parameters are NOT valid", $request->getPost());

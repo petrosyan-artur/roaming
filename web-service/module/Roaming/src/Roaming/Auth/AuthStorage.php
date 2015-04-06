@@ -17,13 +17,13 @@ class AuthStorage extends \Zend\Authentication\Storage\Session {
     
     public function __construct($namespace = null, $member = null, \Zend\Session\ManagerInterface $manager = null) {
 
-        if(isset($_POST['iosAppSessionId'])) {
-            $sessionId = $_POST['iosAppSessionId'];
+//        if(isset($_POST['iosAppSessionId'])) {
+//            $sessionId = $_POST['iosAppSessionId'];
             $manager = new \Zend\Session\SessionManager();
             $manager->getConfig()->setCookieLifetime(60 * 60 * 24 * 365 * 5);
-            $manager->setId($sessionId);
+//            $manager->setId($sessionId);
 //            $manager->rememberMe(60 * 60 * 24 * 365 * 5); //2 years @TODO move to config
-        }
+//        }
         parent::__construct($namespace, $member, $manager);
 
     }
