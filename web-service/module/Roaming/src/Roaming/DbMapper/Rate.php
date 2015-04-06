@@ -22,7 +22,7 @@ class Rate extends AbstractMapper {
         $expr = new Expression("LOCATE(code, $phone) = 1");
         $select = new Select();
         $select->from(array('r' => $this->tblName))
-            ->columns(array('code', 'price', 'increment'))
+            ->columns(array('name', 'code', 'price', 'increment'))
             ->order(array(new Expression("LENGTH(r.code) DESC")))
             ->limit(1)
             ->join(array('u' => 'users'), 'r.rate_sheet_id = u.rate_sheet_id', array('id'))
@@ -33,16 +33,17 @@ class Rate extends AbstractMapper {
             )
            ->where($expr->getExpression());
 
-//        echo($select->getSqlString(new \Zend\Db\Adapter\Platform\Mysql()));die;
         $res = $this->selectWith($select);
 
         if($res) {
             $price = null;
+            $name = null;
             foreach($res as $row) {
                 $price = $row->price;
+                $name = $row->name;
                 break; //we have only one row
             }
-            return $price;
+            return array($name, $price);
         }
 
         return null;

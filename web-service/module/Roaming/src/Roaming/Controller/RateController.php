@@ -54,7 +54,6 @@ class RateController extends AbstractBaseController {
 
             try {
                 if($phoneNumbers) {
-
                     $rates = $rateModel->checkRate($preProcessedPhoneNumbers, $user['name']);
                 } else {
                     $rates = array();
