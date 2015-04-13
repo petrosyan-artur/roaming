@@ -149,4 +149,11 @@ class UserController extends AbstractBaseController {
         );
         return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK, $responseData);
     }
+
+    public function accountHistoryAction() {
+        $request = $this->getRequest();
+
+        $user = $this->getLoggedinUser();
+        $this->layout('layout/mobile');
+    }
 }
