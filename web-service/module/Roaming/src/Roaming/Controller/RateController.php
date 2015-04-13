@@ -23,7 +23,6 @@ class RateController extends AbstractBaseController {
         if ($request->isPost()) {
             $user = $this->getLoggedinUser();
 
-            error_log(var_export($user, true));
             if(!$user) {
 
                 return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_NOT_LOGGED_IN);

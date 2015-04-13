@@ -122,4 +122,31 @@ class UserController extends AbstractBaseController {
         }
         return $this->userModel;
     }
+
+    public function accountInfoAction() {
+
+        $user = $this->getLoggedinUser();
+
+        if(!$user) {
+            return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_NOT_LOGGED_IN);
+        }
+
+        $responseData = array(
+            'balance' => array(
+                'active_days' => 10,
+                'bonus_days' => 5
+            ),
+            'available_subscribtions' => array(
+                array(
+                    'price' => '10 USD',
+                    'duration' => '5 days'
+                ),
+                array(
+                    'price' => '20 USD',
+                    'duration' => '15 days'
+                )
+            )
+        );
+        return $this->getJsonModel(\Roaming\Helper\RespCodes::RESPONSE_STATUS_OK, $responseData);
+    }
 }
