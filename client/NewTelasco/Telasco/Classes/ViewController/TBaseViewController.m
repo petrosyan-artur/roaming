@@ -256,6 +256,7 @@
     [vc setPopinOptions:BKTPopinDefault];
     [vc setPopinAlignment:BKTPopinAlignementOptionCentered];
     
+    
     //    Create a blur parameters object to configure background blur
     //    BKTBlurParameters *blurParameters = [BKTBlurParameters new];
     //    blurParameters.alpha = 1.0f;
