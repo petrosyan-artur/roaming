@@ -1,0 +1,87 @@
+//
+//  Telasco.pch
+//  Telasco
+//
+//  Created by Janna Hakobyan on 3/2/15.
+//  Copyright (c) 2015 Telasco Communications. All rights reserved.
+//
+
+//#ifndef Telasco_Telasco_pch
+//#define Telasco_Telasco_pch
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+#import "AFNetworking.h"
+#import "Utils.h"
+#import "UIButton+Telasco.h"
+#import "UIView+Telasco.h"
+#import "TNetworking.h"
+#import "Constants.h"
+#import <AddressBook/AddressBook.h>
+#import <CoreLocation/CoreLocation.h>
+#import "AddressBook.h"
+#import "RHARCSupport.h"
+
+#endif
+
+
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+#define KEYBOARD_HEIGHT (268)//(216)
+
+
+#define BASE_URL               @"http://37.48.84.64/api"
+
+#define kRegisterButtonBgColor       [UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1.0f]
+#define kRegisterButtonBorderColor   [UIColor colorWithRed:215/255.0f green:215/255.0f blue:215/255.0f alpha:1.0f]
+#define kRedTelascoColor             [UIColor colorWithRed:224/255.0f green:0 blue:0 alpha:1.0f]
+#define kGrayTelascoColor            [UIColor colorWithRed:88/255.0f green:88/255.0f blue:88/255.0f alpha:1.0f]
+
+
+#define kAppName               @"Telasco"
+#define kNoInternet            @"No Internet connection. Please try again late"
+#define kFail                  @"Fail"
+#define kPrefDeviceToken       @"DeviceToken"
+#define kPrefToken             @"Token" 
+#define kRecentCalls           @"RecentCalls"
+
+#define kInternetStateChanges  @"InternetStateChanges"
+
+
+typedef enum {
+    TPush = 1,
+    TContacts,
+    TMicrophone
+} TACCESS;
+
+
+
+#define REGISTER_STATUS_ONLINE              "Online"
+#define REGISTER_STATUS_OFFLINE             "Offline"
+#define REGISTER_STATUS_NO_ACCOUNT          "No SIP Account Exist"
+#define REGISTER_STATUS_NETWORK_NOT_FOUND   "Network is not available"
+
+#define REGISTER_STATUS_REGISTERING         "Registering Account"
+#define REGISTER_STATUS_FAILED              "Register:"
+#define REGISTER_STATUS_SUCCESS             "Account Registered"
+
+#define RE_REGISTER_STATUS_REGISTERING      "Registering Account"
+#define RE_REGISTER_STATUS_FAILED           "Register:"
+#define RE_REGISTER_STATUS_SUCCESS          "Account Registered"
+
+#define UN_REGISTER_STATUS_REGISTERING      "Un-Registering Account"
+#define UN_REGISTER_STATUS_FAILED           "Un-Register:"
+#define UN_REGISTER_STATUS_SUCCESS          "Account Un-Registered"
+
+#define kYes                   @"yes"
+#define kNo                    @"no"
+#define kHost                  @"host"
+#define kPassword              @"password"
+#define kUserName              @"userName"
+#define kPort                  @"port"
+#define kLogined               @"logined"
+#define kCountryCode           @"countryCode"
+#define kPhoneNumber           @"phoneNumber"
+#define kCountry               @"country"
+
