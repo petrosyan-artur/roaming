@@ -139,11 +139,13 @@ class UserController extends AbstractBaseController {
             'available_subscribtions' => array(
                 array(
                     'price' => '10 USD',
-                    'duration' => '5 days'
+                    'duration' => '5 days',
+                    'url' => 'http://37.48.84.64/api/payment/buy-subscription?type=1',
                 ),
                 array(
                     'price' => '20 USD',
-                    'duration' => '15 days'
+                    'duration' => '15 days',
+                    'url' => 'http://37.48.84.64/api/payment/buy-subscription?type=2'
                 )
             )
         );

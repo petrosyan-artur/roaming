@@ -105,5 +105,9 @@ class PaymentController extends AbstractBaseController {
     protected function getPaymentModel() {
         return $this->getServiceLocator()->get('\Roaming\Model\Payment');
     }
+
+    public function buySubscriptionAction() {
+
+    }
     
 }
