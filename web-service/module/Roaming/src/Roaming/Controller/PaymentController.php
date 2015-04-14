@@ -107,7 +107,7 @@ class PaymentController extends AbstractBaseController {
     }
 
     public function buySubscriptionAction() {
-
+        $this->layout('layout/mobile');
     }
     
 }
